@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Infostealers silently harvest your saved passwords, cookies, and crypto wallets. Learn how they work, which families are most active, and how to defend yourself.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/infostealers.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/infostealers.html">
+  <meta property="og:title" content="What Is an Infostealer? | BreachWatcher">
+  <meta property="og:description" content="Infostealers silently harvest your saved passwords, cookies, and crypto wallets. Learn how they work, which families are most active, and how to defend yourself.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-04-01T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is an Infostealer? | BreachWatcher">
+  <meta name="twitter:description" content="Infostealers silently harvest your saved passwords, cookies, and crypto wallets. Learn how they work, which families are most active, and how to defend yourself.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>What Is an Infostealer? | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    /* MORE TIPS */
+    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
+    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
+    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
+    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
+    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What Is an Infostealer? | BreachWatcher",
+        "description": "Infostealers silently harvest your saved passwords, cookies, and crypto wallets. Learn how they work, which families are most active, and how to defend yourself.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/infostealers.html",
+        "image": "https://www.breachwatcher.io/Banner.webp",
+        "datePublished": "2026-04-01T00:00:00+00:00",
+        "dateModified": "2026-04-01T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/infostealers.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+      {"@type":"ListItem","position":3,"name":"Infostealers","item":"https://www.breachwatcher.io/cybersecurity-tips/infostealers.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../#alerts">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="../#alerts">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="../#tips">Cybersecurity Tips</a>
+      <span class="sep">/</span>
+      <span>Infostealers</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-orange">Malware</span>
+      <span class="article-tag tag-red">Data Theft</span>
+    </div>
+    <h1 class="article-title">What Is an Infostealer?</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> April 1, 2026</span>
+      <span><i class="fas fa-user"></i> BreachWatcher</span>
+      <span><i class="fas fa-clock"></i> 4 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>What Is an Infostealer?</h2>
+  <p>An infostealer is a type of <strong>trojan malware designed to harvest sensitive data from an infected machine silently</strong>, without encrypting files or making itself obvious to the victim. Where ransomware announces itself with a demand note, an infostealer's entire advantage lies in staying hidden for as long as possible — the longer it runs undetected, the more data it collects.</p>
+  <p>The data targeted by infostealers includes <strong>saved browser passwords, active session cookies, autofill data, credit card details cached in browsers, cryptocurrency wallet files, and documents from the desktop and common folders</strong>. In minutes, a single infection can yield everything an attacker needs to access your banking, email, social media, and crypto accounts — all without ever touching your password.</p>
+
+  <h2>How They Work</h2>
+  <p>Once executed on a victim's machine, an infostealer follows a systematic harvesting process:</p>
+  <ul>
+    <li><strong>Browser credential extraction</strong> — the malware enumerates installed browser profiles (Chrome, Firefox, Edge, Brave, Opera) and extracts saved usernames and passwords directly from the local SQLite credential databases. Browsers encrypt these databases, but the decryption keys are also stored locally and accessible to software running under the same user account.</li>
+    <li><strong>Session cookie theft</strong> — active session cookies are extracted from browser storage. These cookies allow web applications to keep you logged in, and they work independently of your password. An attacker with your session cookie can impersonate you in Gmail, social media, or online banking without ever being asked for your password or MFA code.</li>
+    <li><strong>Cryptocurrency wallet targeting</strong> — wallet files, seed phrase storage files, and browser extension data for wallets like MetaMask are specifically sought out and exfiltrated.</li>
+    <li><strong>Log compilation and exfiltration</strong> — all harvested data is bundled into a compressed "log" package and transmitted to attacker-controlled servers, often within seconds of collection.</li>
+  </ul>
+
+  <h2>Common Infostealer Families</h2>
+  <p>The infostealer market is highly active, with multiple well-maintained families sold as subscription services on criminal forums:</p>
+  <ul>
+    <li><strong>RedLine Stealer</strong> — one of the longest-running and most widely deployed infostealers, sold as malware-as-a-service with a subscription model accessible even to low-skill actors.</li>
+    <li><strong>Raccoon Stealer</strong> — popular for its ease of use and reliability; the project has been shut down and resurrected multiple times following law enforcement action against its operators.</li>
+    <li><strong>LummaC2</strong> — increasingly prevalent in 2025 and 2026, with a particular focus on cryptocurrency wallets and browser extensions. Distributed aggressively through fake CAPTCHA pages and software download sites.</li>
+    <li><strong>Vidar</strong> — a capable stealer with modules targeting 2FA authenticator app databases stored on desktop and in browsers, enabling attackers to defeat time-based one-time passwords.</li>
+  </ul>
+
+  <h2>How They're Distributed</h2>
+  <p>Infostealers reach victims through a range of social engineering and deceptive delivery mechanisms:</p>
+  <ul>
+    <li>Fake software download pages mimicking legitimate tools (VPNs, video editors, game cheats, productivity apps)</li>
+    <li>Malvertising — paid search ads and display ads that lead to convincing fake download pages</li>
+    <li>Phishing email attachments disguised as invoices, shipping notifications, or job offers</li>
+    <li>YouTube videos describing "free" software, with malicious download links posted in the video description</li>
+    <li>Discord and Telegram channels in gaming and crypto communities promoting tools with embedded payloads</li>
+  </ul>
+
+  <h2>Why They're So Dangerous</h2>
+  <p>Infostealers represent a particularly severe threat for two reasons that are easy to underestimate:</p>
+  <p>First, <strong>stolen session cookies bypass MFA entirely</strong>. Multi-factor authentication protects the login process — but if an attacker already has your active session cookie, they bypass the login page completely. Your MFA is irrelevant when the attacker is already authenticated. This is why high-profile account takeovers — including those affecting content creators and corporate accounts — often succeed against targets who had MFA enabled.</p>
+  <p>Second, a single infection on one machine can simultaneously <strong>compromise dozens of accounts across every service you've ever logged in to from that device</strong>. The blast radius of a single infostealer infection is enormous.</p>
+  <p>Collected logs are typically sold in bulk on Telegram channels within hours of collection — meaning the window between your infection and someone actively exploiting your accounts can be extremely short.</p>
+
+  <h2>How to Protect Yourself</h2>
+  <p>Defending against infostealers requires discipline around software sources and active account hygiene:</p>
+  <ul>
+    <li><strong>Never download software from unofficial sources</strong> — only use official vendor websites, verified app stores, or well-known open-source repositories.</li>
+    <li>Use a reputable security tool with real-time protection capable of detecting trojan behaviour before execution.</li>
+    <li>Use a dedicated password manager instead of relying on browser-saved passwords — a password manager stores credentials in an encrypted vault separate from the browser's accessible storage.</li>
+    <li>Periodically clear browser cookies and session data, especially after using shared or unfamiliar machines, to limit the value of any stolen session tokens.</li>
+    <li>If you suspect an infection, immediately revoke all active sessions on critical accounts (most services offer a "sign out everywhere" option) and rotate passwords, starting with your email and banking accounts.</li>
+    <li>Use BreachWatcher to be alerted if your credentials appear in infostealer-sourced breach data.</li>
+  </ul>
+
+  <div class="alert-box">
+    <p><strong>Infostealer logs are a primary source of data that ends up in breach databases.</strong> BreachWatcher scans for your credentials appearing in these logs so you can act before attackers exploit the access.</p>
+  </div>
+
+</main>
+
+<section class="more-alerts">
+  <h3>More Cybersecurity Tips</h3>
+  <div class="more-grid">
+    <a href="./ransomware.html" class="more-card">
+      <div class="more-card-tag">Malware · Ransomware</div>
+      <div class="more-card-title">What Is Ransomware and How Does It Spread?</div>
+    </a>
+    <a href="./credential-stuffing.html" class="more-card">
+      <div class="more-card-tag">Data Breach · Account Security</div>
+      <div class="more-card-title">What Is Credential Stuffing?</div>
+    </a>
+    <a href="./data-breach-aftermath.html" class="more-card">
+      <div class="more-card-tag">Data Breach · Dark Web</div>
+      <div class="more-card-title">What Happens to Your Data After a Breach?</div>
+    </a>
+    <a href="./account-takeover.html" class="more-card">
+      <div class="more-card-tag">Account Security</div>
+      <div class="more-card-title">What Is Account Takeover?</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="../#alerts">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

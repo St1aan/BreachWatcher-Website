@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/ransomware.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/ransomware.html">
+  <meta property="og:title" content="What Is Ransomware and How Does It Spread? | BreachWatcher">
+  <meta property="og:description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-03-22T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Ransomware and How Does It Spread? | BreachWatcher">
+  <meta name="twitter:description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>What Is Ransomware and How Does It Spread? | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    /* MORE TIPS */
+    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
+    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
+    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
+    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
+    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What Is Ransomware and How Does It Spread? | BreachWatcher",
+        "description": "Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/ransomware.html",
+        "image": "https://www.breachwatcher.io/Banner.webp",
+        "datePublished": "2026-03-22T00:00:00+00:00",
+        "dateModified": "2026-03-22T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/ransomware.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+      {"@type":"ListItem","position":3,"name":"Ransomware","item":"https://www.breachwatcher.io/cybersecurity-tips/ransomware.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../#alerts">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="../#alerts">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="../#tips">Cybersecurity Tips</a>
+      <span class="sep">/</span>
+      <span>Ransomware</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-red">Malware</span>
+      <span class="article-tag tag-orange">Ransomware</span>
+    </div>
+    <h1 class="article-title">What Is Ransomware and How Does It Spread?</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> March 22, 2026</span>
+      <span><i class="fas fa-user"></i> BreachWatcher</span>
+      <span><i class="fas fa-clock"></i> 5 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>What Is Ransomware?</h2>
+  <p>Ransomware is a category of <strong>malicious software that encrypts your files</strong> — documents, photos, databases, everything — and then demands payment, usually in cryptocurrency, for the decryption key needed to restore access. Without that key, your data is effectively gone. The encryption used by modern ransomware families is mathematically unbreakable by brute force; there is no way to recover your files without either paying or restoring from a backup.</p>
+  <p>The threat has evolved significantly over the past decade. Modern ransomware operators — particularly those running <strong>Ransomware-as-a-Service (RaaS)</strong> platforms — don't just encrypt your files. They first exfiltrate a copy of your sensitive data and then threaten to publish it publicly if you don't pay. This "double extortion" model means that even organisations with backups face pressure to pay, because the stolen data can still cause regulatory, legal, and reputational damage if published.</p>
+
+  <h2>How It Spreads — The Main Vectors</h2>
+  <p>Ransomware reaches victims through a variety of delivery mechanisms. Understanding these is essential for knowing what to guard against:</p>
+  <ul>
+    <li><strong>Phishing emails</strong> — malicious attachments (Word documents with macros, PDFs with embedded links, ZIP archives) or links leading to drive-by download sites. This remains the single most common initial access vector.</li>
+    <li><strong>Pirated software and cracked applications</strong> — ransomware payloads are routinely embedded in pirated games, software cracks, and key generators downloaded from torrent sites and shady download portals.</li>
+    <li><strong>RDP brute-forcing</strong> — attackers scan the internet continuously for machines with <strong>Remote Desktop Protocol (RDP)</strong> exposed on port 3389. Weak or default credentials are tried systematically until access is gained. Once inside, ransomware is deployed manually.</li>
+    <li><strong>Malvertising</strong> — malicious advertisements served through legitimate ad networks that trigger automatic downloads or redirect users to exploit kit landing pages — no click required if the browser or plugins are unpatched.</li>
+    <li><strong>Supply chain attacks</strong> — compromising software update mechanisms or third-party vendors to deliver malicious code to thousands of organisations simultaneously, as seen in the Kaseya VSA and MOVEit incidents.</li>
+  </ul>
+
+  <h2>Notable Ransomware Examples</h2>
+  <p>The ransomware landscape is populated by well-organised criminal groups operating with business-like efficiency:</p>
+  <ul>
+    <li><strong>WannaCry (2017)</strong> — exploited the EternalBlue vulnerability in Windows SMB, spreading automatically across networks without user interaction. It affected over 200,000 systems in 150 countries within days, crippling hospitals, telecoms, and government agencies.</li>
+    <li><strong>LockBit</strong> — one of the most prolific RaaS operations ever documented, responsible for thousands of attacks globally before law enforcement action. Its affiliate model meant anyone could deploy LockBit ransomware by renting access to the platform.</li>
+    <li><strong>Cl0p</strong> — known for large-scale mass exploitation of vulnerabilities in file transfer software (GoAnywhere MFT, MOVEit Transfer), compromising hundreds of organisations simultaneously and focusing on data theft for extortion rather than encryption alone.</li>
+  </ul>
+
+  <h2>Should You Pay the Ransom?</h2>
+  <p>Law enforcement agencies worldwide — including the FBI, Europol, and the NCSC — <strong>universally advise against paying the ransom</strong>. The reasoning is consistent and well-founded:</p>
+  <ul>
+    <li>Payment directly funds future attacks and signals that your sector is a profitable target.</li>
+    <li>Decryption tools provided after payment frequently fail to fully restore all files — particularly databases and custom file types.</li>
+    <li>Paying marks you as a willing payer; many victims are attacked again within 12 months.</li>
+    <li>Attackers may still publish or sell the exfiltrated data regardless of payment — there is no enforceable guarantee.</li>
+    <li>In some jurisdictions, paying ransomware groups that are under sanctions may itself carry legal risk.</li>
+  </ul>
+
+  <h2>How to Protect Yourself</h2>
+  <p>Ransomware defences are layered — no single measure is sufficient, but the combination is highly effective:</p>
+  <ul>
+    <li><strong>Maintain regular, tested, offline backups</strong> following the 3-2-1 rule: three copies of your data, on two different media types, with one stored offline or air-gapped and unreachable by ransomware.</li>
+    <li><strong>Patch software promptly</strong> — the majority of successful ransomware attacks exploit known vulnerabilities for which patches already exist. Timely patching eliminates this avenue entirely.</li>
+    <li>Disable RDP if you don't need it. If you do need it, place it behind a VPN and enforce MFA on all remote access.</li>
+    <li>Enable MFA on every account — compromised credentials are a primary ransomware entry point, and MFA stops stolen credentials from being usable.</li>
+    <li>Never open unexpected attachments, even from known contacts — attackers frequently spoof sender addresses or compromise email accounts.</li>
+    <li>Use reputable, actively maintained security software with real-time behavioural detection.</li>
+  </ul>
+
+  <div class="alert-box">
+    <p><strong>Ransomware often starts with compromised credentials.</strong> BreachWatcher ensures you know immediately when your email appears in a breach — letting you change passwords before attackers can use them to gain initial access to your systems.</p>
+  </div>
+
+</main>
+
+<section class="more-alerts">
+  <h3>More Cybersecurity Tips</h3>
+  <div class="more-grid">
+    <a href="./infostealers.html" class="more-card">
+      <div class="more-card-tag">Malware · Data Theft</div>
+      <div class="more-card-title">What Is an Infostealer?</div>
+    </a>
+    <a href="./phishing-smishing-vishing-quishing.html" class="more-card">
+      <div class="more-card-tag">Social Engineering</div>
+      <div class="more-card-title">Phishing, Smishing, Vishing &amp; Quishing Explained</div>
+    </a>
+    <a href="./public-wifi-vpn.html" class="more-card">
+      <div class="more-card-tag">Best Practice</div>
+      <div class="more-card-title">Public Wi-Fi Risks and When to Use a VPN</div>
+    </a>
+    <a href="./zero-days-vulnerabilities.html" class="more-card">
+      <div class="more-card-tag">Threats</div>
+      <div class="more-card-title">Zero-Days and Vulnerabilities Explained</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="../#alerts">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Phishing, smishing, vishing, and quishing all exploit trust to steal your credentials. Learn to recognise each attack type and protect yourself.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html">
+  <meta property="og:title" content="What Is Phishing, Smishing, Vishing, and Quishing? | BreachWatcher">
+  <meta property="og:description" content="Phishing, smishing, vishing, and quishing all exploit trust to steal your credentials. Learn to recognise each attack type and protect yourself.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-01-15T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Phishing, Smishing, Vishing, and Quishing? | BreachWatcher">
+  <meta name="twitter:description" content="Phishing, smishing, vishing, and quishing all exploit trust to steal your credentials. Learn to recognise each attack type and protect yourself.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>What Is Phishing, Smishing, Vishing, and Quishing? | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    /* MORE TIPS */
+    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
+    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
+    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
+    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
+    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What Is Phishing, Smishing, Vishing, and Quishing? | BreachWatcher",
+        "description": "Phishing, smishing, vishing, and quishing all exploit trust to steal your credentials. Learn to recognise each attack type and protect yourself.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html",
+        "image": "https://www.breachwatcher.io/Banner.webp",
+        "datePublished": "2026-01-15T00:00:00+00:00",
+        "dateModified": "2026-01-15T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+      {"@type":"ListItem","position":3,"name":"Phishing, Smishing, Vishing & Quishing","item":"https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../#alerts">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="../#alerts">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="../#tips">Cybersecurity Tips</a>
+      <span class="sep">/</span>
+      <span>Phishing, Smishing, Vishing &amp; Quishing</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-orange">Social Engineering</span>
+      <span class="article-tag tag-orange">Phishing</span>
+    </div>
+    <h1 class="article-title">What Is Phishing, Smishing, Vishing, and Quishing?</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> January 15, 2026</span>
+      <span><i class="fas fa-user"></i> BreachWatcher</span>
+      <span><i class="fas fa-clock"></i> 5 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>The Common Thread</h2>
+  <p>Phishing, smishing, vishing, and quishing are four variants of the same fundamental attack. They differ in the channel used to reach the victim — email, SMS, phone, or QR code — but the underlying mechanism is identical: <strong>impersonation and manipulation</strong>.</p>
+  <p>Attackers study the brands, institutions, and communication styles that people trust most. They then craft convincing replicas — emails that look like they came from your bank, text messages that match your parcel carrier's format, phone calls that spoof your government's caller ID — and use them to manipulate victims into doing one or more of the following:</p>
+  <ul>
+    <li>Clicking a link that leads to a credential-harvesting site designed to look legitimate</li>
+    <li>Downloading a malicious attachment that installs malware or ransomware</li>
+    <li>Providing sensitive information (OTP codes, passwords, card numbers) verbally</li>
+    <li>Authorising a fraudulent payment or funds transfer</li>
+  </ul>
+  <p>Understanding each variant makes you dramatically harder to fool — because recognition is the first line of defence.</p>
+
+  <h2>Phishing (Email)</h2>
+  <p>Email phishing is the oldest and most prevalent form. Attackers send fraudulent messages that appear to come from well-known organisations: banks like Standard Bank or Nedbank, tech giants like Microsoft and Google, retailers like Amazon, or payment services like PayPal. The emails are often visually polished, using stolen logos and copied formatting from legitimate communications.</p>
+  <p>The core tactic is <strong>urgency</strong>. "Your account has been compromised — verify immediately." "Your payment failed — update your details within 24 hours." The time pressure bypasses rational scepticism and pushes victims to act before they think.</p>
+  <p>Common red flags to watch for:</p>
+  <ul>
+    <li><strong>Mismatched sender domains</strong> — the display name says "PayPal" but the actual address is <code>paypal-support@secureupdate-account.net</code></li>
+    <li><strong>Generic greetings</strong> — "Dear Valued Customer" instead of your actual name</li>
+    <li><strong>Unexpected urgency</strong> — legitimate services rarely threaten immediate account termination via email</li>
+    <li><strong>Lookalike domains</strong> — <code>paypa1.com</code>, <code>microsoft-login.support</code>, or <code>amazon-secure.co</code></li>
+    <li><strong>Unexpected attachments</strong> — unsolicited invoices, shipping labels, or legal documents</li>
+  </ul>
+
+  <h2>Smishing (SMS)</h2>
+  <p>Smishing applies the same phishing principles to SMS text messages. The format is almost always the same: a short message with a brief claim and a link. "Your FNB account has been suspended — verify here." "Your SAPO parcel could not be delivered — click to reschedule." "SARS: you are entitled to a tax refund."</p>
+  <p>SMS feels more intimate and immediate than email. Notifications arrive on the same device you use for banking apps, creating a false sense of contextual legitimacy. Additionally, short URLs in SMS messages make it nearly impossible to preview the destination before tapping.</p>
+  <p>The rule is simple: <strong>never click links in unexpected SMS messages</strong>. If you receive a message claiming to be from your bank, navigate to the bank's official website yourself by typing the URL directly into your browser. The same applies to parcel tracking — go to the courier's website and enter your tracking number manually.</p>
+
+  <h2>Vishing (Voice)</h2>
+  <p>Vishing — voice phishing — moves the attack to a phone call. Attackers impersonate bank fraud departments, tax authorities (SARS, HMRC, IRS), police, Microsoft support, or telecommunications companies. Modern voice-over-IP technology makes it trivial to spoof any caller ID, so the number displayed on your screen may appear to be your bank's genuine number.</p>
+  <p>A skilled visher builds rapport quickly, references details obtained from prior data breaches (your name, part of your account number, your address), and creates artificial urgency: "Fraudulent transactions are being processed on your account right now — we need to verify your identity immediately."</p>
+  <p>They may then ask you to:</p>
+  <ul>
+    <li>Read back the OTP your bank just sent — which they triggered to perform a real transaction</li>
+    <li>Install remote desktop software (TeamViewer, AnyDesk) so they can "help" you</li>
+    <li>Transfer funds to a "safe account" they control</li>
+    <li>Provide your full card number, CVV, and PIN for "verification"</li>
+  </ul>
+  <p><strong>Legitimate organisations will never ask for your password, PIN, or full OTP over the phone.</strong> If you receive a suspicious call, hang up and call the organisation back using the number printed on their official website or the back of your card.</p>
+
+  <h2>Quishing (QR Code)</h2>
+  <p>Quishing is the newest and fastest-growing variant. Attackers embed malicious URLs inside QR codes — which, unlike text links, cannot be visually inspected before scanning. The QR code is distributed via email (to bypass URL-scanning security tools), physical posters in public spaces, fake parking fine notices placed on car windshields, or even replacement stickers placed over legitimate QR codes in restaurants and shops.</p>
+  <p>When scanned, the code redirects the victim to a convincing lookalike login page that harvests their credentials, or to a site that exploits browser vulnerabilities to deliver malware. The attack is particularly effective on mobile devices, where the full URL is rarely displayed prominently.</p>
+  <p>Before scanning any QR code from an unexpected source, <strong>preview the URL it resolves to</strong>. Most phone cameras show the destination URL before opening it — check it carefully. If the domain looks suspicious, do not proceed.</p>
+
+  <h2>How to Protect Yourself</h2>
+  <p>Across all four attack types, the same principles apply:</p>
+  <ul>
+    <li><strong>Verify independently</strong> — if a message claims to be from your bank, call the number on your card, not a number in the message</li>
+    <li><strong>Don't click — navigate directly</strong> — go to the official website by typing the URL yourself; do not follow links from emails or SMS</li>
+    <li><strong>Never read OTPs to callers</strong> — your bank will never ask for this; anyone who does is an attacker</li>
+    <li><strong>Preview QR code URLs</strong> before visiting them; check the domain carefully for lookalike characters</li>
+    <li><strong>Enable MFA</strong> — even if an attacker steals your password through a phishing page, MFA (especially hardware keys or passkeys) prevents account compromise</li>
+    <li><strong>Slow down</strong> — urgency is the attacker's tool; taking ten extra seconds to verify independently costs nothing and saves everything</li>
+  </ul>
+
+  <div class="alert-box">
+    <p><strong>BreachWatcher alerts you if your credentials appear in a phishing campaign database.</strong> If you receive a suspicious communication — an email demanding you verify your account, an SMS with an unexpected link, a caller asking for your OTP — do not engage. Verify through official channels first. Your BreachWatcher alert is a safety net, not a replacement for caution.</p>
+  </div>
+
+</main>
+
+<section class="more-alerts">
+  <h3>More Cybersecurity Tips</h3>
+  <div class="more-grid">
+    <a href="./spot-fake-website.html" class="more-card">
+      <div class="more-card-tag">Phishing · Social Engineering</div>
+      <div class="more-card-title">How to Spot a Fake Website</div>
+    </a>
+    <a href="./social-media-osint.html" class="more-card">
+      <div class="more-card-tag">Privacy · Social Engineering</div>
+      <div class="more-card-title">What Attackers Can Learn From Your Social Media</div>
+    </a>
+    <a href="./public-wifi-vpn.html" class="more-card">
+      <div class="more-card-tag">Networks · Privacy</div>
+      <div class="more-card-title">Is Public Wi-Fi Safe? When You Need a VPN</div>
+    </a>
+    <a href="./multi-factor-authentication.html" class="more-card">
+      <div class="more-card-tag">Authentication · Best Practice</div>
+      <div class="more-card-title">What Is Multi-Factor Authentication (MFA)?</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="../#alerts">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,1874 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BreachWatcher monitors your email for data breaches 24/7, alerting you instantly when your credentials are compromised. Based in Johannesburg, South Africa and Raleigh, North Carolina.">
+  <link rel="canonical" href="https://www.breachwatcher.io/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.breachwatcher.io/">
+  <meta property="og:title" content="Data Breach Monitoring & Email Breach Alerts | BreachWatcher">
+  <meta property="og:description" content="BreachWatcher monitors your email for data breaches 24/7, alerting you instantly when your credentials are compromised. Based in Johannesburg, South Africa and Raleigh, North Carolina.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Data Breach Monitoring & Email Breach Alerts | BreachWatcher">
+  <meta name="twitter:description" content="BreachWatcher monitors your email for data breaches 24/7, alerting you instantly when your credentials are compromised. Based in Johannesburg, South Africa and Raleigh, North Carolina.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>Data Breach Monitoring & Email Breach Alerts | BreachWatcher</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>(function(){ emailjs.init("nlf7-LsbRhddJfpdH"); })();</script>
+
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      height: var(--nav-h);
+      display: flex;
+      align-items: center;
+      padding: 0 5%;
+      transition: background .3s, box-shadow .3s;
+    }
+    nav.scrolled {
+      background: rgba(11,15,14,.96);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 var(--border-dim);
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none; flex-shrink: 0;
+    }
+    .nav-logo img {
+      height: 48px; width: 48px;
+      object-fit: cover; border-radius: 50%;
+      border: 1px solid rgba(57,255,20,.25);
+    }
+    .nav-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800; font-size: 1.15rem; color: var(--text);
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline {
+      display: block; font-size: .58rem; color: var(--text-muted);
+      letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px;
+    }
+    .nav-links {
+      display: flex; align-items: center; gap: 1.75rem;
+      margin-left: auto; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: .72rem; font-weight: 600; transition: color .2s;
+      position: relative; letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav-links a:hover, .nav-links a.active { color: var(--text); }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 1px; background: var(--primary);
+      transform: scaleX(0); transition: transform .2s;
+    }
+    .nav-links a:hover::after, .nav-links a.active::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--primary) !important; color: #000 !important;
+      padding: 8px 20px; border-radius: 3px;
+      font-weight: 800 !important; letter-spacing: 2px !important;
+    }
+    .nav-cta:hover {
+      background: #55ff33 !important;
+      box-shadow: 0 0 24px var(--primary-glow) !important;
+    }
+    .nav-cta::after { display: none !important; }
+
+    .hamburger {
+      display: none; flex-direction: column; gap: 5px;
+      cursor: pointer; background: none; border: none;
+      padding: 4px; margin-left: auto;
+    }
+    .hamburger span {
+      display: block; width: 24px; height: 2px;
+      background: var(--text); border-radius: 2px; transition: all .3s;
+    }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .mobile-menu {
+      display: none; position: fixed;
+      top: var(--nav-h); left: 0; right: 0;
+      background: rgba(11,15,14,.98); backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border-dim);
+      padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      color: var(--text); text-decoration: none;
+      font-size: .88rem; font-weight: 600;
+      padding: .5rem 0; border-bottom: 1px solid var(--border-dim);
+      letter-spacing: 2.5px; text-transform: uppercase;
+    }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ─── SHARED ─── */
+    section { padding: 100px 5%; }
+    .section-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(57,255,20,.05); border: 1px solid var(--border);
+      border-radius: 3px; padding: 6px 16px;
+      font-size: .68rem; font-weight: 700; color: var(--primary);
+      text-transform: uppercase; letter-spacing: 3px; margin-bottom: 1.5rem;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(2rem, 4vw, 3rem); line-height: 1.18;
+      letter-spacing: 4px; margin-bottom: 1.25rem;
+    }
+    .section-subtitle {
+      color: var(--text-muted); font-size: .93rem; max-width: 580px;
+      line-height: 1.85; letter-spacing: 1.5px;
+    }
+    .text-gradient {
+      background: linear-gradient(135deg, #39FF14, #83F806);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .centered { text-align: center; }
+    .centered .section-subtitle { margin: 0 auto; }
+
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 28px; border-radius: 3px;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .75rem; text-decoration: none; transition: all .2s;
+      cursor: pointer; border: none; letter-spacing: 2.5px; text-transform: uppercase;
+      -webkit-appearance: none; appearance: none;
+    }
+    .btn-primary { background: var(--primary); color: #000; }
+    .btn-primary:hover {
+      background: #55ff33; box-shadow: 0 0 32px var(--primary-glow); transform: translateY(-1px);
+    }
+    .btn-outline {
+      background: transparent; color: var(--text);
+      border: 1.5px solid rgba(57,255,20,.3);
+    }
+    .btn-outline:hover {
+      border-color: var(--primary); color: var(--primary);
+      transform: translateY(-1px); box-shadow: 0 0 20px rgba(57,255,20,.08);
+    }
+    .btn-ghost {
+      background: rgba(57,255,20,.07); color: var(--primary);
+      border: 1px solid rgba(57,255,20,.22);
+    }
+    .btn-ghost:hover {
+      background: rgba(57,255,20,.13);
+      box-shadow: 0 0 24px rgba(57,255,20,.1);
+      transform: translateY(-1px);
+    }
+
+    /* ─── HERO ─── */
+    #home {
+      min-height: 100vh;
+      padding-top: calc(var(--nav-h) + 60px);
+      display: flex; align-items: center;
+      position: relative; overflow: hidden;
+    }
+    .hero-bg {
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 70% 55% at 60% 20%, rgba(57,255,20,.04) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 40% at 5% 85%, rgba(57,255,20,.025) 0%, transparent 65%);
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(57,255,20,.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,.03) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 5%, transparent 100%);
+    }
+    .hero-scanlines {
+      position: absolute; inset: 0; pointer-events: none;
+      background: repeating-linear-gradient(
+        0deg, transparent, transparent 2px,
+        rgba(0,0,0,.03) 2px, rgba(0,0,0,.03) 4px
+      );
+    }
+    .hero-content { position: relative; max-width: 680px; }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(57,255,20,.06); border: 1px solid rgba(57,255,20,.22);
+      border-radius: 3px; padding: 8px 18px;
+      font-size: .68rem; color: var(--primary); font-weight: 700;
+      margin-bottom: 2rem; letter-spacing: 3px; text-transform: uppercase;
+      animation: pulse-badge 2.5s ease-in-out infinite;
+    }
+    @keyframes pulse-badge {
+      0%,100% { box-shadow: 0 0 0 0 rgba(57,255,20,.28); }
+      50%      { box-shadow: 0 0 0 8px rgba(57,255,20,0); }
+    }
+    .hero-badge .dot {
+      width: 7px; height: 7px; background: var(--primary);
+      border-radius: 50%; animation: blink 1.4s ease-in-out infinite;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+    .hero-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(2.6rem, 6vw, 4.4rem); line-height: 1.1;
+      letter-spacing: 4px; margin-bottom: 1.5rem;
+    }
+    .hero-sub {
+      color: var(--text-muted); font-size: .97rem; line-height: 1.9;
+      margin-bottom: 2.5rem; max-width: 540px; letter-spacing: 1.5px;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .hero-stats {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.25rem; margin-top: 3.5rem; max-width: 580px;
+    }
+    .hero-stat {
+      background: rgba(31,42,46,.85); border: 1px solid var(--border-dim);
+      border-radius: 3px; padding: 1.25rem; backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(57,255,20,.12);
+    }
+    .hero-stat-num {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 1.9rem; color: var(--primary); line-height: 1; margin-bottom: 6px;
+    }
+    .hero-stat-label {
+      font-size: .65rem; color: var(--text-muted);
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+
+    /* ─── STATS RIBBON ─── */
+    .stats-ribbon {
+      background: var(--bg-card);
+      border-top: 1px solid var(--border-dim);
+      border-bottom: 1px solid var(--border-dim);
+      padding: 60px 5%;
+    }
+    .stats-grid {
+      display: grid; grid-template-columns: 1fr auto 1fr auto 1fr auto 1fr;
+      gap: 0; max-width: 960px; margin: 0 auto;
+      text-align: center; align-items: center;
+    }
+    .stat-num {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 2.8rem; color: var(--primary); margin-bottom: 8px;
+    }
+    .stat-label {
+      color: var(--text-muted); font-size: .78rem;
+      letter-spacing: 2px; text-transform: uppercase;
+    }
+    .stat-divider { width: 1px; height: 60px; background: var(--border-dim); margin: 0 2rem; }
+
+    /* ─── SERVICE ─── */
+    #service { position: relative; }
+    .service-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: start; margin-top: 3.5rem;
+    }
+    .steps-list { display: flex; flex-direction: column; gap: 2.25rem; margin-top: 2.5rem; }
+    .step { display: flex; gap: 1.25rem; align-items: flex-start; }
+    .step-num {
+      flex-shrink: 0; width: 44px; height: 44px;
+      background: var(--primary);
+      border-radius: 3px; display: flex; align-items: center; justify-content: center;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1rem; color: #000;
+    }
+    .step-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .9rem; margin-bottom: .4rem; letter-spacing: 1.5px;
+    }
+    .step-desc { color: var(--text-muted); font-size: .85rem; line-height: 1.8; letter-spacing: .8px; }
+
+    .features-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+    .feature-card {
+      background: var(--bg-card); border: 1px solid var(--border-dim);
+      border-radius: 3px; padding: 1.6rem; transition: all .3s;
+      position: relative; overflow: hidden;
+    }
+    .feature-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, var(--primary), transparent);
+      transform: scaleX(0); transform-origin: left; transition: transform .3s;
+    }
+    .feature-card:hover {
+      border-color: rgba(57,255,20,.2); transform: translateY(-3px);
+      box-shadow: 0 16px 40px rgba(0,0,0,.45);
+    }
+    .feature-card:hover::before { transform: scaleX(1); }
+    .feature-icon {
+      width: 42px; height: 42px; background: rgba(57,255,20,.08);
+      border-radius: 3px; display: flex; align-items: center; justify-content: center;
+      margin-bottom: .9rem; font-size: 1rem; color: var(--primary);
+    }
+    .feature-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .86rem; margin-bottom: .5rem; letter-spacing: 1.5px;
+    }
+    .feature-desc { color: var(--text-muted); font-size: .82rem; line-height: 1.75; letter-spacing: .5px; }
+
+    /* ─── PRICING ─── */
+    #subscribe { background: var(--bg-card); }
+    .pricing-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3.5rem;
+      max-width: 980px; margin-left: auto; margin-right: auto;
+    }
+    .pricing-card {
+      background: var(--bg); border: 1px solid var(--border-dim);
+      border-radius: 3px; padding: 2.5rem 2rem;
+      transition: all .3s; position: relative; overflow: hidden;
+    }
+    .pricing-card.featured {
+      border-color: rgba(57,255,20,.3);
+      box-shadow: 0 0 40px rgba(57,255,20,.05);
+    }
+    .featured-badge {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: var(--primary); color: #000;
+      font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: .62rem;
+      padding: 4px 12px; border-radius: 2px;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .pricing-card:hover { transform: translateY(-5px); box-shadow: 0 24px 50px rgba(0,0,0,.5); }
+    .plan-name {
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px; margin-bottom: .9rem;
+    }
+    .plan-price {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 2.8rem; color: var(--text); line-height: 1;
+      margin-bottom: .25rem; letter-spacing: 2px;
+    }
+    .plan-price span {
+      font-size: .88rem; font-weight: 400; color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif; letter-spacing: 1px;
+    }
+    .plan-desc {
+      color: var(--text-muted); font-size: .84rem; margin-bottom: 1.75rem;
+      padding-bottom: 1.75rem; border-bottom: 1px solid var(--border-dim);
+      line-height: 1.8; letter-spacing: .5px;
+    }
+    .plan-features { list-style: none; margin-bottom: 2rem; }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .84rem; padding: .45rem 0;
+      color: var(--text-muted); letter-spacing: .5px;
+    }
+    .plan-features li i { flex-shrink: 0; margin-top: 2px; font-size: .82rem; }
+    .plan-features li span { color: var(--text); }
+    .check { color: var(--primary); }
+    .cross { color: var(--text-muted); opacity: .3; }
+    .pricing-card .btn { width: 100%; justify-content: center; }
+
+    /* ─── TIPS ─── */
+    .tips-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3.5rem; }
+    .tip-card {
+      background: var(--bg-card); border: 1px solid var(--border-dim);
+      border-radius: 3px; overflow: hidden; transition: all .3s;
+    }
+    a.tip-card { text-decoration: none; color: inherit; display: block; }
+    .tip-card:hover { transform: translateY(-3px); border-color: rgba(57,255,20,.18); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+    .tip-header {
+      padding: 1.5rem; font-size: 2.4rem;
+      background: linear-gradient(135deg, rgba(57,255,20,.05), rgba(11,15,14,.9));
+      display: flex; align-items: center; justify-content: center; min-height: 110px;
+    }
+    .tip-body { padding: 1.5rem; }
+    .tip-tag {
+      display: inline-block; background: rgba(57,255,20,.09); color: var(--primary);
+      font-size: .65rem; font-weight: 700; padding: 3px 10px; border-radius: 2px;
+      text-transform: uppercase; letter-spacing: 2px; margin-bottom: .7rem;
+    }
+    .tip-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .88rem; margin-bottom: .5rem; line-height: 1.45; letter-spacing: 1px;
+    }
+    .tip-excerpt { color: var(--text-muted); font-size: .82rem; line-height: 1.8; letter-spacing: .5px; }
+
+    /* ─── ALERTS ─── */
+    #alerts { background: var(--bg-card); }
+    .alerts-list {
+      display: flex; flex-direction: column; gap: 1.25rem;
+      margin-top: 3.5rem; max-width: 820px; margin-left: auto; margin-right: auto;
+    }
+    .alert-card {
+      background: var(--bg); border: 1px solid var(--border-dim);
+      border-left: 2px solid transparent;
+      border-radius: 3px; padding: 1.5rem;
+      display: flex; gap: 1.25rem; align-items: flex-start; transition: all .25s;
+    }
+    .alert-card:hover { border-left-color: var(--danger); transform: translateX(4px); }
+    .alert-icon {
+      flex-shrink: 0; width: 44px; height: 44px;
+      background: rgba(239,68,68,.1); border-radius: 3px;
+      display: flex; align-items: center; justify-content: center;
+      color: var(--danger); font-size: 1rem;
+    }
+    .alert-tags { display: flex; gap: 8px; margin-bottom: .5rem; flex-wrap: wrap; }
+    .alert-tag {
+      font-size: .63rem; font-weight: 700; padding: 3px 10px;
+      border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px;
+    }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .alert-title {
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .88rem; margin-bottom: .4rem; letter-spacing: 1px;
+    }
+    .alert-desc { color: var(--text-muted); font-size: .82rem; line-height: 1.8; letter-spacing: .5px; }
+    .alert-date { font-size: .68rem; color: var(--text-muted); margin-top: .5rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .alert-read-more { display: inline-flex; align-items: center; gap: 6px; margin-top: .9rem; font-size: .68rem; font-weight: 700; color: var(--primary); text-decoration: none; letter-spacing: 2px; text-transform: uppercase; transition: gap .2s; }
+    .alert-read-more:hover { gap: 10px; }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: #000; border: 1px solid #000;
+      border-radius: 3px; padding: 4rem 3rem; text-align: center;
+      margin: 0 5% 6rem; position: relative; overflow: hidden;
+    }
+    .cta-banner::before {
+      content: ''; position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 50% 100% at 8% 50%, rgba(57,255,20,.03), transparent),
+        radial-gradient(ellipse 50% 100% at 92% 50%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+    .cta-banner::after {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(57,255,20,.3), transparent);
+    }
+    .cta-banner > * { position: relative; }
+    .cta-banner h2 {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(1.75rem, 4vw, 2.4rem); margin-bottom: 1rem; letter-spacing: 4px;
+    }
+    .cta-banner p {
+      color: var(--text-muted); font-size: .93rem; margin-bottom: 2rem;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+      line-height: 1.85; letter-spacing: 1.5px;
+    }
+    .btn-group { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: #000; border-top: 1px solid var(--border-dim);
+      padding: 4rem 5% 2rem;
+    }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p {
+      color: var(--text-muted); font-size: .85rem; line-height: 1.85;
+      margin-top: 1rem; max-width: 300px; letter-spacing: .5px;
+    }
+    .footer-logo {
+      display: flex; align-items: center; gap: 12px; text-decoration: none;
+    }
+    .footer-logo img {
+      height: 44px; width: 44px; object-fit: cover;
+      border-radius: 50%; border: 1px solid rgba(57,255,20,.2);
+    }
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem;
+      text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a {
+      color: var(--text-muted); text-decoration: none;
+      font-size: .85rem; transition: color .2s; letter-spacing: .5px;
+    }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom {
+      border-top: 1px solid var(--border-dim); padding-top: 2rem;
+      display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem;
+    }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* ─── DIVIDER ─── */
+    .section-divider {
+      height: 1px; margin: 0 5%;
+      background: linear-gradient(90deg, transparent, var(--border-dim), transparent);
+    }
+
+    /* ─── RADAR ─── */
+    .radar-canvas {
+      position: absolute; inset: 0;
+      width: 100%; height: 100%;
+      pointer-events: none; z-index: 0;
+    }
+    .hero-content { z-index: 1; }
+
+    /* ─── REVEAL ─── */
+    .reveal {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-d1 { transition-delay: .1s; }
+    .reveal-d2 { transition-delay: .2s; }
+    .reveal-d3 { transition-delay: .3s; }
+
+    /* ─── PRICING CARD STAGGER ─── */
+    .pricing-card.reveal {
+      transform: translateY(52px) scale(0.94);
+      transition: opacity .75s cubic-bezier(0.16, 1, 0.3, 1),
+                  transform .75s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .pricing-card.reveal.visible { transform: translateY(0) scale(1); }
+    .pricing-card.reveal-d1 { transition-delay: .18s; }
+    .pricing-card.reveal-d2 { transition-delay: .36s; }
+    @keyframes featured-arrive {
+      0%   { box-shadow: 0 0 40px rgba(57,255,20,.05);  border-color: rgba(57,255,20,.30); }
+      40%  { box-shadow: 0 0 72px rgba(57,255,20,.22), 0 0 120px rgba(57,255,20,.08); border-color: rgba(57,255,20,.70); }
+      100% { box-shadow: 0 0 40px rgba(57,255,20,.05);  border-color: rgba(57,255,20,.30); }
+    }
+    .pricing-card.featured.reveal.visible {
+      animation: featured-arrive 1.5s cubic-bezier(0.16, 1, 0.3, 1) .8s 1 both;
+    }
+
+    /* ─── RESPONSIVE ─── */
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      section { padding: 80px 6%; }
+      .service-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .features-grid { grid-template-columns: 1fr; }
+      .pricing-grid { grid-template-columns: 1fr; max-width: 420px; }
+      .tips-grid { grid-template-columns: 1fr 1fr; }
+      .stats-grid { grid-template-columns: 1fr 1fr; }
+      .stat-divider { display: none; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .hero-stats { grid-template-columns: 1fr 1fr; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-actions { flex-direction: column; }
+      .cta-banner { padding: 2.5rem 1.5rem; margin: 0 4% 4rem; }
+    }
+
+    /* ── Shared modal styles ── */
+    #soloModal, #familyModal, #businessModal {
+      display: none; position: fixed; z-index: 99999; inset: 0;
+      background: rgba(0,0,0,0.75); backdrop-filter: blur(6px);
+      justify-content: center; align-items: center;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:scale(.95);} to{opacity:1;transform:scale(1);} }
+
+    #soloFormWrapper, #familyFormWrapper, #businessFormWrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-top: 2px solid var(--primary);
+      border-radius: 3px;
+      padding: 2rem 2rem 1.75rem;
+      width: 90%; max-width: 460px;
+      box-shadow: 0 0 48px rgba(57,255,20,0.07);
+      animation: fadeIn .25s ease-in-out;
+      position: relative;
+    }
+
+    .closeSoloBtn, .closeFamilyBtn, .closeBtn {
+      position: absolute; top: 1rem; right: 1.1rem;
+      cursor: pointer; font-size: 1.1rem;
+      color: var(--text-muted); transition: color .2s;
+      background: none; border: none;
+    }
+    .closeSoloBtn:hover, .closeFamilyBtn:hover, .closeBtn:hover { color: var(--text); }
+
+    .modal-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 1.35rem; letter-spacing: 2px;
+      color: var(--text); margin-bottom: 0.35rem; text-align: center;
+    }
+    .modal-sub {
+      font-size: .78rem; color: var(--text-muted); text-align: center;
+      letter-spacing: 1px; margin-bottom: 1.5rem;
+    }
+
+    #soloForm label, #familyForm label, #businessForm label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .35rem; margin-top: 1rem;
+    }
+    #soloForm label:first-of-type, #familyForm label:first-of-type, #businessForm label:first-of-type {
+      margin-top: 0;
+    }
+
+    #soloForm input, #soloForm select,
+    #familyForm input, #familyForm select,
+    #businessForm input {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--border-dim); border-radius: 3px;
+      font-family: 'Montserrat', sans-serif; font-size: .85rem;
+      transition: border-color .2s; box-sizing: border-box; margin-top: 0;
+      margin-bottom: 0;
+    }
+    #soloForm input:focus, #familyForm input:focus, #businessForm input:focus {
+      outline: none; border-color: var(--primary);
+    }
+    #soloForm input::placeholder, #familyForm input::placeholder, #businessForm input::placeholder {
+      color: var(--text-muted);
+    }
+
+    #soloForm button[type="submit"], #familyForm button[type="submit"], #businessForm button[type="submit"] {
+      width: 100%; margin-top: 1.5rem; padding: 13px;
+      background: var(--primary); color: #000;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s;
+    }
+    #soloForm button[type="submit"]:hover,
+    #familyForm button[type="submit"]:hover,
+    #businessForm button[type="submit"]:hover {
+      background: #55ff33; box-shadow: 0 0 24px var(--primary-glow);
+    }
+
+    #thankYouMessage, #familyThankYouMessage, #businessThankYou {
+      text-align: center; padding: 1.5rem 1rem;
+      font-family: 'Montserrat', sans-serif; font-weight: 700;
+      font-size: .9rem; letter-spacing: 1.5px; color: var(--primary);
+    }
+    /* ─── CAROUSEL ─── */
+    .carousel-container { position: relative; overflow: hidden; }
+    .carousel-track {
+      display: flex; gap: 1.5rem;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+      will-change: transform;
+    }
+    #tips-track .tip-card     { flex: 0 0 calc((100% - 3rem) / 3); }
+    #alerts-track             { gap: 1.5rem; margin-top: 3.5rem; }
+    #alerts-track .alert-card {
+      flex: 0 0 calc((100% - 3rem) / 3);
+      flex-direction: column; align-items: stretch;
+      border-left: 1px solid var(--border-dim); overflow: hidden; padding: 0;
+    }
+    #alerts-track .alert-card:hover {
+      transform: translateY(-3px);
+      border-color: rgba(239,68,68,.25);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35);
+    }
+    #alerts-track .alert-icon {
+      width: 100%; height: 90px; font-size: 1.5rem;
+      background: rgba(239,68,68,.1); border-radius: 0; flex-shrink: 0;
+    }
+    #alerts-track .alert-content { padding: 1.5rem; }
+    .carousel-nav {
+      display: flex; justify-content: center; align-items: center;
+      gap: 1rem; margin-top: 2rem;
+    }
+    .carousel-btn {
+      background: var(--bg-card); border: 1px solid var(--border-dim);
+      color: var(--primary); width: 42px; height: 42px; border-radius: 3px;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      font-size: .85rem; transition: all .2s; -webkit-appearance: none; appearance: none;
+    }
+    .carousel-btn:hover:not([disabled]) { background: var(--primary); color: #000; border-color: var(--primary); }
+    .carousel-btn[disabled]  { opacity: .25; cursor: default; pointer-events: none; }
+    .carousel-dots           { display: flex; gap: 8px; align-items: center; }
+    .carousel-dot {
+      width: 6px; height: 6px; border-radius: 50%;
+      background: var(--border-dim); cursor: pointer; transition: all .25s;
+      border: none; padding: 0; -webkit-appearance: none; appearance: none;
+    }
+    .carousel-dot.active { background: var(--primary); width: 18px; border-radius: 3px; }
+    @media (max-width: 900px) {
+      #tips-track .tip-card   { flex: 0 0 calc((100% - 1.5rem) / 2); }
+      #alerts-track .alert-card { flex: 0 0 calc((100% - 1.5rem) / 2); }
+    }
+    @media (max-width: 600px) {
+      #tips-track .tip-card   { flex: 0 0 100%; }
+      #alerts-track .alert-card { flex: 0 0 100%; }
+    }
+
+    /* ─── PAYMENT METHOD SELECTOR ─── */
+    .pm-section { margin-top: 1.25rem; }
+    .pm-label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .65rem;
+    }
+    .payment-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .payment-btn {
+      position: relative;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .3rem; padding: .9rem .5rem;
+      background: var(--bg); border: 1.5px solid var(--border-dim);
+      border-radius: 3px; cursor: pointer; transition: all .2s;
+      font-family: 'Montserrat', sans-serif;
+      -webkit-appearance: none; appearance: none;
+    }
+    .payment-btn .pm-name { font-weight: 800; font-size: .82rem; letter-spacing: 1px; color: var(--text); }
+    .payment-btn .pm-note { font-size: .62rem; color: var(--text-muted); letter-spacing: .8px; }
+    .payment-btn.payfast-btn:hover { border-color: var(--primary); background: rgba(57,255,20,.04); transform: translateY(-1px); }
+    .payment-btn.stripe-btn:hover  { border-color: #635bff; background: rgba(99,91,255,.06); transform: translateY(-1px); }
+    .payment-btn[disabled] { opacity: 0.55; cursor: not-allowed; overflow: hidden; }
+    .payment-btn[disabled]:hover { transform: none !important; border-color: var(--border-dim) !important; background: var(--bg) !important; box-shadow: none !important; }
+    .coming-soon-badge {
+      position: absolute; top: 50%; left: 0; right: 0;
+      transform: translateY(-50%);
+      background: var(--primary); color: #000;
+      font-size: .6rem; font-weight: 800;
+      letter-spacing: 2px; text-transform: uppercase;
+      padding: 5px 0; text-align: center;
+      pointer-events: none;
+    }
+    .modal-label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .35rem; margin-top: 1rem;
+    }
+    .modal-label:first-child { margin-top: 0; }
+    .modal-email-input {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--border-dim); border-radius: 3px;
+      font-family: 'Montserrat', sans-serif; font-size: .85rem;
+      transition: border-color .2s; box-sizing: border-box;
+    }
+    .modal-email-input:focus { outline: none; border-color: var(--primary); }
+    .modal-email-input::placeholder { color: var(--text-muted); }
+    .modal-back-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font-size: .72rem; font-weight: 700;
+      letter-spacing: 1.5px; text-transform: uppercase; padding: 0;
+      margin-bottom: 1.1rem; display: inline-flex; align-items: center; gap: 6px;
+      font-family: 'Montserrat', sans-serif; transition: color .2s;
+    }
+    .modal-back-btn:hover { color: var(--text); }
+    .modal-submit-btn {
+      width: 100%; margin-top: 1.25rem; padding: 13px;
+      background: var(--primary); color: #000; border: none; border-radius: 3px;
+      cursor: pointer; font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s; -webkit-appearance: none; appearance: none;
+    }
+    .modal-submit-btn:hover { background: #55ff33; box-shadow: 0 0 24px var(--primary-glow); }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "name": "BreachWatcher",
+        "url": "https://www.breachwatcher.io",
+        "description": "24/7 data breach monitoring and alerts for your email addresses.",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {"@type": "EntryPoint", "urlTemplate": "https://www.breachwatcher.io/#alerts?q={search_term_string}"},
+          "query-input": "required name=search_term_string"
+        }
+      },
+      {
+        "@type": "Service",
+        "name": "BreachWatcher Breach Monitoring",
+        "provider": {"@type": "Organization", "name": "BreachWatcher", "url": "https://www.breachwatcher.io"},
+        "serviceType": "Data Breach Monitoring",
+        "description": "Continuous monitoring of data breaches for your email addresses with real-time alerts and remediation guidance.",
+        "url": "https://www.breachwatcher.io",
+        "areaServed": "Worldwide",
+        "hasOfferCatalog": {
+          "@type": "OfferCatalog",
+          "name": "BreachWatcher Plans",
+          "itemListElement": [
+            {"@type": "Offer", "name": "Personal Plan", "url": "https://www.breachwatcher.io/#subscribe"},
+            {"@type": "Offer", "name": "Family Plan",   "url": "https://www.breachwatcher.io/#subscribe"},
+            {"@type": "Offer", "name": "Business Plan", "url": "https://www.breachwatcher.io/#subscribe"}
+          ]
+        }
+      }
+    ]
+  }
+  </script>
+</head>
+
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="main-nav">
+  <a href="#home" class="nav-logo" onclick="return go('home')">
+    <img src="logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="#home" onclick="return go('home')">Home</a></li>
+    <li><a href="#service" onclick="return go('service')">The Service</a></li>
+    <li><a href="#subscribe" onclick="return go('subscribe')">Subscribe</a></li>
+    <li><a href="#tips" onclick="return go('tips')">Cyber Tips</a></li>
+    <li><a href="#alerts" onclick="return go('alerts')">Alerts</a></li>
+    <li><a href="#subscribe" class="nav-cta" onclick="return go('subscribe')">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobile-menu">
+  <a href="#home"      onclick="closeMob(); return go('home')">Home</a>
+  <a href="#service"   onclick="closeMob(); return go('service')">The Service</a>
+  <a href="#subscribe" onclick="closeMob(); return go('subscribe')">Subscribe</a>
+  <a href="#tips"      onclick="closeMob(); return go('tips')">Cybersecurity Tips</a>
+  <a href="#alerts"    onclick="closeMob(); return go('alerts')">Security Alerts</a>
+  <a href="#subscribe" onclick="closeMob(); return go('subscribe')" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<!-- ─── HERO ─── -->
+<section id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-scanlines"></div>
+  <canvas id="radar-canvas" class="radar-canvas"></canvas>
+  <div class="hero-content">
+    <div class="hero-badge">
+      <div class="dot"></div>
+      Live breach monitoring — 24/7
+    </div>
+    <h1 class="hero-title">
+      Stay secure.<br>
+      <span class="text-gradient">We watch<br>so you don't<br>have to.</span>
+    </h1>
+    <p class="hero-sub">
+      BreachWatcher continuously monitors data breaches for your email addresses — alerting you the moment your credentials are compromised, with clear guidance on exactly what to do next.
+    </p>
+    <div class="hero-actions">
+      <a href="#subscribe" class="btn btn-primary" onclick="return go('subscribe')">
+        <i class="fas fa-shield-halved"></i> Get Protected Now
+      </a>
+      <a href="#service" class="btn btn-outline" onclick="return go('service')">
+        How It Works <i class="fas fa-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── STATS RIBBON ─── -->
+<div class="stats-ribbon">
+  <div class="stats-grid">
+    <div class="reveal">
+      <div class="stat-num" data-target="15" data-suffix="B+">15B+</div>
+      <div class="stat-label">Breach records in database</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="reveal reveal-d1">
+      <div class="stat-num" data-target="68" data-suffix="%">53%</div>
+      <div class="stat-label">of breaches contain passwords</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="reveal reveal-d2">
+      <div class="stat-num" data-target="900" data-suffix="+">800+</div>
+      <div class="stat-label">Breaches tracked</div>
+    </div>
+    <div class="stat-divider"></div>
+    <div class="reveal reveal-d3">
+      <div class="stat-num" data-target="24" data-suffix="h">24</div>
+      <div class="stat-label">A Day Active Monitoring</div>
+    </div>
+  </div>
+</div>
+
+<!-- ─── SERVICE ─── -->
+<section id="service">
+  <div class="service-layout">
+    <div>
+      <div class="section-label reveal"><i class="fas fa-crosshairs"></i> The Service</div>
+      <h2 class="section-title reveal">
+        Your digital identity,<br>
+        <span class="text-gradient">under constant guard</span>
+      </h2>
+      <p class="section-subtitle reveal">
+        Cybercriminals launch increasingly sophisticated attacks every day. BreachWatcher gives you real-time visibility so you can act before a breach impacts your life or business.
+      </p>
+      <div class="steps-list">
+        <div class="step reveal">
+          <div class="step-num">1</div>
+          <div class="step-content">
+            <div class="step-title">Register your email addresses</div>
+            <div class="step-desc">Submit the addresses you want protected — for yourself, your family, or your entire organisation.</div>
+          </div>
+        </div>
+        <div class="step reveal reveal-d1">
+          <div class="step-num">2</div>
+          <div class="step-content">
+            <div class="step-title">We scan around the clock</div>
+            <div class="step-desc">Our system monitors dark web dumps, data leaks, paste sites, and breach databases 24 hours a day, 7 days a week.</div>
+          </div>
+        </div>
+        <div class="step reveal reveal-d2">
+          <div class="step-num">3</div>
+          <div class="step-content">
+            <div class="step-title">You get notified instantly</div>
+            <div class="step-desc">Receive a clear, detailed alert the moment a breach is detected — including what data was exposed and precise steps to protect yourself.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+        <div class="feature-title">Real-time alerts</div>
+        <div class="feature-desc">Instant notifications the moment your data surfaces in a new breach or leak.</div>
+      </div>
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon"><i class="fas fa-globe"></i></div>
+        <div class="feature-title">Dark web monitoring</div>
+        <div class="feature-desc">We scan the dark web, data dumps, paste sites, and hacker forums continuously.</div>
+      </div>
+      <div class="feature-card reveal reveal-d2">
+        <div class="feature-icon"><i class="fas fa-file-lines"></i></div>
+        <div class="feature-title">Actionable reports</div>
+        <div class="feature-desc">Clear reports detailing exactly what was compromised and precise steps to secure your accounts.</div>
+      </div>
+      <div class="feature-card reveal reveal-d3">
+        <div class="feature-icon"><i class="fas fa-users"></i></div>
+        <div class="feature-title">Individual &amp; business</div>
+        <div class="feature-desc">Protect a single inbox or an entire organisation's domain with scalable plans.</div>
+      </div>
+      <div class="feature-card reveal">
+        <div class="feature-icon"><i class="fas fa-newspaper"></i></div>
+        <div class="feature-title">Security alerts</div>
+        <div class="feature-desc">Regular briefings on emerging threats, phishing campaigns, and active exploits in the wild.</div>
+      </div>
+      <div class="feature-card reveal reveal-d1">
+        <div class="feature-icon"><i class="fas fa-graduation-cap"></i></div>
+        <div class="feature-title">Education &amp; awareness</div>
+        <div class="feature-desc">Cybersecurity tips and guidance to help you build a genuine culture of security.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── PRICING ─── -->
+<section id="subscribe">
+  <div class="centered">
+    <div class="section-label reveal"><i class="fas fa-tag"></i> Pricing</div>
+    <h2 class="section-title reveal">Simple, transparent pricing</h2>
+    <p class="section-subtitle reveal">
+      Security isn't just software. It's peace of mind.<br>Choose the plan that fits you best.
+    </p>
+  </div>
+  <div class="pricing-grid">
+
+    <div class="pricing-card reveal">
+      <div class="plan-name">Personal</div>
+      <div class="plan-price">$60 <span>/ year</span></div>
+      <div class="plan-desc">Get started with essential breach monitoring for one email address, at no cost.</div>
+      <ul class="plan-features">
+        <li><i class="fas fa-check check"></i><span>1 email address monitored</span></li>
+        <li><i class="fas fa-check check"></i><span>Get 2 months free</span></li>
+        <li><i class="fas fa-check check"></i><span>Breach notification emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Security alert emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Cybersecurity tips emails</span></li>
+      </ul>
+      <button onclick="document.getElementById('soloModal').style.display='flex'" class="btn btn-primary">Subscribe Now</button>
+    </div>
+
+    <div class="pricing-card featured reveal reveal-d1">
+      <div class="featured-badge">Most Popular</div>
+      <div class="plan-name">Family</div>
+      <div class="plan-price">$180 <span>/ year</span></div>
+      <div class="plan-desc">Comprehensive protection for you and your household across 4 email addresses.</div>
+      <ul class="plan-features">
+        <li><i class="fas fa-check check"></i><span>Pay for 3 and get 4</span></li>
+        <li><i class="fas fa-check check"></i><span>Get 2 months free</span></li>
+        <li><i class="fas fa-check check"></i><span>Breach notification emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Security alert emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Cybersecurity tips emails</span></li>
+      </ul>
+      <button id="openFamilyForm" class="btn btn-primary">Subscribe Now</button>
+    </div>
+
+    <div class="pricing-card reveal reveal-d2">
+      <div class="plan-name">Business</div>
+      <div class="plan-price">Contact Us</div>
+      <div class="plan-desc">Enterprise-grade monitoring for organisations, SMEs, and security-conscious teams.</div>
+      <ul class="plan-features">
+        <li><i class="fas fa-check check"></i><span>Bulk email addresses</span></li>
+        <li><i class="fas fa-check check"></i><span>Priority breach alerts</span></li>
+        <li><i class="fas fa-check check"></i><span>Breach notification emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Security alert emails</span></li>
+        <li><i class="fas fa-check check"></i><span>Dedicated account support</span></li>
+      </ul>
+      <button id="openBusinessForm" class="btn btn-primary">Contact Us</button>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- ─── TIPS ─── -->
+<section id="tips">
+  <div class="section-label reveal"><i class="fas fa-lightbulb"></i> Cybersecurity Tips</div>
+  <h2 class="section-title reveal">
+    Expert guidance to<br>
+    <span class="text-gradient">keep you safe online</span>
+  </h2>
+  <p class="section-subtitle reveal">
+    Our goal is not only to protect your online identity but to educate and build a safer community for everyone.
+  </p>
+  <div class="carousel-container">
+    <div class="carousel-track" id="tips-track">
+
+    <a href="cybersecurity-tips/phishing-smishing-vishing-quishing.html" class="tip-card">
+      <div class="tip-header">🎣</div>
+      <div class="tip-body">
+        <div class="tip-tag">Social Engineering</div>
+        <div class="tip-title">What is phishing, smishing, vishing, and quishing?</div>
+        <div class="tip-excerpt">Fraudulent emails, SMS, phone calls, and QR codes designed to trick you. Learn to spot each attack type before you become a victim.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/zero-days-vulnerabilities.html" class="tip-card">
+      <div class="tip-header">🔓</div>
+      <div class="tip-body">
+        <div class="tip-tag">Vulnerabilities</div>
+        <div class="tip-title">What are zero-days and software vulnerabilities?</div>
+        <div class="tip-excerpt">Zero-days are unpatched flaws unknown to vendors — making them extremely dangerous when actively exploited by attackers in the wild.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/password-manager.html" class="tip-card">
+      <div class="tip-header">🔑</div>
+      <div class="tip-body">
+        <div class="tip-tag">Passwords &amp; Auth</div>
+        <div class="tip-title">Why you should use a password manager</div>
+        <div class="tip-excerpt">Password reuse is one of the biggest security risks. A manager generates strong, unique passwords for every account — even if one is breached, the rest stay safe.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/multi-factor-authentication.html" class="tip-card">
+      <div class="tip-header">🛡️</div>
+      <div class="tip-body">
+        <div class="tip-tag">Authentication</div>
+        <div class="tip-title">What is multi-factor authentication (MFA)?</div>
+        <div class="tip-excerpt">SMS OTP, authenticator apps, hardware keys — not all MFA is equal. Learn which method actually keeps attackers out and which can be bypassed.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/passkeys.html" class="tip-card">
+      <div class="tip-header">🔐</div>
+      <div class="tip-body">
+        <div class="tip-tag">Authentication</div>
+        <div class="tip-title">Passkeys explained — the future of logging in</div>
+        <div class="tip-excerpt">Passkeys replace passwords with cryptographic key pairs. They can't be phished, stolen in a breach, or reused — and major platforms support them today.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/data-breach-aftermath.html" class="tip-card">
+      <div class="tip-header">💾</div>
+      <div class="tip-body">
+        <div class="tip-tag">Data Breaches</div>
+        <div class="tip-title">What happens to your data after a breach?</div>
+        <div class="tip-excerpt">Stolen credentials don't disappear — they're sold on dark web forums, recycled into combo lists, and used in credential stuffing attacks for years.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/credential-stuffing.html" class="tip-card">
+      <div class="tip-header">🤖</div>
+      <div class="tip-body">
+        <div class="tip-tag">Data Breaches</div>
+        <div class="tip-title">What is credential stuffing?</div>
+        <div class="tip-excerpt">Attackers use leaked username and password pairs to automate logins across hundreds of sites. Password reuse is what makes this attack so devastatingly effective.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/ransomware.html" class="tip-card">
+      <div class="tip-header">🔒</div>
+      <div class="tip-body">
+        <div class="tip-tag">Malware</div>
+        <div class="tip-title">What is ransomware and how does it spread?</div>
+        <div class="tip-excerpt">Ransomware encrypts your files and demands payment. It spreads through phishing emails, pirated software, and exposed remote desktop services.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/infostealers.html" class="tip-card">
+      <div class="tip-header">🦠</div>
+      <div class="tip-body">
+        <div class="tip-tag">Malware</div>
+        <div class="tip-title">What is an infostealer?</div>
+        <div class="tip-excerpt">Infostealers silently harvest your saved browser passwords, cookies, and session tokens — often bypassing MFA entirely by stealing active sessions.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/public-wifi-vpn.html" class="tip-card">
+      <div class="tip-header">📶</div>
+      <div class="tip-body">
+        <div class="tip-tag">Network Safety</div>
+        <div class="tip-title">Public Wi-Fi risks and when to use a VPN</div>
+        <div class="tip-excerpt">Public Wi-Fi exposes you to man-in-the-middle attacks and evil twin hotspots. Learn when a VPN actually helps — and when it doesn't.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/spot-fake-website.html" class="tip-card">
+      <div class="tip-header">🌐</div>
+      <div class="tip-body">
+        <div class="tip-tag">Safe Behaviour</div>
+        <div class="tip-title">How to spot a fake website</div>
+        <div class="tip-excerpt">A padlock doesn't mean a site is safe. Learn to spot lookalike domains, visual clones, and QR code redirects before you hand over your credentials.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/social-media-osint.html" class="tip-card">
+      <div class="tip-header">👁️</div>
+      <div class="tip-body">
+        <div class="tip-tag">Safe Behaviour</div>
+        <div class="tip-title">Social media oversharing and OSINT</div>
+        <div class="tip-excerpt">Attackers don't need to hack you — your public profiles often reveal enough to craft convincing targeted attacks or answer your security questions.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/app-permissions.html" class="tip-card">
+      <div class="tip-header">📱</div>
+      <div class="tip-body">
+        <div class="tip-tag">Mobile Security</div>
+        <div class="tip-title">Why you should check app permissions</div>
+        <div class="tip-excerpt">Apps requesting SMS access can intercept your OTP codes, bypassing MFA. Learn how to audit permissions on Android and iOS and spot red flags.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/account-takeover.html" class="tip-card">
+      <div class="tip-header">🚨</div>
+      <div class="tip-body">
+        <div class="tip-tag">Account Security</div>
+        <div class="tip-title">What is account takeover (ATO)?</div>
+        <div class="tip-excerpt">Account takeover connects every threat together — from breach to credential stuffing to full account loss. Learn the signs, the lifecycle, and how to recover.</div>
+      </div>
+    </a>
+
+    </div><!-- /tips-track -->
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="tips-prev" disabled aria-label="Previous tips"><i class="fas fa-arrow-left"></i></button>
+      <div class="carousel-dots" id="tips-dots"></div>
+      <button class="carousel-btn" id="tips-next" aria-label="Next tips"><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div><!-- /carousel-container -->
+</section>
+
+<!-- ─── ALERTS ─── -->
+<section id="alerts">
+  <div class="centered">
+    <div class="section-label reveal"><i class="fas fa-triangle-exclamation"></i> Security Alerts</div>
+    <h2 class="section-title reveal">
+      Latest <span class="text-gradient">threat intelligence</span>
+    </h2>
+    <p class="section-subtitle reveal">
+      BreachWatcher regularly publishes alerts to keep subscribers and the wider community informed of emerging threats. Share these with friends, family, and colleagues.
+    </p>
+  </div>
+  <div class="carousel-container">
+    <div class="carousel-track" id="alerts-track">
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-user-secret"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-red">Data Breach</span>
+          <span class="alert-tag tag-orange">Extortion</span>
+        </div>
+        <div class="alert-title">ShinyHunters — Evolved Extortion Specialists</div>
+        <div class="alert-desc">ShinyHunters has claimed ~48 victims since January 2026, exposing tens of millions of records through credential stuffing, OAuth token hijacking, and vishing attacks against cloud infrastructure.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>May 15, 2026</div>
+        <a href="security-alerts/shinyhunters.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-hotel"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-red">Data Breach</span>
+          <span class="alert-tag tag-orange">Phishing</span>
+        </div>
+        <div class="alert-title">Booking.com Data Compromised &amp; Increased Phishing Risks for Travelers</div>
+        <div class="alert-desc">Customer data from Booking.com has been compromised, leading to a surge in targeted phishing campaigns impersonating the platform. Be wary of any unexpected communications about bookings.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>April 17, 2026</div>
+        <a href="security-alerts/booking-com.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-chart-line"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-blue">Forecast</span>
+        </div>
+        <div class="alert-title">2026 Data Breach Forecast: AI-Powered Threats Are Here</div>
+        <div class="alert-desc">Our annual forecast highlights the most likely breach vectors for 2026: credential stuffing, AI-assisted phishing, and supply chain attacks continue to top the risk register.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 16, 2026</div>
+        <a href="security-alerts/2026-data-breach-forecast.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-rocket"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-red">Malware</span>
+          <span class="alert-tag tag-purple">Mobile</span>
+        </div>
+        <div class="alert-title">Fake Rocket Apps &amp; Urgent Messages Could Steal Your Data</div>
+        <div class="alert-desc">Fraudulent mobile apps circulating with urgent push notifications designed to panic users into granting excessive permissions — enabling silent data theft.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 4, 2026</div>
+        <a href="security-alerts/iran-conflict.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-bug"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-orange">Social Engineering</span>
+        </div>
+        <div class="alert-title">Beware of "ClickFix" — The Trick That Makes You Hack Yourself</div>
+        <div class="alert-desc">A novel technique tricks users into copy-pasting malicious commands into their own terminal by disguising them as browser troubleshooting steps. No exploit needed.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 3, 2026</div>
+        <a href="security-alerts/clickfix.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-camera"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-purple">Account Takeover</span>
+          <span class="alert-tag tag-blue">Data Leak</span>
+        </div>
+        <div class="alert-title">Unexpected Instagram Password Reset Emails &amp; Resurfaced User Data</div>
+        <div class="alert-desc">Instagram users are receiving unsolicited password reset emails linked to old user data resurfacing on breach forums. Enable 2FA immediately and review authorised devices.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 3, 2026</div>
+        <a href="security-alerts/instagram-password-reset.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    </div><!-- /alerts-track -->
+    <div class="carousel-nav">
+      <button class="carousel-btn" id="alerts-prev" disabled aria-label="Previous alert"><i class="fas fa-arrow-left"></i></button>
+      <div class="carousel-dots" id="alerts-dots"></div>
+      <button class="carousel-btn" id="alerts-next" aria-label="Next alert"><i class="fas fa-arrow-right"></i></button>
+    </div>
+  </div><!-- /carousel-container -->
+</section>
+
+<!-- ─── CTA BANNER ─── -->
+<div class="cta-banner reveal">
+  <img src="Banner.webp" alt="Stay vigilant. Stay safe." style="max-width:100%;height:auto;">
+  <p>Join the BreachWatcher community and get peace of mind knowing your digital identity is being watched — 24 hours a day, 7 days a week.</p>
+  <div class="btn-group">
+    <button id="openSoloForm" class="btn btn-primary">
+      <i class="fas fa-shield-halved"></i> Subscribe Today
+    </button>
+    <a href="#alerts" class="btn btn-outline" onclick="return go('alerts')">
+      View Latest Alerts
+    </a>
+  </div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="#home" class="footer-logo" onclick="return go('home')">
+        <img src="logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="#home"      onclick="return go('home')">Home</a></li>
+        <li><a href="#service"   onclick="return go('service')">The Service</a></li>
+        <li><a href="#subscribe" onclick="return go('subscribe')">Subscribe</a></li>
+        <li><a href="#tips"      onclick="return go('tips')">Cybersecurity Tips</a></li>
+        <li><a href="#alerts"    onclick="return go('alerts')">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="#subscribe" onclick="return go('subscribe')">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  function go(id) {
+    const el = document.getElementById(id);
+    if (el) window.scrollTo({ top: el.offsetTop - 72, behavior: 'smooth' });
+    return false;
+  }
+
+  const nav = document.getElementById('main-nav');
+  const sections = ['home','service','subscribe','tips','alerts'];
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+    const scrollY = window.scrollY + 120;
+    let current = 'home';
+    for (const id of sections) {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollY) current = id;
+    }
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }, { passive: true });
+
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+  function closeMob() {
+    hamburger.classList.remove('open');
+    mobileMenu.classList.remove('open');
+  }
+
+  const revealObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        revealObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+  document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+  function animateNum(el) {
+    const target = parseInt(el.dataset.target, 10);
+    const suffix = el.dataset.suffix || '';
+    const dur = 1600;
+    const t0 = performance.now();
+    (function tick(now) {
+      const p = Math.min((now - t0) / dur, 1);
+      const eased = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.floor(eased * target) + suffix;
+      if (p < 1) requestAnimationFrame(tick);
+    })(t0);
+  }
+  const counterObserver = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && e.target.dataset.target) {
+        animateNum(e.target);
+        counterObserver.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  document.querySelectorAll('[data-target]').forEach(el => counterObserver.observe(el));
+
+  /* ─── RADAR ─── */
+  (function () {
+    const canvas = document.getElementById('radar-canvas');
+    const ctx = canvas.getContext('2d');
+    let angle = 0;
+    const RINGS = 4;
+    const SWEEP = Math.PI * 0.65; // ~117° trail
+    const SPEED = 0.013;
+
+    const blips = [];
+    (function seedBlips() {
+      const count = 6 + Math.floor(Math.random() * 4);
+      for (let i = 0; i < count; i++) {
+        blips.push({ a: Math.random() * Math.PI * 2, r: 0.18 + Math.random() * 0.72 });
+      }
+    })();
+
+    function resize() {
+      canvas.width  = canvas.offsetWidth;
+      canvas.height = canvas.offsetHeight;
+    }
+
+    function draw() {
+      const w = canvas.width, h = canvas.height;
+      ctx.clearRect(0, 0, w, h);
+
+      // Position: right-centre on desktop, centre on small screens
+      const mobile = w < 700;
+      const cx = mobile ? w * 0.5 : w * 0.73;
+      const cy = h * 0.5;
+      const maxR = Math.min(w * (mobile ? 0.44 : 0.36), h * 0.46);
+
+      // Rings
+      for (let i = 1; i <= RINGS; i++) {
+        ctx.beginPath();
+        ctx.arc(cx, cy, (maxR / RINGS) * i, 0, Math.PI * 2);
+        ctx.strokeStyle = i === RINGS ? 'rgba(57,255,20,0.10)' : 'rgba(57,255,20,0.06)';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+
+      // Cross-hair lines
+      ctx.strokeStyle = 'rgba(57,255,20,0.04)';
+      ctx.lineWidth = 1;
+      [[cx - maxR, cy, cx + maxR, cy], [cx, cy - maxR, cx, cy + maxR]].forEach(([x0,y0,x1,y1]) => {
+        ctx.beginPath(); ctx.moveTo(x0, y0); ctx.lineTo(x1, y1); ctx.stroke();
+      });
+
+      // Sweep gradient trail (stepped arcs)
+      const STEPS = 48;
+      for (let i = 0; i < STEPS; i++) {
+        const a0 = angle - SWEEP + (SWEEP / STEPS) * i;
+        const a1 = angle - SWEEP + (SWEEP / STEPS) * (i + 1);
+        const alpha = Math.pow(i / STEPS, 1.6) * 0.20;
+        ctx.beginPath();
+        ctx.moveTo(cx, cy);
+        ctx.arc(cx, cy, maxR, a0, a1);
+        ctx.closePath();
+        ctx.fillStyle = `rgba(57,255,20,${alpha.toFixed(4)})`;
+        ctx.fill();
+      }
+
+      // Leading sweep line with gradient
+      const ex = cx + Math.cos(angle) * maxR;
+      const ey = cy + Math.sin(angle) * maxR;
+      const grd = ctx.createLinearGradient(cx, cy, ex, ey);
+      grd.addColorStop(0,   'rgba(57,255,20,0)');
+      grd.addColorStop(0.3, 'rgba(57,255,20,0.35)');
+      grd.addColorStop(1,   'rgba(57,255,20,0.85)');
+      ctx.beginPath();
+      ctx.moveTo(cx, cy);
+      ctx.lineTo(ex, ey);
+      ctx.strokeStyle = grd;
+      ctx.lineWidth = 1.5;
+      ctx.stroke();
+
+      // Tip glow
+      ctx.beginPath();
+      ctx.arc(ex, ey, 2.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(57,255,20,0.9)';
+      ctx.fill();
+
+      // Centre dot
+      ctx.beginPath();
+      ctx.arc(cx, cy, 3, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(57,255,20,0.75)';
+      ctx.fill();
+
+      // Blips — light up on sweep, fade over one full rotation
+      blips.forEach(b => {
+        const since = (angle - b.a + Math.PI * 2) % (Math.PI * 2);
+        const t = since / (Math.PI * 2);
+        const alpha = Math.pow(1 - t, 1.8) * 0.85 + 0.06;
+        const bx = cx + Math.cos(b.a) * b.r * maxR;
+        const by = cy + Math.sin(b.a) * b.r * maxR;
+
+        // Expanding ring pulse just after sweep
+        if (t < 0.08) {
+          const ring = t / 0.08;
+          ctx.beginPath();
+          ctx.arc(bx, by, 6 + ring * 10, 0, Math.PI * 2);
+          ctx.strokeStyle = `rgba(57,255,20,${((1 - ring) * 0.45).toFixed(3)})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+
+        // Radial glow
+        const grd = ctx.createRadialGradient(bx, by, 0, bx, by, 9);
+        grd.addColorStop(0, `rgba(57,255,20,${(alpha * 0.55).toFixed(3)})`);
+        grd.addColorStop(1, 'rgba(57,255,20,0)');
+        ctx.beginPath();
+        ctx.arc(bx, by, 9, 0, Math.PI * 2);
+        ctx.fillStyle = grd;
+        ctx.fill();
+
+        // Dot
+        ctx.beginPath();
+        ctx.arc(bx, by, t < 0.05 ? 2.5 : 1.8, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(57,255,20,${alpha.toFixed(3)})`;
+        ctx.fill();
+      });
+
+      angle = (angle + SPEED) % (Math.PI * 2);
+      requestAnimationFrame(draw);
+    }
+
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    draw();
+  })();
+</script>
+
+<script>
+  function initCarousel(trackId, prevId, nextId, dotsId, desktopPerPage) {
+    const track    = document.getElementById(trackId);
+    const prevBtn  = document.getElementById(prevId);
+    const nextBtn  = document.getElementById(nextId);
+    const dotsEl   = document.getElementById(dotsId);
+    if (!track) return;
+
+    const items = Array.from(track.children);
+    let page = 0;
+
+    function perPage() {
+      if (window.innerWidth < 600) return 1;
+      if (window.innerWidth < 900) return Math.min(desktopPerPage, 2);
+      return desktopPerPage;
+    }
+    function totalPages() { return Math.ceil(items.length / perPage()); }
+
+    function goTo(p) {
+      const n = totalPages();
+      page = Math.max(0, Math.min(p, n - 1));
+      const target = items[page * perPage()];
+      track.style.transform = target ? `translateX(-${target.offsetLeft}px)` : 'translateX(0)';
+      dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => d.classList.toggle('active', i === page));
+      prevBtn.disabled = page === 0;
+      nextBtn.disabled = page >= n - 1;
+    }
+
+    function buildDots() {
+      dotsEl.innerHTML = '';
+      for (let i = 0; i < totalPages(); i++) {
+        const d = document.createElement('button');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.setAttribute('aria-label', 'Go to slide ' + (i + 1));
+        d.addEventListener('click', () => goTo(i));
+        dotsEl.appendChild(d);
+      }
+    }
+
+    prevBtn.addEventListener('click', () => goTo(page - 1));
+    nextBtn.addEventListener('click', () => goTo(page + 1));
+    window.addEventListener('resize', () => { buildDots(); goTo(Math.min(page, totalPages() - 1)); });
+
+    buildDots();
+    goTo(0);
+  }
+
+  initCarousel('tips-track',   'tips-prev',   'tips-next',   'tips-dots',   3);
+  initCarousel('alerts-track', 'alerts-prev', 'alerts-next', 'alerts-dots', 3);
+</script>
+
+<!-- ─── SOLO SUBSCRIBE MODAL ─── -->
+<div id="soloModal">
+  <div id="soloFormWrapper">
+    <span class="closeSoloBtn" onclick="closeSoloForm()">✖</span>
+    <p class="modal-title">Personal Plan</p>
+    <p class="modal-sub">12-month subscription · 1 email address monitored</p>
+
+    <form id="soloPayFastForm" action="https://www.payfast.co.za/eng/process" method="post" style="display:none">
+      <input type="hidden" id="soloPayFastEmail" name="email_address" value="">
+      <input type="hidden" name="merchant_id" value="10589250">
+      <input type="hidden" name="merchant_key" value="705jrsa3dmzcy">
+      <input type="hidden" name="amount" value="918.00">
+      <input type="hidden" name="item_name" value="12 Month BreachWatcher Subscription">
+      <input type="hidden" name="notify_url" value="https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce">
+      <input type="hidden" name="return_url" value="https://breachwatcher.io">
+    </form>
+
+    <div id="soloStep1">
+      <span class="pm-label">Choose payment method</span>
+      <div class="payment-btns">
+        <button type="button" class="payment-btn payfast-btn" onclick="soloSelectPayFast()">
+          <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
+          <span class="pm-name">PayFast</span>
+          <span class="pm-note">ZAR · South Africa</span>
+        </button>
+        <button type="button" class="payment-btn stripe-btn" disabled>
+          <span class="coming-soon-badge">Coming Soon!</span>
+          <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
+          <span class="pm-name">Stripe</span>
+          <span class="pm-note">USD · International</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="soloStep2" style="display:none">
+      <button type="button" class="modal-back-btn" onclick="soloBack()"><i class="fas fa-arrow-left"></i> Back</button>
+      <label class="modal-label" for="soloEmailInput">Email Address</label>
+      <input class="modal-email-input" type="email" id="soloEmailInput" placeholder="your@email.com">
+      <button type="button" class="modal-submit-btn" onclick="submitSoloPayFast()">Proceed to Payment →</button>
+    </div>
+
+    <div id="thankYouMessage" style="display:none;">✅ Thank you! You will be directed to the payments page.</div>
+  </div>
+</div>
+
+<script>
+  const STRIPE_PERSONAL_LINK = 'https://buy.stripe.com/test_9B614m2YGdVk3WycqP6kg00';
+  const STRIPE_FAMILY_LINK   = 'https://buy.stripe.com/test_aFa3cufLs3gG0Km76v6kg01';
+
+  document.getElementById('openSoloForm').onclick = function() {
+    document.getElementById('soloModal').style.display = 'flex';
+  };
+  function closeSoloForm() {
+    document.getElementById('soloModal').style.display = 'none';
+    document.getElementById('soloStep1').style.display = 'block';
+    document.getElementById('soloStep2').style.display = 'none';
+    document.getElementById('thankYouMessage').style.display = 'none';
+    document.getElementById('soloEmailInput').value = '';
+    document.getElementById('soloEmailInput').style.borderColor = '';
+  }
+  function soloSelectPayFast() {
+    document.getElementById('soloStep1').style.display = 'none';
+    document.getElementById('soloStep2').style.display = 'block';
+    document.getElementById('soloEmailInput').focus();
+  }
+  function soloSelectStripe() {
+    showSoloThankYou();
+    setTimeout(function() { window.location.href = STRIPE_PERSONAL_LINK; }, 600);
+  }
+  function soloBack() {
+    document.getElementById('soloStep2').style.display = 'none';
+    document.getElementById('soloStep1').style.display = 'block';
+    document.getElementById('soloEmailInput').style.borderColor = '';
+  }
+  function validateSoloEmail() {
+    var input = document.getElementById('soloEmailInput');
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!input.value.trim() || !re.test(input.value.trim())) {
+      input.style.borderColor = 'var(--danger)';
+      input.focus();
+      return null;
+    }
+    input.style.borderColor = '';
+    return input.value.trim();
+  }
+  function submitSoloPayFast() {
+    var email = validateSoloEmail();
+    if (!email) return;
+    document.getElementById('soloPayFastEmail').value = email;
+    showSoloThankYou();
+    setTimeout(function() { document.getElementById('soloPayFastForm').submit(); }, 600);
+  }
+  function showSoloThankYou() {
+    document.getElementById('soloStep1').style.display = 'none';
+    document.getElementById('soloStep2').style.display = 'none';
+    document.getElementById('thankYouMessage').style.display = 'block';
+  }
+  window.onclick = function(event) {
+    if (event.target === document.getElementById('soloModal'))     closeSoloForm();
+    if (event.target === document.getElementById('familyModal'))   closeFamilyForm();
+    if (event.target === document.getElementById('businessModal')) closeBusinessForm();
+  };
+</script>
+
+<!-- ─── FAMILY SUBSCRIBE MODAL ─── -->
+<div id="familyModal">
+  <div id="familyFormWrapper">
+    <span class="closeFamilyBtn" onclick="closeFamilyForm()">✖</span>
+    <p class="modal-title">Family Plan</p>
+    <p class="modal-sub">12-month subscription · 4 email addresses monitored</p>
+
+    <form id="familyPayFastForm" action="https://www.payfast.co.za/eng/process" method="post" style="display:none">
+      <input type="hidden" id="familyPayFastEmail1" name="custom_str1" value="">
+      <input type="hidden" id="familyPayFastEmail2" name="custom_str2" value="">
+      <input type="hidden" id="familyPayFastEmail3" name="custom_str3" value="">
+      <input type="hidden" id="familyPayFastEmail4" name="custom_str4" value="">
+      <input type="hidden" name="merchant_id" value="10589250">
+      <input type="hidden" name="merchant_key" value="705jrsa3dmzcy">
+      <input type="hidden" name="amount" value="2754.00">
+      <input type="hidden" name="item_name" value="12 Month Family BreachWatcher Subscription">
+      <input type="hidden" name="notify_url" value="https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce">
+      <input type="hidden" name="return_url" value="https://breachwatcher.io">
+    </form>
+
+    <div id="familyStep1">
+      <span class="pm-label">Choose payment method</span>
+      <div class="payment-btns">
+        <button type="button" class="payment-btn payfast-btn" onclick="familySelectPayFast()">
+          <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
+          <span class="pm-name">PayFast</span>
+          <span class="pm-note">ZAR · South Africa</span>
+        </button>
+        <button type="button" class="payment-btn stripe-btn" disabled>
+          <span class="coming-soon-badge">Coming Soon!</span>
+          <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
+          <span class="pm-name">Stripe</span>
+          <span class="pm-note">USD · International</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="familyStep2" style="display:none">
+      <button type="button" class="modal-back-btn" onclick="familyBack()"><i class="fas fa-arrow-left"></i> Back</button>
+      <label class="modal-label" for="familyEmail1">Email Address #1</label>
+      <input class="modal-email-input" type="email" id="familyEmail1" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail2">Email Address #2</label>
+      <input class="modal-email-input" type="email" id="familyEmail2" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail3">Email Address #3</label>
+      <input class="modal-email-input" type="email" id="familyEmail3" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail4">Email Address #4</label>
+      <input class="modal-email-input" type="email" id="familyEmail4" placeholder="your@email.com">
+      <button type="button" class="modal-submit-btn" onclick="submitFamilyPayFast()">Proceed to Payment →</button>
+    </div>
+
+    <div id="familyThankYouMessage" style="display:none;">✅ Thank you! You will be directed to the payments page.</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById('openFamilyForm').onclick = function() {
+    document.getElementById('familyModal').style.display = 'flex';
+  };
+  function closeFamilyForm() {
+    document.getElementById('familyModal').style.display = 'none';
+    document.getElementById('familyStep1').style.display = 'block';
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyThankYouMessage').style.display = 'none';
+    ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'].forEach(function(id) {
+      var inp = document.getElementById(id);
+      inp.value = '';
+      inp.style.borderColor = '';
+    });
+  }
+  function familySelectPayFast() {
+    document.getElementById('familyStep1').style.display = 'none';
+    document.getElementById('familyStep2').style.display = 'block';
+    document.getElementById('familyEmail1').focus();
+  }
+  function familySelectStripe() {
+    showFamilyThankYou();
+    setTimeout(function() { window.location.href = STRIPE_FAMILY_LINK; }, 600);
+  }
+  function familyBack() {
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyStep1').style.display = 'block';
+    ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'].forEach(function(id) {
+      document.getElementById(id).style.borderColor = '';
+    });
+  }
+  function validateFamilyEmails() {
+    var ids = ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'];
+    var emails = [];
+    var valid = true;
+    var re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    ids.forEach(function(id) {
+      var input = document.getElementById(id);
+      if (!input.value.trim() || !re.test(input.value.trim())) {
+        input.style.borderColor = 'var(--danger)';
+        if (valid) input.focus();
+        valid = false;
+      } else {
+        input.style.borderColor = '';
+        emails.push(input.value.trim());
+      }
+    });
+    return valid ? emails : null;
+  }
+  function submitFamilyPayFast() {
+    var emails = validateFamilyEmails();
+    if (!emails) return;
+    document.getElementById('familyPayFastEmail1').value = emails[0];
+    document.getElementById('familyPayFastEmail2').value = emails[1];
+    document.getElementById('familyPayFastEmail3').value = emails[2];
+    document.getElementById('familyPayFastEmail4').value = emails[3];
+    showFamilyThankYou();
+    setTimeout(function() { document.getElementById('familyPayFastForm').submit(); }, 600);
+  }
+  function showFamilyThankYou() {
+    document.getElementById('familyStep1').style.display = 'none';
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyThankYouMessage').style.display = 'block';
+  }
+</script>
+
+<!-- ─── BUSINESS CONTACT MODAL ─── -->
+<div id="businessModal">
+  <div id="businessFormWrapper">
+    <span class="closeBtn" onclick="closeBusinessForm()">✖</span>
+    <p class="modal-title">Business Plan</p>
+    <p class="modal-sub">Enterprise-grade monitoring · We'll be in touch</p>
+    <form id="businessForm">
+      <label>Company Name</label>
+      <input type="text" name="Company_Name" placeholder="Acme Corp" required>
+      <label>Contact Person Mobile Number</label>
+      <input type="tel" name="Contact_Mobile" placeholder="+27 00 000 0000" required>
+      <label>Contact Person Email Address</label>
+      <input type="email" name="Contact_Email" placeholder="your@email.com" required>
+      <label>No. of Employees to be Monitored</label>
+      <input type="number" name="Employees" placeholder="e.g. 50" required>
+      <button type="submit">Submit</button>
+    </form>
+    <div id="businessThankYou" style="display:none;">✅ Thank you! We have received your submission.</div>
+  </div>
+</div>
+
+<script>
+  document.getElementById("openBusinessForm").onclick = function() {
+    document.getElementById("businessModal").style.display = "flex";
+  };
+  function closeBusinessForm() {
+    document.getElementById("businessModal").style.display = "none";
+  }
+  document.getElementById('businessForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    emailjs.sendForm('service_jdp2887', 'template_bd0gc1n', this)
+      .then(function() {
+        showBusinessThankYou();
+      }, function(error) {
+        console.error('EmailJS error:', JSON.stringify(error));
+        alert('Error ' + (error.status || '') + ': ' + (error.text || JSON.stringify(error)));
+      });
+  });
+  function showBusinessThankYou() {
+    setTimeout(() => {
+      document.getElementById("businessForm").style.display = "none";
+      document.getElementById("businessThankYou").style.display = "block";
+      setTimeout(closeBusinessForm, 2000);
+    }, 300);
+  }
+</script>
+
+</body>
+</html>

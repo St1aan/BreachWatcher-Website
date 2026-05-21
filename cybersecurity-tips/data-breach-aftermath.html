@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="What actually happens to your personal data after a breach? From dark web auctions to credential stuffing waves, learn the full lifecycle of stolen data.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/data-breach-aftermath.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/data-breach-aftermath.html">
+  <meta property="og:title" content="What Happens to Your Data After a Breach? | BreachWatcher">
+  <meta property="og:description" content="What actually happens to your personal data after a breach? From dark web auctions to credential stuffing waves, learn the full lifecycle of stolen data.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-02-10T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Happens to Your Data After a Breach? | BreachWatcher">
+  <meta name="twitter:description" content="What actually happens to your personal data after a breach? From dark web auctions to credential stuffing waves, learn the full lifecycle of stolen data.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>What Happens to Your Data After a Breach? | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    /* MORE TIPS */
+    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
+    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
+    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
+    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
+    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What Happens to Your Data After a Breach? | BreachWatcher",
+        "description": "What actually happens to your personal data after a breach? From dark web auctions to credential stuffing waves, learn the full lifecycle of stolen data.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/data-breach-aftermath.html",
+        "image": "https://www.breachwatcher.io/Banner.webp",
+        "datePublished": "2026-02-10T00:00:00+00:00",
+        "dateModified": "2026-02-10T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/data-breach-aftermath.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+      {"@type":"ListItem","position":3,"name":"What Happens After a Data Breach","item":"https://www.breachwatcher.io/cybersecurity-tips/data-breach-aftermath.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../#alerts">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="../#alerts">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="../#tips">Cybersecurity Tips</a>
+      <span class="sep">/</span>
+      <span>Data Breach Aftermath</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-red">Data Breach</span>
+      <span class="article-tag tag-orange">Dark Web</span>
+    </div>
+    <h1 class="article-title">What Happens to Your Data After a Breach?</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> February 10, 2026</span>
+      <span><i class="fas fa-user"></i> BreachWatcher</span>
+      <span><i class="fas fa-clock"></i> 5 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>The Breach Lifecycle</h2>
+  <p>Most people assume a data breach ends when a company issues a press release. The reality is almost the opposite — that announcement is often the moment your data's commercial exploitation begins in earnest. Understanding the full lifecycle of a breach helps you act at the right time and with the right urgency.</p>
+  <p>The typical sequence unfolds like this:</p>
+  <ul>
+    <li><strong>Initial exfiltration</strong> — the attacker silently copies the database, often going undetected for weeks or months.</li>
+    <li><strong>Data verification</strong> — the attacker samples the dataset to confirm it contains live, usable credentials and personal information.</li>
+    <li><strong>Dark web listing</strong> — the data is posted for sale on underground forums such as BreachForums and successors to RaidForums, priced according to size and freshness.</li>
+    <li><strong>Bulk sale and distribution</strong> — buyers download the data in bulk; it quickly spreads across multiple actors and platforms.</li>
+    <li><strong>Credential stuffing campaigns</strong> — automated tools begin testing the credentials against hundreds of services within hours of the data going public.</li>
+  </ul>
+  <p>By the time you receive a breach notification email, your data may already have changed hands multiple times.</p>
+
+  <h2>The Dark Web Economy</h2>
+  <p>Stolen personal data has a well-established and surprisingly stable market. Pricing varies by the richness of the record:</p>
+  <ul>
+    <li><strong>Email and password combos</strong> — the lowest tier, often sold in bulk for fractions of a cent per record.</li>
+    <li><strong>Credit card details with CVV</strong> — significantly more valuable; fresh cards from wealthy regions command premium prices.</li>
+    <li><strong>Full identity packages ("Fullz")</strong> — name, address, date of birth, SSN or national ID, and financial data bundled together — used for identity theft and fraudulent loan applications.</li>
+  </ul>
+  <p>What makes the dark web economy particularly dangerous is that <strong>data doesn't disappear after the initial sale</strong>. It gets repackaged, combined with records from other breaches into "combo lists," and resold for years. A record stolen in a 2019 breach may still be actively tested against login pages in 2026 — and it will succeed if you never changed that password.</p>
+
+  <h2>Credential Stuffing Waves</h2>
+  <p>Once your credentials enter the criminal ecosystem, <strong>automated bots test them against hundreds of services within hours</strong>. This technique — credential stuffing — is devastatingly effective precisely because most people reuse passwords. Attackers don't need to break your password; they already have it.</p>
+  <p>The services attackers prioritise are those with easily monetisable assets:</p>
+  <ul>
+    <li>Online banking and payment platforms (immediate financial gain)</li>
+    <li>Retail accounts with stored payment methods or gift card balances</li>
+    <li>Airline and hotel loyalty programmes (frequent flyer miles are resold)</li>
+    <li>Streaming services (account access is sold cheaply in bulk)</li>
+    <li>Gaming accounts with valuable in-game items or currencies</li>
+  </ul>
+
+  <h2>How Long Does Stolen Data Stay Active?</h2>
+  <p>Research into credential abuse consistently shows that <strong>stolen credentials are actively exploited for 18 to 24 months on average</strong> after a breach. The activity doesn't follow a steady curve — there are waves of use that correspond to new combo list releases and new stuffing campaigns.</p>
+  <p>Old breaches resurface constantly. When a new criminal forum launches or a dataset gets shared more widely, breaches from years prior get fresh attention. The 2013 Adobe breach, for instance, was still appearing in new combo list compilations a decade later. There is no natural expiry date on your stolen data.</p>
+
+  <h2>What Attackers Do With Access</h2>
+  <p>Once an attacker successfully logs in to one of your accounts, the consequences compound quickly:</p>
+  <ul>
+    <li><strong>Account takeover</strong> — they lock you out by changing the email and password, then use or sell the account.</li>
+    <li><strong>Fraudulent purchases</strong> — using stored payment methods before you notice.</li>
+    <li><strong>Selling access onward</strong> — compromised accounts are resold on criminal marketplaces within hours.</li>
+    <li><strong>Email access as a master key</strong> — your email inbox lets attackers reset passwords on every linked account — banking, social media, utilities.</li>
+    <li><strong>Identity theft</strong> — using your personal details to open credit lines, file fraudulent tax returns, or create synthetic identities.</li>
+  </ul>
+
+  <h2>What You Should Do</h2>
+  <p>The window between a breach and active exploitation is shrinking. Acting fast is the single most effective thing you can do.</p>
+  <ul>
+    <li>Change passwords immediately when notified of a breach — don't wait for the company's investigation to conclude.</li>
+    <li>Enable multi-factor authentication (MFA) on all accounts, especially email, banking, and social media.</li>
+    <li>Audit which other services use the same password and change those too.</li>
+    <li>Monitor your bank and credit accounts for unfamiliar transactions in the weeks following a breach.</li>
+    <li>Consider a credit freeze if the breach included your national ID number or financial data.</li>
+    <li>Use BreachWatcher for continuous, automated monitoring — so you're alerted the moment your email appears in a new data dump.</li>
+  </ul>
+
+  <div class="alert-box">
+    <p><strong>BreachWatcher monitors breach databases continuously.</strong> The moment your email appears in a new data dump, you'll be notified — giving you a critical head start before attackers can act.</p>
+  </div>
+
+</main>
+
+<section class="more-alerts">
+  <h3>More Cybersecurity Tips</h3>
+  <div class="more-grid">
+    <a href="./credential-stuffing.html" class="more-card">
+      <div class="more-card-tag">Data Breach · Account Security</div>
+      <div class="more-card-title">What Is Credential Stuffing?</div>
+    </a>
+    <a href="./account-takeover.html" class="more-card">
+      <div class="more-card-tag">Account Security</div>
+      <div class="more-card-title">What Is Account Takeover?</div>
+    </a>
+    <a href="./password-manager.html" class="more-card">
+      <div class="more-card-tag">Best Practice</div>
+      <div class="more-card-title">Why You Need a Password Manager</div>
+    </a>
+    <a href="./multi-factor-authentication.html" class="more-card">
+      <div class="more-card-tag">Best Practice</div>
+      <div class="more-card-title">Multi-Factor Authentication Explained</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="../#alerts">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Multi-factor authentication is your best defence after a password is compromised. Learn the difference between SMS OTPs, authenticator apps, and hardware keys.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html">
+  <meta property="og:title" content="What Is Multi-Factor Authentication (MFA)? | BreachWatcher">
+  <meta property="og:description" content="Multi-factor authentication is your best defence after a password is compromised. Learn the difference between SMS OTPs, authenticator apps, and hardware keys.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-02-01T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="What Is Multi-Factor Authentication (MFA)? | BreachWatcher">
+  <meta name="twitter:description" content="Multi-factor authentication is your best defence after a password is compromised. Learn the difference between SMS OTPs, authenticator apps, and hardware keys.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>What Is Multi-Factor Authentication (MFA)? | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    /* MORE TIPS */
+    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
+    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
+    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
+    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
+    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
+    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
+    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "What Is Multi-Factor Authentication (MFA)? | BreachWatcher",
+        "description": "Multi-factor authentication is your best defence after a password is compromised. Learn the difference between SMS OTPs, authenticator apps, and hardware keys.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html",
+        "image": "https://www.breachwatcher.io/Banner.webp",
+        "datePublished": "2026-02-01T00:00:00+00:00",
+        "dateModified": "2026-02-01T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+      {"@type":"ListItem","position":3,"name":"Multi-Factor Authentication (MFA)","item":"https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../#alerts">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="../#alerts">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="../#tips">Cybersecurity Tips</a>
+      <span class="sep">/</span>
+      <span>What Is Multi-Factor Authentication?</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-blue">Authentication</span>
+      <span class="article-tag tag-blue">Best Practice</span>
+    </div>
+    <h1 class="article-title">What Is Multi-Factor Authentication (MFA)?</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> February 1, 2026</span>
+      <span><i class="fas fa-user"></i> BreachWatcher</span>
+      <span><i class="fas fa-clock"></i> 4 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <h2>What Is MFA?</h2>
+  <p>Multi-factor authentication is a login system that requires you to prove your identity in more than one way before granting access. Security professionals group authentication factors into three categories:</p>
+  <ul>
+    <li><strong>Something you know</strong> — a password, PIN, or security answer</li>
+    <li><strong>Something you have</strong> — a phone, hardware key, or smart card</li>
+    <li><strong>Something you are</strong> — a fingerprint, face scan, or other biometric</li>
+  </ul>
+  <p>MFA requires at least two of these categories simultaneously. The security benefit is profound: even if an attacker obtains your password through a data breach, phishing campaign, or brute-force attack, <strong>they still cannot access your account without the second factor</strong> — which only you physically possess. Microsoft's own research finds that MFA blocks over 99.9% of automated account-compromise attacks.</p>
+
+  <h2>SMS One-Time Passwords</h2>
+  <p>The most common form of MFA is a <strong>one-time password (OTP) sent by SMS</strong>. After entering your password, the site sends a six-digit code to your phone number. You enter it to complete login. It's widely supported and easy to use — but it is the weakest form of MFA available.</p>
+  <p>The vulnerability is <strong>SIM swapping</strong>. Attackers contact your mobile carrier — armed with personal information gathered from social media or prior data breaches — and convince a customer service representative to transfer your phone number to a SIM card they control. From that point, every SMS OTP sent to your number goes directly to the attacker.</p>
+  <p>High-profile SIM-swap victims have included cryptocurrency investors, social media accounts worth millions of followers, and even security researchers. The attack requires no technical sophistication — just social engineering a single carrier employee.</p>
+
+  <h2>Authenticator Apps</h2>
+  <p>Authenticator apps generate <strong>time-based one-time passwords (TOTP)</strong> — six-digit codes that change every 30 seconds, computed using a secret key shared between the app and the website at setup time. Popular options include Google Authenticator, Microsoft Authenticator, and Authy.</p>
+  <p>Because TOTP codes are generated entirely on your device and never transmitted over the mobile network, they cannot be intercepted via SIM swapping. An attacker would need physical access to your unlocked phone to steal a code — and even then, it expires in 30 seconds. This makes authenticator apps <strong>dramatically more secure than SMS OTPs</strong> while remaining nearly as convenient.</p>
+  <p>Authy adds backup and multi-device sync, which is useful if you lose your phone — though purists prefer keeping secrets on a single device for maximum security.</p>
+
+  <h2>Hardware Security Keys</h2>
+  <p>Hardware security keys — such as the <strong>YubiKey</strong>, Google Titan Key, or any FIDO2-compliant device — are small physical tokens that plug into a USB port or tap against your phone via NFC. They represent the gold standard of consumer MFA.</p>
+  <p>What makes them unique is <strong>phishing resistance</strong>. When you log in, the key cryptographically verifies that the website you're authenticating to is the real domain — not a lookalike site. If an attacker tricks you into entering your password on a fake login page, the hardware key will silently refuse to respond because the domain doesn't match. The key verifies the site; the site verifies the key. Mutual authentication.</p>
+  <p>Hardware keys are recommended for high-value accounts: email, banking, cloud infrastructure, and domain registrars. Many security-conscious organisations mandate them for all staff.</p>
+
+  <h2>Which Should You Use?</h2>
+  <p>The hierarchy from strongest to weakest is clear:</p>
+  <ul>
+    <li><strong>Hardware security key</strong> — phishing-resistant, no shared secrets, the gold standard</li>
+    <li><strong>Authenticator app (TOTP)</strong> — excellent protection, immune to SIM swapping, practical for most users</li>
+    <li><strong>SMS OTP</strong> — better than nothing, but vulnerable to SIM swapping and SS7 interception</li>
+    <li><strong>No MFA</strong> — your password alone stands between attackers and your account</li>
+  </ul>
+  <p>The right answer for most people is to <strong>start with an authenticator app</strong> — it's free, works on any smartphone, and is supported by virtually every major platform. If you manage critical infrastructure or hold significant cryptocurrency, invest in a hardware key.</p>
+
+  <div class="alert-box">
+    <p><strong>Enable MFA on your email account first.</strong> Your email is the master key to resetting every other account you own. If an attacker gains access to your inbox, they can trigger password resets on your bank, social media, and cloud storage in minutes. Protecting your email with MFA is the single highest-impact security action you can take today.</p>
+  </div>
+
+</main>
+
+<section class="more-alerts">
+  <h3>More Cybersecurity Tips</h3>
+  <div class="more-grid">
+    <a href="./password-manager.html" class="more-card">
+      <div class="more-card-tag">Passwords · Best Practice</div>
+      <div class="more-card-title">Why You Need a Password Manager</div>
+    </a>
+    <a href="./passkeys.html" class="more-card">
+      <div class="more-card-tag">Authentication · Passwords</div>
+      <div class="more-card-title">Passkeys Explained — The Future of Logging In</div>
+    </a>
+    <a href="./account-takeover.html" class="more-card">
+      <div class="more-card-tag">Account Security</div>
+      <div class="more-card-title">How to Prevent Account Takeover</div>
+    </a>
+    <a href="./credential-stuffing.html" class="more-card">
+      <div class="more-card-tag">Passwords · Attacks</div>
+      <div class="more-card-title">What Is Credential Stuffing?</div>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Johannesburg, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Raleigh, North Carolina
+        </span>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="../#alerts">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
