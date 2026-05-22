@@ -839,12 +839,20 @@
       .sticky-plan-name { display: none; }
       .sticky-plan { gap: .35rem; padding: 6px 8px; }
     }
+    .btn-short { display: none; }
     @media (max-width: 600px) {
-      #sticky-pricing { padding: 8px 4%; gap: .4rem; }
-      .sticky-plans { gap: .35rem; }
-      .sticky-plan { padding: 5px 7px; }
-      .sticky-plan-price { font-size: .82rem; }
-      .sticky-plan-btn { font-size: .58rem; padding: 4px 7px; letter-spacing: 1px; }
+      #sticky-pricing { padding: 8px 3%; gap: .3rem; }
+      .sticky-plans { gap: .3rem; }
+      .sticky-plan {
+        padding: 5px 6px; flex-direction: column;
+        align-items: center; justify-content: center; gap: 4px;
+      }
+      .sticky-plan > div { text-align: center; }
+      .sticky-plan-price { font-size: .8rem; }
+      .sticky-plan-price span { display: none; }
+      .sticky-plan-btn { margin-left: 0; width: 100%; text-align: center; font-size: .58rem; padding: 4px 4px; letter-spacing: .8px; }
+      .btn-full { display: none; }
+      .btn-short { display: inline; }
     }
   </style>
   <script type="application/ld+json">
@@ -2015,21 +2023,21 @@
         <div class="sticky-plan-name">Personal</div>
         <div class="sticky-plan-price">$60 <span>/ year</span></div>
       </div>
-      <button class="sticky-plan-btn" onclick="document.getElementById('soloModal').style.display='flex'">Subscribe</button>
+      <button class="sticky-plan-btn" onclick="document.getElementById('soloModal').style.display='flex'"><span class="btn-full">Subscribe</span><span class="btn-short">Select</span></button>
     </div>
     <div class="sticky-plan">
       <div>
         <div class="sticky-plan-name">Family</div>
         <div class="sticky-plan-price">$180 <span>/ year</span></div>
       </div>
-      <button class="sticky-plan-btn" onclick="document.getElementById('familyModal').style.display='flex'">Subscribe</button>
+      <button class="sticky-plan-btn" onclick="document.getElementById('familyModal').style.display='flex'"><span class="btn-full">Subscribe</span><span class="btn-short">Select</span></button>
     </div>
     <div class="sticky-plan">
       <div>
         <div class="sticky-plan-name">Business</div>
         <div class="sticky-plan-price">Custom</div>
       </div>
-      <button class="sticky-plan-btn" onclick="document.getElementById('businessModal').style.display='flex'">Contact Us</button>
+      <button class="sticky-plan-btn" onclick="document.getElementById('businessModal').style.display='flex'"><span class="btn-full">Contact Us</span><span class="btn-short">Contact</span></button>
     </div>
   </div>
   <button class="sticky-close" onclick="dismissStickyPricing()" aria-label="Dismiss">✖</button>
