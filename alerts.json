@@ -1,0 +1,85 @@
+[
+  {
+    "slug": "nullsec",
+    "title": "South Africa Actively Targeted by Nullsec Nigeria",
+    "tags": [
+      { "label": "Hacktivism", "class": "tag-orange" },
+      { "label": "Data Leak",  "class": "tag-purple" },
+      { "label": "Government", "class": "tag-red"    }
+    ],
+    "date":        "2026-05-25",
+    "dateDisplay": "May 25, 2026",
+    "description": "Nigerian hacktivist group Nullsec Nigeria claimed to compromise SARS, SITA, and ProWellness as part of OpSouthAfrica. BreachWatcher analysed the leaked data — here's what it means for you.",
+    "icon": "fas fa-globe-africa"
+  },
+  {
+    "slug": "shinyhunters",
+    "title": "ShinyHunters — Evolved Extortion Specialists",
+    "tags": [
+      { "label": "Data Breach", "class": "tag-red"    },
+      { "label": "Extortion",   "class": "tag-orange" }
+    ],
+    "date":        "2026-05-15",
+    "dateDisplay": "May 15, 2026",
+    "description": "ShinyHunters has claimed ~48 victims since January 2026, exposing tens of millions of records through credential stuffing, OAuth token hijacking, and vishing attacks against cloud infrastructure.",
+    "icon": "fas fa-user-secret"
+  },
+  {
+    "slug": "booking-com",
+    "title": "Booking.com Data Compromised & Increased Phishing Risks for Travelers",
+    "tags": [
+      { "label": "Data Breach", "class": "tag-red"    },
+      { "label": "Phishing",    "class": "tag-orange" }
+    ],
+    "date":        "2026-04-17",
+    "dateDisplay": "April 17, 2026",
+    "description": "Customer data from Booking.com has been compromised, leading to a surge in targeted phishing campaigns impersonating the platform. Be wary of any unexpected communications about bookings.",
+    "icon": "fas fa-hotel"
+  },
+  {
+    "slug": "2026-data-breach-forecast",
+    "title": "2026 Data Breach Forecast: AI-Powered Threats Are Here",
+    "tags": [
+      { "label": "Forecast", "class": "tag-blue" }
+    ],
+    "date":        "2026-03-16",
+    "dateDisplay": "March 16, 2026",
+    "description": "Our annual forecast highlights the most likely breach vectors for 2026: credential stuffing, AI-assisted phishing, and supply chain attacks continue to top the risk register.",
+    "icon": "fas fa-chart-line"
+  },
+  {
+    "slug": "iran-conflict",
+    "title": "Fake Rocket Apps & Urgent Messages Could Steal Your Data",
+    "tags": [
+      { "label": "Malware", "class": "tag-red"    },
+      { "label": "Mobile",  "class": "tag-purple" }
+    ],
+    "date":        "2026-03-04",
+    "dateDisplay": "March 4, 2026",
+    "description": "Fraudulent mobile apps circulating with urgent push notifications designed to panic users into granting excessive permissions — enabling silent data theft.",
+    "icon": "fas fa-rocket"
+  },
+  {
+    "slug": "clickfix",
+    "title": "Beware of \"ClickFix\" — The Trick That Makes You Hack Yourself",
+    "tags": [
+      { "label": "Social Engineering", "class": "tag-orange" }
+    ],
+    "date":        "2026-03-03",
+    "dateDisplay": "March 3, 2026",
+    "description": "A novel technique tricks users into copy-pasting malicious commands into their own terminal by disguising them as browser troubleshooting steps. No exploit needed.",
+    "icon": "fas fa-bug"
+  },
+  {
+    "slug": "instagram-password-reset",
+    "title": "Unexpected Instagram Password Reset Emails & Resurfaced User Data",
+    "tags": [
+      { "label": "Account Takeover", "class": "tag-purple" },
+      { "label": "Data Leak",        "class": "tag-blue"   }
+    ],
+    "date":        "2026-03-03",
+    "dateDisplay": "March 3, 2026",
+    "description": "Instagram users are receiving unsolicited password reset emails linked to old user data resurfacing on breach forums. Enable 2FA immediately and review authorised devices.",
+    "icon": "fas fa-camera"
+  }
+]

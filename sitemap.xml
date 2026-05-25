@@ -96,6 +96,37 @@
   </url>
 
   <!-- Security Alerts -->
+<!-- SECURITY-ALERTS-START -->
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/nullsec.html</loc>
+    <lastmod>2026-05-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/shinyhunters.html</loc>
+    <lastmod>2026-05-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/booking-com.html</loc>
+    <lastmod>2026-04-17</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/2026-data-breach-forecast.html</loc>
+    <lastmod>2026-03-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/iran-conflict.html</loc>
+    <lastmod>2026-03-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.breachwatcher.io/security-alerts/clickfix.html</loc>
     <lastmod>2026-03-03</lastmod>
@@ -108,35 +139,6 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/iran-conflict.html</loc>
-    <lastmod>2026-03-04</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/2026-data-breach-forecast.html</loc>
-    <lastmod>2026-03-16</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/booking-com.html</loc>
-    <lastmod>2026-04-17</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/shinyhunters.html</loc>
-    <lastmod>2026-05-15</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/nullsec.html</loc>
-    <lastmod>2026-05-25</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
+<!-- SECURITY-ALERTS-END -->
 
 </urlset>
