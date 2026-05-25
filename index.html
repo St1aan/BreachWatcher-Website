@@ -1290,6 +1290,21 @@
     <div class="carousel-track" id="alerts-track">
 
     <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-globe-africa"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-orange">Hacktivism</span>
+          <span class="alert-tag tag-purple">Data Leak</span>
+          <span class="alert-tag tag-red">Government</span>
+        </div>
+        <div class="alert-title">South Africa Actively Targeted by Nullsec Nigeria</div>
+        <div class="alert-desc">Nigerian hacktivist group Nullsec Nigeria claimed to compromise SARS, SITA, and ProWellness as part of OpSouthAfrica. BreachWatcher analysed the leaked data — here's what it means for you.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>May 25, 2026</div>
+        <a href="security-alerts/nullsec.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
       <div class="alert-icon"><i class="fas fa-user-secret"></i></div>
       <div class="alert-content">
         <div class="alert-tags">
@@ -1714,8 +1729,7 @@
           <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
           <span class="pm-name">PayFast</span>
         </button>
-        <button type="button" class="payment-btn stripe-btn" disabled>
-          <span class="coming-soon-badge">Coming Soon!</span>
+        <button type="button" class="payment-btn stripe-btn" onclick="soloSelectStripe()">
           <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
           <span class="pm-name">Stripe</span>
         </button>
@@ -1819,8 +1833,7 @@
           <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
           <span class="pm-name">PayFast</span>
         </button>
-        <button type="button" class="payment-btn stripe-btn" disabled>
-          <span class="coming-soon-badge">Coming Soon!</span>
+        <button type="button" class="payment-btn stripe-btn" onclick="familySelectStripe()">
           <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
           <span class="pm-name">Stripe</span>
         </button>
