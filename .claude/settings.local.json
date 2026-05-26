@@ -14,7 +14,13 @@
       "Bash(ssh-keygen *)",
       "Bash(git pull *)",
       "Bash(git stash *)",
-      "Bash(git push *)"
+      "Bash(git push *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git fetch *)",
+      "Bash(git -C /home/stiaan/Documents/Projects/BreachWatcher/Website log --oneline -5)",
+      "Bash(git *)",
+      "Bash(xargs sed -i 's|<meta charset=\"UTF-8\">|<meta charset=\"UTF-8\">\\\\n  <link rel=\"icon\" type=\"image/jpeg\" href=\"/logo.jpg\">|')"
     ]
   }
 }
