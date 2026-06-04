@@ -339,7 +339,8 @@
     try {
       await fetch(TINES_WEBHOOK, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        mode: 'no-cors',
+        headers: { 'Content-Type': 'text/plain' },
         body: JSON.stringify({ email: email, path: 'exposurereport' })
       });
 
