@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Free Exposure Report | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-link img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-text span { color: var(--primary); }
+    .logo-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 0%, rgba(57,255,20,.04), transparent),
+        radial-gradient(ellipse 40% 60% at 0% 80%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(57,255,20,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 5%, transparent 100%);
+    }
+
+    .page-card {
+      position: relative;
+      width: 100%;
+      max-width: 560px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-top: 2px solid var(--primary);
+      border-radius: 4px;
+      padding: 3rem 3rem 2.5rem;
+      box-shadow: 0 0 60px rgba(57,255,20,.04);
+    }
+
+    /* badge */
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(57,255,20,.06); border: 1px solid rgba(57,255,20,.22);
+      border-radius: 3px; padding: 6px 14px;
+      font-size: .65rem; color: var(--primary); font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .badge .dot {
+      width: 7px; height: 7px; background: var(--primary);
+      border-radius: 50%; animation: blink 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.7rem, 4vw, 2.2rem);
+      line-height: 1.2;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #39FF14, #83F806);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: .9rem;
+      line-height: 1.85;
+      letter-spacing: .5px;
+      margin-bottom: 2rem;
+    }
+
+    /* notice box */
+    .notice {
+      background: rgba(57,255,20,.04);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--primary);
+      border-radius: 3px;
+      padding: 1rem 1.25rem;
+      margin-bottom: 2rem;
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+    .notice i { color: var(--primary); font-size: .85rem; margin-top: 2px; flex-shrink: 0; }
+    .notice p { font-size: .8rem; color: var(--text-muted); line-height: 1.75; letter-spacing: .4px; margin: 0; }
+    .notice p strong { color: var(--text); }
+
+    /* form */
+    .form-group { margin-bottom: 1.25rem; }
+    label {
+      display: block;
+      font-size: .7rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .45rem;
+    }
+    input[type="email"] {
+      width: 100%; padding: 13px 16px;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--border-dim); border-radius: 3px;
+      font-family: 'Montserrat', sans-serif; font-size: .88rem;
+      transition: border-color .2s; outline: none;
+    }
+    input[type="email"]:focus { border-color: var(--primary); }
+    input[type="email"]::placeholder { color: var(--text-muted); }
+
+    .submit-btn {
+      width: 100%; padding: 15px;
+      background: var(--primary); color: #000;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s, transform .15s;
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      margin-top: 1.5rem;
+    }
+    .submit-btn:hover:not(:disabled) {
+      background: #55ff33;
+      box-shadow: 0 0 32px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+    .submit-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    /* spinner */
+    .spinner {
+      display: none;
+      width: 16px; height: 16px;
+      border: 2px solid rgba(0,0,0,.3);
+      border-top-color: #000;
+      border-radius: 50%;
+      animation: spin .6s linear infinite;
+      flex-shrink: 0;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .form-note {
+      font-size: .7rem; color: var(--text-muted); text-align: center;
+      margin-top: .9rem; letter-spacing: .5px;
+    }
+
+    /* error */
+    .error-msg {
+      display: none;
+      background: rgba(239,68,68,.08);
+      border: 1px solid rgba(239,68,68,.25);
+      border-radius: 3px;
+      padding: .75rem 1rem;
+      font-size: .8rem; color: #f87171;
+      margin-top: 1rem; letter-spacing: .4px;
+    }
+
+    /* ── SUCCESS STATE ── */
+    #success-state {
+      display: none;
+      text-align: center;
+    }
+    .success-icon {
+      width: 64px; height: 64px;
+      background: rgba(57,255,20,.1);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem; color: var(--primary);
+    }
+    #success-state h2 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400; font-size: 1.6rem;
+      letter-spacing: 2px; margin-bottom: .75rem;
+    }
+    #success-state p {
+      color: var(--text-muted); font-size: .88rem;
+      line-height: 1.85; letter-spacing: .5px; max-width: 400px; margin: 0 auto;
+    }
+    #success-state p strong { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-dim);
+      padding: 1.5rem 5%;
+      text-align: center;
+    }
+    footer p { font-size: .72rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 600px) {
+      .page-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo-link">
+    <img src="/logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="logo-text">Breach<span>Watcher</span></div>
+      <span class="logo-tagline">we watch for you</span>
+    </div>
+  </a>
+</header>
+
+<main>
+  <div class="hero-grid"></div>
+
+  <div class="page-card">
+
+    <!-- FORM STATE -->
+    <div id="form-state">
+      <div class="badge"><div class="dot"></div> Exclusive Offer</div>
+      <h1>Your free<br><span>exposure report</span></h1>
+      <p class="lead">
+        Enter the email address behind your social accounts and we'll check it against our breach database — showing you exactly where your credentials have been exposed.
+      </p>
+
+      <div class="notice">
+        <i class="fas fa-circle-info"></i>
+        <p>
+          <strong>Promotional recipients only.</strong> This free report is exclusively available to email addresses that received the BreachWatcher promotional email. Reports will only be generated for the specific address submitted.
+        </p>
+      </div>
+
+      <form id="exposure-form" novalidate>
+        <div class="form-group">
+          <label for="email">Your email address</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="you@example.com"
+            autocomplete="email"
+            required
+          >
+        </div>
+
+        <button type="submit" class="submit-btn" id="submit-btn">
+          <span class="spinner" id="spinner"></span>
+          <span id="btn-label"><i class="fas fa-shield-halved"></i> &nbsp;Get My Free Report</span>
+        </button>
+
+        <div class="error-msg" id="error-msg">
+          Something went wrong. Please try again or contact us at
+          <a href="mailto:thebreachwatcher@gmail.com" style="color:#f87171">thebreachwatcher@gmail.com</a>.
+        </div>
+
+        <p class="form-note">Free for promotional recipients &nbsp;·&nbsp; No software to install</p>
+      </form>
+    </div>
+
+    <!-- SUCCESS STATE -->
+    <div id="success-state">
+      <div class="success-icon"><i class="fas fa-check"></i></div>
+      <h2>Report requested</h2>
+      <p>
+        We've received your submission for <strong id="submitted-email"></strong>.<br><br>
+        We're checking it against our breach database now. You'll receive your free exposure report at that address shortly.
+      </p>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 BreachWatcher. All rights reserved.</p>
+</footer>
+
+<script>
+  const TINES_WEBHOOK = 'https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce';
+
+  const form       = document.getElementById('exposure-form');
+  const submitBtn  = document.getElementById('submit-btn');
+  const btnLabel   = document.getElementById('btn-label');
+  const spinner    = document.getElementById('spinner');
+  const errorMsg   = document.getElementById('error-msg');
+  const formState  = document.getElementById('form-state');
+  const successState = document.getElementById('success-state');
+  const submittedEmail = document.getElementById('submitted-email');
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    const email = document.getElementById('email').value.trim();
+    if (!email) return;
+
+    // loading state
+    submitBtn.disabled = true;
+    spinner.style.display = 'block';
+    btnLabel.style.display = 'none';
+    errorMsg.style.display = 'none';
+
+    try {
+      await fetch(TINES_WEBHOOK, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email, path: 'exposurereport' })
+      });
+
+      // show success regardless of response — webhook is fire-and-forget
+      submittedEmail.textContent = email;
+      formState.style.display = 'none';
+      successState.style.display = 'block';
+    } catch (_) {
+      submitBtn.disabled = false;
+      spinner.style.display = 'none';
+      btnLabel.style.display = 'flex';
+      errorMsg.style.display = 'block';
+    }
+  });
+</script>
+</body>
+</html>
