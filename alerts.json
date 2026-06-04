@@ -1,5 +1,18 @@
 [
   {
+    "slug": "ai-vulnerability-management",
+    "title": "AI — Rewriting the Rules of Vulnerability Management",
+    "tags": [
+      { "label": "AI",                      "class": "tag-orange" },
+      { "label": "Vulnerability Management", "class": "tag-blue"   },
+      { "label": "Threat Intelligence",     "class": "tag-purple" }
+    ],
+    "date":        "2026-06-04",
+    "dateDisplay": "June 4, 2026",
+    "description": "AI has compressed the average time-to-exploit from 700 days to 44. Published CVEs hit 48,244 in 2025. Prompt injection rose 540%. Here's what the AI-driven shift in vulnerability management means for your organisation.",
+    "icon": "fas fa-robot"
+  },
+  {
     "slug": "nullsec",
     "title": "South Africa Actively Targeted by Nullsec Nigeria",
     "tags": [

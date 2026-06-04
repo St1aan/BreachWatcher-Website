@@ -4,7 +4,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://www.breachwatcher.io/</loc>
-    <lastmod>2026-05-21</lastmod>
+    <lastmod>2026-06-04</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
@@ -97,6 +97,12 @@
 
   <!-- Security Alerts -->
 <!-- SECURITY-ALERTS-START -->
+  <url>
+    <loc>https://www.breachwatcher.io/security-alerts/ai-vulnerability-management.html</loc>
+    <lastmod>2026-06-04</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
   <url>
     <loc>https://www.breachwatcher.io/security-alerts/nullsec.html</loc>
     <lastmod>2026-05-25</lastmod>
