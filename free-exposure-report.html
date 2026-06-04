@@ -301,8 +301,8 @@
       <div class="success-icon"><i class="fas fa-check"></i></div>
       <h2>Report requested</h2>
       <p>
-        We've received your submission for <strong id="submitted-email"></strong>.<br><br>
-        We're checking it against our breach database now. You'll receive your free exposure report at that address shortly.
+        We have received your request for <strong id="submitted-email"></strong>.<br><br>
+        The team will review the request and compile your report. You will receive your free exposure report at that address.
       </p>
     </div>
 
@@ -348,6 +348,7 @@
       submittedEmail.textContent = email;
       formState.style.display = 'none';
       successState.style.display = 'block';
+      setTimeout(() => { window.location.href = '/'; }, 10000);
     } catch (_) {
       submitBtn.disabled = false;
       spinner.style.display = 'none';
