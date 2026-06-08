@@ -20,7 +20,8 @@
       "Bash(git fetch *)",
       "Bash(git -C /home/stiaan/Documents/Projects/BreachWatcher/Website log --oneline -5)",
       "Bash(git *)",
-      "Bash(xargs sed -i 's|<meta charset=\"UTF-8\">|<meta charset=\"UTF-8\">\\\\n  <link rel=\"icon\" type=\"image/jpeg\" href=\"/logo.jpg\">|')"
+      "Bash(xargs sed -i 's|<meta charset=\"UTF-8\">|<meta charset=\"UTF-8\">\\\\n  <link rel=\"icon\" type=\"image/jpeg\" href=\"/logo.jpg\">|')",
+      "Bash(grep -n \"R[0-9]\\\\|ZAR\\\\|\\\\$[0-9]\\\\|USD\\\\|price\\\\|amount\\\\|PayFast\\\\|payfast\\\\|stripe\" /home/stiaan/Documents/Projects/BreachWatcher/Website/index.html -i)"
     ]
   }
 }
