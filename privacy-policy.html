@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BreachWatcher Privacy Policy — how we collect, use, and protect your personal information.">
+  <link rel="canonical" href="https://www.breachwatcher.io/privacy-policy.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.breachwatcher.io/privacy-policy.html">
+  <meta property="og:title" content="Privacy Policy | BreachWatcher">
+  <meta property="og:description" content="BreachWatcher Privacy Policy — how we collect, use, and protect your personal information.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <title>Privacy Policy | BreachWatcher</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-link img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-text span { color: var(--primary); }
+    .logo-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .header-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color .2s;
+    }
+    .header-back:hover { color: var(--primary); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 4rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 50% 0%, rgba(57,255,20,.035), transparent),
+        radial-gradient(ellipse 35% 50% at 0% 70%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+
+    /* ── DOCUMENT ── */
+    .doc-wrap {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .doc-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .68rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 1.25rem;
+    }
+    .doc-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15;
+      margin-bottom: .75rem;
+    }
+    .doc-meta {
+      font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3rem;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border-dim);
+    }
+
+    /* ── SECTIONS ── */
+    .policy-section {
+      margin-bottom: 2.75rem;
+    }
+    .policy-section h2 {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 1.4rem; color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-section h3 {
+      font-size: .82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--primary); margin: 1.25rem 0 .5rem;
+    }
+    .policy-section p {
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .85rem; line-height: 1.75;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol {
+      padding-left: 1.25rem; margin-bottom: .85rem;
+    }
+    .policy-section ul { list-style: none; padding-left: 0; }
+    .policy-section ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .55rem; line-height: 1.65;
+    }
+    .policy-section ul li i {
+      color: var(--primary); font-size: .65rem; margin-top: .42em; flex-shrink: 0;
+    }
+    .policy-section ol li {
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .55rem; line-height: 1.65;
+    }
+    .policy-section dl { margin-bottom: .85rem; }
+    .policy-section dt {
+      font-size: .85rem; font-weight: 700; color: var(--text);
+      margin-top: 1.1rem;
+    }
+    .policy-section dl dt:first-child { margin-top: 0; }
+    .policy-section dd {
+      font-size: .9rem; color: rgba(255,255,255,.8); line-height: 1.75;
+      margin-left: 0; margin-top: .3rem; padding-left: 1rem;
+      border-left: 2px solid var(--border);
+    }
+    .policy-section a {
+      color: var(--primary); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s;
+    }
+    .policy-section a:hover { border-color: var(--primary); }
+
+    /* ── HIGHLIGHT CARD ── */
+    .highlight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-card p { margin-bottom: 0; }
+
+    /* ── TABLE ── */
+    .policy-table {
+      width: 100%; border-collapse: collapse; margin-bottom: .85rem;
+      font-size: .85rem;
+    }
+    .policy-table th {
+      text-align: left; padding: .65rem 1rem;
+      font-size: .65rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--text-muted); border-bottom: 1px solid var(--border-dim);
+    }
+    .policy-table td {
+      padding: .75rem 1rem; color: rgba(255,255,255,.8);
+      border-bottom: 1px solid var(--border-dim); vertical-align: top; line-height: 1.6;
+    }
+    .policy-table tr:last-child td { border-bottom: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-dim);
+      padding: 2rem 5%;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    footer p { color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    footer a { color: var(--text-muted); text-decoration: none; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
+    footer a:hover { color: var(--primary); }
+
+    @media (max-width: 640px) {
+      .doc-meta { margin-bottom: 2rem; }
+      .policy-table th, .policy-table td { padding: .6rem .5rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <a href="/" class="logo-link">
+    <img src="logo.jpg" alt="BreachWatcher logo">
+    <div>
+      <div class="logo-text">Breach<span>Watcher</span></div>
+      <span class="logo-tagline">we watch for you</span>
+    </div>
+  </a>
+  <a href="/" class="header-back">
+    <i class="fas fa-arrow-left"></i> Back to Home
+  </a>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+  <div class="doc-wrap">
+    <div class="doc-label"><i class="fas fa-shield-halved"></i> Legal</div>
+    <h1 class="doc-title">Privacy Policy</h1>
+    <p class="doc-meta">Last updated: June 2026 &nbsp;·&nbsp; Effective: June 2026</p>
+
+    <!-- 1. Introduction -->
+    <div class="policy-section">
+      <h2>1. Introduction</h2>
+      <p>BreachWatcher ("we", "us", or "our") provides a data breach monitoring service that alerts you when your email address appears in a known data breach. This Privacy Policy explains what personal information we collect, how we use it, who we share it with, and what rights you have over your data.</p>
+      <p>By using our website at <a href="https://www.breachwatcher.io">www.breachwatcher.io</a> or subscribing to any of our plans, you acknowledge that you have read and understood this policy.</p>
+      <div class="highlight-card">
+        <p><strong>Short version:</strong> We only collect your email address (and payment details if you subscribe). We use your email address solely to check it against breach databases and to send you relevant alerts and updates. We do not sell your data to anyone.</p>
+      </div>
+    </div>
+
+    <!-- 2. Who We Are -->
+    <div class="policy-section">
+      <h2>2. Who We Are</h2>
+      <p>BreachWatcher is a data breach monitoring service operated from Gauteng, South Africa and North Carolina, United States. As the entity that determines the purposes and means of processing your personal information, BreachWatcher is the responsible party (also referred to as the "data controller") under applicable privacy law.</p>
+      <p>If you have any questions or concerns about this policy or how we handle your data, you can reach us at:</p>
+      <ul>
+        <li><i class="fas fa-circle"></i> <strong>Email:</strong> <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a></li>
+        <li><i class="fas fa-circle"></i> <strong>Location:</strong> Gauteng, South Africa &amp; North Carolina, United States</li>
+      </ul>
+    </div>
+
+    <!-- 3. Information We Collect -->
+    <div class="policy-section">
+      <h2>3. Information We Collect</h2>
+
+      <h3>3.1 Information You Provide</h3>
+      <dl>
+        <dt>Email addresses</dt>
+        <dd>You provide one or more email addresses for us to monitor against breach databases. For paid plans, you may provide email addresses on behalf of family members or employees with their consent.</dd>
+        <dt>Payment information</dt>
+        <dd>If you subscribe to a paid plan, billing details (card number, name, billing address) are collected and processed directly by our payment processors (PayFast or Stripe). We do not store full card details on our systems.</dd>
+      </dl>
+
+      <h3>3.2 Information Collected Automatically</h3>
+      <dl>
+        <dt>Server logs</dt>
+        <dd>Standard web server logs may record your IP address, browser type, pages visited, and timestamps. These are used for security monitoring and diagnosing technical issues, and are not used to build profiles or for advertising.</dd>
+      </dl>
+
+      <h3>3.3 Information We Do Not Collect</h3>
+      <p>We do not collect passwords, identity documents, phone numbers, or any sensitive financial information beyond what is necessary for payment processing. We do not use cookies for advertising or behavioural tracking.</p>
+    </div>
+
+    <!-- 4. How We Use Your Information -->
+    <div class="policy-section">
+      <h2>4. How We Use Your Information</h2>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th>Purpose</th>
+            <th>Data used</th>
+            <th>Legal basis</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Monitor your email address against breach databases and generate your exposure report</td>
+            <td>Email address</td>
+            <td>Performance of contract; legitimate interest</td>
+          </tr>
+          <tr>
+            <td>Send personalised breach alert emails (paid plans)</td>
+            <td>Email address</td>
+            <td>Performance of contract</td>
+          </tr>
+          <tr>
+            <td>Send platform-wide new breach announcements (all plans)</td>
+            <td>Email address</td>
+            <td>Legitimate interest; consent</td>
+          </tr>
+          <tr>
+            <td>Send cybersecurity tips and security alert emails (paid plans)</td>
+            <td>Email address</td>
+            <td>Performance of contract</td>
+          </tr>
+          <tr>
+            <td>Process subscription payments</td>
+            <td>Payment details (handled by processor)</td>
+            <td>Performance of contract</td>
+          </tr>
+          <tr>
+            <td>Respond to enquiries and provide customer support</td>
+            <td>Email address</td>
+            <td>Legitimate interest</td>
+          </tr>
+          <tr>
+            <td>Prevent fraud, abuse, and security incidents</td>
+            <td>IP address, email address</td>
+            <td>Legitimate interest; legal obligation</td>
+          </tr>
+          <tr>
+            <td>Comply with legal obligations</td>
+            <td>As required by law</td>
+            <td>Legal obligation</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- 5. Third-Party Service Providers -->
+    <div class="policy-section">
+      <h2>5. Third-Party Service Providers</h2>
+      <p>We share data only with trusted service providers who process it on our behalf, under appropriate data processing terms. We do not sell your personal information.</p>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th>Provider</th>
+            <th>Purpose</th>
+            <th>Data shared</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Stripe</strong></td>
+            <td>Payment processing for international subscribers</td>
+            <td>Email address, payment details</td>
+          </tr>
+          <tr>
+            <td><strong>PayFast</strong></td>
+            <td>Payment processing for South African subscribers</td>
+            <td>Email address, payment details</td>
+          </tr>
+          <tr>
+            <td><strong>EmailJS</strong></td>
+            <td>Transactional email delivery (subscription confirmation, alerts)</td>
+            <td>Email address, message content</td>
+          </tr>
+          <tr>
+            <td><strong>Google Fonts</strong></td>
+            <td>Loading web fonts for the site</td>
+            <td>IP address (standard browser request)</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>Each provider is contractually bound to use your data only for the purposes we specify and to protect it in accordance with applicable law. We encourage you to review the privacy policies of these providers for more information about how they handle your data.</p>
+    </div>
+
+    <!-- 6. Breach Database Lookups -->
+    <div class="policy-section">
+      <h2>6. Breach Database Lookups</h2>
+      <p>To deliver our monitoring service, your email address is compared against databases of known breach data. The results of the lookup (which breaches were found) are used only to generate your alerts and are not sold or shared with third parties.</p>
+      <p>Breach data held in our systems relates to historical incidents perpetrated by third parties; BreachWatcher did not cause any breach and is not liable for the original exposure of that data.</p>
+    </div>
+
+    <!-- 7. Data Retention -->
+    <div class="policy-section">
+      <h2>7. Data Retention</h2>
+      <dl>
+        <dt>Active subscribers</dt>
+        <dd>We retain your email address and monitoring preferences for as long as your subscription is active.</dd>
+        <dt>After cancellation / account deletion</dt>
+        <dd>We will delete your email address from active monitoring within 30 days. Anonymised or aggregated records that cannot identify you may be kept for statistical purposes.</dd>
+        <dt>Payment records</dt>
+        <dd>Billing records are retained for as long as required by applicable tax and financial regulations (typically 5–7 years depending on jurisdiction).</dd>
+        <dt>Server logs</dt>
+        <dd>Retained for up to 90 days for security and diagnostic purposes.</dd>
+      </dl>
+    </div>
+
+    <!-- 8. Your Rights -->
+    <div class="policy-section">
+      <h2>8. Your Rights</h2>
+      <p>Depending on where you are located, you may have the following rights regarding your personal information:</p>
+      <ul>
+        <li><i class="fas fa-circle"></i> <strong>Access</strong> — request a copy of the personal information we hold about you.</li>
+        <li><i class="fas fa-circle"></i> <strong>Correction</strong> — ask us to correct inaccurate or incomplete data.</li>
+        <li><i class="fas fa-circle"></i> <strong>Deletion</strong> — request that we delete your personal information, subject to legal retention obligations.</li>
+        <li><i class="fas fa-circle"></i> <strong>Objection</strong> — object to processing based on legitimate interests.</li>
+        <li><i class="fas fa-circle"></i> <strong>Restriction</strong> — request that we restrict processing in certain circumstances.</li>
+        <li><i class="fas fa-circle"></i> <strong>Data portability</strong> — receive your data in a structured, machine-readable format.</li>
+        <li><i class="fas fa-circle"></i> <strong>Withdraw consent</strong> — where processing is based on consent (e.g. marketing emails), you may withdraw consent at any time without affecting the lawfulness of prior processing.</li>
+      </ul>
+      <p>To exercise any of these rights, contact us at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a>. We will respond within 30 days. We may need to verify your identity before acting on a request.</p>
+
+      <h3>South African Residents (POPIA)</h3>
+      <p>If you are located in South Africa, you have rights under the Protection of Personal Information Act 4 of 2013 (POPIA). BreachWatcher, as a responsible party, processes your personal information in accordance with the eight conditions for lawful processing set out in POPIA. If you believe we have violated your POPIA rights, you may also lodge a complaint with the Information Regulator of South Africa at <a href="https://inforegulator.org.za" target="_blank" rel="noopener noreferrer">inforegulator.org.za</a>.</p>
+
+      <h3>United States Residents</h3>
+      <p>If you are a resident of a US state with a comprehensive consumer privacy law (including but not limited to California, Colorado, Connecticut, Virginia, and Texas), you may have additional rights such as the right to opt out of the sale of personal information. BreachWatcher does not sell your personal information. To exercise any applicable rights, contact us at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a>.</p>
+    </div>
+
+    <!-- 9. Marketing Communications -->
+    <div class="policy-section">
+      <h2>9. Marketing Communications</h2>
+      <p>Paid subscribers receive breach notification emails, security alert emails, and cybersecurity tip emails as part of their subscription. These are considered essential service communications and are not optional while your subscription is active.</p>
+      <p>Free-tier users receive platform-wide new breach announcements. You may opt out of these at any time by contacting us at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a>.</p>
+    </div>
+
+    <!-- 10. Security -->
+    <div class="policy-section">
+      <h2>10. Security</h2>
+      <p>We take the security of your personal information seriously. We implement appropriate technical and organisational measures to protect it against unauthorised access, loss, destruction, or alteration. These measures include:</p>
+      <ul>
+        <li><i class="fas fa-circle"></i> HTTPS encryption for all data in transit.</li>
+        <li><i class="fas fa-circle"></i> Access controls limiting who within our team can access personal data.</li>
+        <li><i class="fas fa-circle"></i> Use of PCI-DSS compliant payment processors so we never handle raw card data.</li>
+      </ul>
+      <p>No method of transmission over the internet is 100% secure. In the event of a data breach that is likely to result in a risk to your rights, we will notify you and any applicable regulator as required by law.</p>
+    </div>
+
+    <!-- 11. Children's Privacy -->
+    <div class="policy-section">
+      <h2>11. Children's Privacy</h2>
+      <p>Our service is not directed at children under the age of 18. We do not knowingly collect personal information from anyone under 18. If you believe we have inadvertently collected such information, please contact us immediately and we will delete it.</p>
+    </div>
+
+    <!-- 12. International Transfers -->
+    <div class="policy-section">
+      <h2>12. International Data Transfers</h2>
+      <p>BreachWatcher operates across South Africa and the United States. Your data may be processed in either country. When transferring personal information across borders, we ensure that appropriate safeguards are in place in accordance with applicable law, including POPIA's requirements for cross-border transfers.</p>
+      <p>Third-party processors such as Stripe and EmailJS may process data in the United States or other countries. We rely on their published data transfer mechanisms and contractual protections.</p>
+    </div>
+
+    <!-- 13. Cookies -->
+    <div class="policy-section">
+      <h2>13. Cookies &amp; Tracking</h2>
+      <p>Our website does not use advertising cookies or behavioural tracking. We do not use Google Analytics or any analytics platform that builds profiles on our visitors. The only external requests your browser makes when visiting our site are to load fonts from Google Fonts and icons from Font Awesome (CloudFlare CDN), which may log your IP address as part of standard CDN operation.</p>
+    </div>
+
+    <!-- 14. Changes -->
+    <div class="policy-section">
+      <h2>14. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or applicable law. When we make material changes, we will update the "Last updated" date at the top of this page and, where appropriate, notify active subscribers by email. Your continued use of our service after a change constitutes acceptance of the updated policy.</p>
+    </div>
+
+    <!-- 15. Contact -->
+    <div class="policy-section">
+      <h2>15. Contact Us</h2>
+      <p>If you have any questions about this Privacy Policy, want to exercise your rights, or have a privacy concern, please contact us:</p>
+      <div class="highlight-card">
+        <ul>
+          <li><i class="fas fa-circle"></i> <strong>Email:</strong> <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a></li>
+          <li style="margin-bottom:0"><i class="fas fa-circle"></i> <strong>Location:</strong> Gauteng, South Africa &amp; North Carolina, United States</li>
+        </ul>
+      </div>
+      <p>We aim to respond to all privacy enquiries within 30 days.</p>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 BreachWatcher. All rights reserved.</p>
+  <a href="/">← Back to Home</a>
+</footer>
+
+</body>
+</html>
