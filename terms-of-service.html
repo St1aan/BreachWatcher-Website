@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="BreachWatcher Terms of Service — the rules and conditions that govern your use of our data breach monitoring service.">
+  <link rel="canonical" href="https://www.breachwatcher.io/terms-of-service.html">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.breachwatcher.io/terms-of-service.html">
+  <meta property="og:title" content="Terms of Service | BreachWatcher">
+  <meta property="og:description" content="BreachWatcher Terms of Service — the rules and conditions that govern your use of our data breach monitoring service.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <title>Terms of Service | BreachWatcher</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-link img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-text span { color: var(--primary); }
+    .logo-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .header-back {
+      display: flex; align-items: center; gap: 6px;
+      font-size: .72rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-muted); text-decoration: none; transition: color .2s;
+    }
+    .header-back:hover { color: var(--primary); }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      padding: 4rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 40% at 50% 0%, rgba(57,255,20,.035), transparent),
+        radial-gradient(ellipse 35% 50% at 0% 70%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+
+    /* ── DOCUMENT ── */
+    .doc-wrap {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .doc-label {
+      display: inline-flex; align-items: center; gap: 8px;
+      font-size: .68rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+      color: var(--primary); margin-bottom: 1.25rem;
+    }
+    .doc-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(2rem, 5vw, 3rem); line-height: 1.15;
+      margin-bottom: .75rem;
+    }
+    .doc-meta {
+      font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: 3rem;
+      padding-bottom: 2rem; border-bottom: 1px solid var(--border-dim);
+    }
+
+    /* ── SECTIONS ── */
+    .policy-section {
+      margin-bottom: 2.75rem;
+    }
+    .policy-section h2 {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 1.4rem; color: var(--text);
+      margin-bottom: 1rem;
+      padding-bottom: .6rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .policy-section h3 {
+      font-size: .82rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--primary); margin: 1.25rem 0 .5rem;
+    }
+    .policy-section p {
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .85rem; line-height: 1.75;
+    }
+    .policy-section p:last-child { margin-bottom: 0; }
+    .policy-section ul, .policy-section ol {
+      padding-left: 1.25rem; margin-bottom: .85rem;
+    }
+    .policy-section ul { list-style: none; padding-left: 0; }
+    .policy-section ul li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .55rem; line-height: 1.65;
+    }
+    .policy-section ul li i {
+      color: var(--primary); font-size: .65rem; margin-top: .42em; flex-shrink: 0;
+    }
+    .policy-section ol li {
+      font-size: .9rem; color: rgba(255,255,255,.8); margin-bottom: .55rem; line-height: 1.65;
+    }
+    .policy-section a {
+      color: var(--primary); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s;
+    }
+    .policy-section a:hover { border-color: var(--primary); }
+
+    /* ── HIGHLIGHT CARD ── */
+    .highlight-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .highlight-card p { margin-bottom: 0; }
+    .highlight-card ul { margin-bottom: 0; }
+
+    /* ── WARNING CARD ── */
+    .warning-card {
+      background: rgba(239,68,68,.06);
+      border: 1px solid rgba(239,68,68,.25);
+      border-radius: 10px;
+      padding: 1.25rem 1.5rem;
+      margin-bottom: 1rem;
+    }
+    .warning-card p {
+      color: rgba(255,255,255,.85);
+      margin-bottom: 0;
+    }
+
+    /* ── TABLE ── */
+    .policy-table {
+      width: 100%; border-collapse: collapse; margin-bottom: .85rem;
+      font-size: .85rem;
+    }
+    .policy-table th {
+      text-align: left; padding: .65rem 1rem;
+      font-size: .65rem; font-weight: 700; letter-spacing: 1.8px; text-transform: uppercase;
+      color: var(--text-muted); border-bottom: 1px solid var(--border-dim);
+    }
+    .policy-table td {
+      padding: .75rem 1rem; color: rgba(255,255,255,.8);
+      border-bottom: 1px solid var(--border-dim); vertical-align: top; line-height: 1.6;
+    }
+    .policy-table tr:last-child td { border-bottom: none; }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-dim);
+      padding: 2rem 5%;
+      display: flex; align-items: center; justify-content: space-between; gap: 1rem;
+      flex-wrap: wrap;
+    }
+    footer p { color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    footer a { color: var(--text-muted); text-decoration: none; font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; transition: color .2s; }
+    footer a:hover { color: var(--primary); }
+
+    @media (max-width: 640px) {
+      .doc-meta { margin-bottom: 2rem; }
+      .policy-table th, .policy-table td { padding: .6rem .5rem; }
+      footer { flex-direction: column; align-items: flex-start; gap: .5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── HEADER ── -->
+<header>
+  <a href="/" class="logo-link">
+    <img src="logo.jpg" alt="BreachWatcher logo">
+    <div>
+      <div class="logo-text">Breach<span>Watcher</span></div>
+      <span class="logo-tagline">we watch for you</span>
+    </div>
+  </a>
+  <a href="/" class="header-back">
+    <i class="fas fa-arrow-left"></i> Back to Home
+  </a>
+</header>
+
+<!-- ── MAIN ── -->
+<main>
+  <div class="doc-wrap">
+    <div class="doc-label"><i class="fas fa-file-contract"></i> Legal</div>
+    <h1 class="doc-title">Terms of Service</h1>
+    <p class="doc-meta">Last updated: June 2026 &nbsp;·&nbsp; Effective: June 2026</p>
+
+    <!-- 1. Acceptance -->
+    <div class="policy-section">
+      <h2>1. Acceptance of Terms</h2>
+      <p>These Terms of Service ("Terms") govern your access to and use of the BreachWatcher website at <a href="https://www.breachwatcher.io">www.breachwatcher.io</a> and all related services (collectively, the "Service"), operated by BreachWatcher ("we", "us", or "our").</p>
+      <p>By accessing our website, submitting an email address for monitoring, or subscribing to any paid plan, you agree to be bound by these Terms. If you do not agree, do not use the Service.</p>
+      <div class="highlight-card">
+        <p><strong>Short version:</strong> Use the service fairly, pay for what you subscribe to, and understand that we monitor for breaches but cannot guarantee we will catch every one. We are a monitoring service, not a cybersecurity insurer.</p>
+      </div>
+    </div>
+
+    <!-- 2. The Service -->
+    <div class="policy-section">
+      <h2>2. Description of Service</h2>
+      <p>BreachWatcher is a data breach monitoring service. We check email addresses you provide against databases of known data breaches and notify you when a match is found, along with information about what data was exposed and guidance on next steps.</p>
+
+      <h3>2.1 What We Do</h3>
+      <ul>
+        <li><i class="fas fa-circle"></i> Monitor email addresses against known breach databases on an ongoing basis.</li>
+        <li><i class="fas fa-circle"></i> Deliver breach alerts, security alerts, and cybersecurity tips to subscribers according to their plan.</li>
+        <li><i class="fas fa-circle"></i> Publish platform-wide new breach announcements to all users.</li>
+      </ul>
+
+      <h3>2.2 What We Do Not Do</h3>
+      <ul>
+        <li><i class="fas fa-circle"></i> We do not prevent breaches or secure third-party systems on your behalf.</li>
+        <li><i class="fas fa-circle"></i> We do not store, recover, or delete data exposed in breaches.</li>
+        <li><i class="fas fa-circle"></i> We do not guarantee detection of every breach — our coverage depends on breach data becoming publicly known and indexed.</li>
+        <li><i class="fas fa-circle"></i> We are not a cybersecurity insurer and do not provide financial compensation for losses arising from a breach.</li>
+      </ul>
+    </div>
+
+    <!-- 3. Eligibility -->
+    <div class="policy-section">
+      <h2>3. Eligibility</h2>
+      <p>You must be at least 18 years old to create a paid subscription. By using the Service, you represent that you meet this requirement.</p>
+      <p>When you submit email addresses belonging to other people (e.g. family members or employees on a Family or Business plan), you represent that you have obtained their informed consent to submit and monitor their email addresses using our Service.</p>
+    </div>
+
+    <!-- 4. Plans and Pricing -->
+    <div class="policy-section">
+      <h2>4. Plans and Pricing</h2>
+      <table class="policy-table">
+        <thead>
+          <tr>
+            <th>Plan</th>
+            <th>Price</th>
+            <th>What's included</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>Free</strong></td>
+            <td>$0 / forever</td>
+            <td>1 email address monitored; breach count and password exposure count; platform-wide new breach announcements</td>
+          </tr>
+          <tr>
+            <td><strong>Personal</strong></td>
+            <td>$60 / year</td>
+            <td>1 email address; personalised breach notification emails; security alert emails; cybersecurity tip emails</td>
+          </tr>
+          <tr>
+            <td><strong>Family</strong></td>
+            <td>$180 / year</td>
+            <td>4 email addresses; all Personal features for each address</td>
+          </tr>
+          <tr>
+            <td><strong>Business</strong></td>
+            <td>Custom pricing</td>
+            <td>Bulk email addresses; priority breach alerts; all Personal features; contact us for a quote</td>
+          </tr>
+        </tbody>
+      </table>
+      <p>We reserve the right to change pricing at any time. If you are on a paid plan, any price change will apply at the start of your next renewal period and we will notify you by email in advance.</p>
+    </div>
+
+    <!-- 5. Payment and Billing -->
+    <div class="policy-section">
+      <h2>5. Payment and Billing</h2>
+
+      <h3>5.1 Payment Processors</h3>
+      <p>Payments are processed by <strong>PayFast</strong> (for South African subscribers) and <strong>Stripe</strong> (for international subscribers). By completing a purchase you agree to the applicable terms of those processors. BreachWatcher does not store your full card details.</p>
+
+      <h3>5.2 Subscription Periods</h3>
+      <p>Paid plans are billed annually. Your subscription begins on the date payment is confirmed and runs for 12 months. It does not auto-renew — you will need to resubscribe manually at the end of your term.</p>
+
+      <h3>5.3 Refunds</h3>
+      <p>Refunds are considered on a case-by-case basis. If you believe you are entitled to a refund, contact us within 14 days of your purchase date at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a> with your reason. We will assess each request fairly. Refunds are not available after the 14-day window or where substantial use of the Service has occurred.</p>
+
+      <h3>5.4 Failed Payments</h3>
+      <p>If a payment fails, access to paid features may be suspended until the outstanding amount is settled. We will notify you by email if a payment cannot be processed.</p>
+    </div>
+
+    <!-- 6. Acceptable Use -->
+    <div class="policy-section">
+      <h2>6. Acceptable Use</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li><i class="fas fa-circle"></i> Submit email addresses that do not belong to you or that you do not have explicit permission to monitor.</li>
+        <li><i class="fas fa-circle"></i> Use the Service for any unlawful purpose or in violation of any applicable laws or regulations.</li>
+        <li><i class="fas fa-circle"></i> Attempt to reverse-engineer, scrape, or automate access to the Service or its underlying breach data.</li>
+        <li><i class="fas fa-circle"></i> Use breach data obtained through the Service to harm, harass, or defraud any individual.</li>
+        <li><i class="fas fa-circle"></i> Attempt to gain unauthorised access to our systems, networks, or databases.</li>
+        <li><i class="fas fa-circle"></i> Resell, sublicense, or redistribute our breach data or reports without written permission.</li>
+      </ul>
+      <p>We reserve the right to suspend or terminate access to the Service immediately for any violation of these rules.</p>
+    </div>
+
+    <!-- 7. Intellectual Property -->
+    <div class="policy-section">
+      <h2>7. Intellectual Property</h2>
+      <p>All content on the BreachWatcher website — including text, design, graphics, code, logos, security alerts, and cybersecurity tips — is owned by or licensed to BreachWatcher and is protected by applicable intellectual property laws.</p>
+      <p>You may not copy, reproduce, republish, or distribute any part of our content without prior written consent, except for personal, non-commercial use.</p>
+      <p>Breach data referenced in our reports originates from third-party incidents. BreachWatcher does not claim ownership of that underlying data and presents it solely for the purpose of informing users of their exposure.</p>
+    </div>
+
+    <!-- 8. Disclaimers -->
+    <div class="policy-section">
+      <h2>8. Disclaimers</h2>
+      <div class="warning-card">
+        <p>The Service is provided <strong>"as is"</strong> and <strong>"as available"</strong> without warranties of any kind, either express or implied. To the fullest extent permitted by law, BreachWatcher disclaims all warranties, including implied warranties of merchantability, fitness for a particular purpose, and non-infringement.</p>
+      </div>
+      <p>In particular, we do not warrant that:</p>
+      <ul>
+        <li><i class="fas fa-circle"></i> The Service will detect every breach involving your email address — our coverage is limited to breaches that have been publicly disclosed and indexed.</li>
+        <li><i class="fas fa-circle"></i> Breach alerts will be delivered in real time — there may be a delay between a breach occurring and it appearing in breach databases.</li>
+        <li><i class="fas fa-circle"></i> The Service will be uninterrupted, error-free, or free from security vulnerabilities.</li>
+        <li><i class="fas fa-circle"></i> Information in breach reports is complete or accurate — we report what the breach data contains, which may itself be incomplete.</li>
+      </ul>
+      <p>BreachWatcher is a monitoring and notification service. Taking protective action (such as changing passwords, enabling MFA, or contacting affected services) is your responsibility.</p>
+    </div>
+
+    <!-- 9. Limitation of Liability -->
+    <div class="policy-section">
+      <h2>9. Limitation of Liability</h2>
+      <p>To the maximum extent permitted by applicable law, BreachWatcher and its operators will not be liable for any indirect, incidental, special, consequential, or punitive damages — including loss of data, loss of profits, or financial loss — arising from or related to your use of, or inability to use, the Service.</p>
+      <p>Our total aggregate liability to you for any claim arising from these Terms or the Service will not exceed the amount you paid us in the 12 months preceding the event giving rise to the claim. For free-tier users, our aggregate liability is limited to ZAR 100 / USD 10.</p>
+      <p>Some jurisdictions do not allow the exclusion of certain warranties or limitations of liability, so some of the above may not apply to you. Nothing in these Terms limits liability that cannot be excluded by law, including liability for gross negligence or fraud.</p>
+    </div>
+
+    <!-- 10. Indemnification -->
+    <div class="policy-section">
+      <h2>10. Indemnification</h2>
+      <p>You agree to indemnify, defend, and hold harmless BreachWatcher and its operators from and against any claims, damages, losses, costs, and expenses (including reasonable legal fees) arising from your violation of these Terms, your misuse of the Service, or your infringement of any third-party rights.</p>
+    </div>
+
+    <!-- 11. Third-Party Services -->
+    <div class="policy-section">
+      <h2>11. Third-Party Services and Links</h2>
+      <p>The Service relies on third-party providers including Stripe, PayFast, and EmailJS. Your use of those services is subject to their own terms and policies. BreachWatcher is not responsible for the practices of any third-party service provider.</p>
+      <p>Our website may link to external cybersecurity resources, news articles, or tools. Those links are provided for informational purposes only. We do not endorse and are not responsible for the content of external sites.</p>
+    </div>
+
+    <!-- 12. Privacy -->
+    <div class="policy-section">
+      <h2>12. Privacy</h2>
+      <p>Your use of the Service is also governed by our <a href="/privacy-policy.html">Privacy Policy</a>, which is incorporated into these Terms by reference. By using the Service, you consent to the collection and use of your information as described in that policy.</p>
+    </div>
+
+    <!-- 13. Changes to the Service -->
+    <div class="policy-section">
+      <h2>13. Changes to the Service</h2>
+      <p>We reserve the right to modify, suspend, or discontinue any part of the Service at any time. Where a change materially reduces the features available to paid subscribers, we will provide reasonable notice by email and offer a pro-rata refund for any unused subscription period if the change is permanent.</p>
+      <p>We may also update these Terms from time to time. We will notify active subscribers by email of material changes. Your continued use of the Service after an update constitutes acceptance of the revised Terms. If you do not agree to an update, you may cancel your subscription before it takes effect.</p>
+    </div>
+
+    <!-- 14. Termination -->
+    <div class="policy-section">
+      <h2>14. Termination</h2>
+
+      <h3>14.1 By You</h3>
+      <p>You may stop using the Service at any time. To request deletion of your email address and account data, contact us at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a>. Cancellation of a paid subscription does not automatically entitle you to a refund — see Section 5.3.</p>
+
+      <h3>14.2 By Us</h3>
+      <p>We may suspend or terminate your access to the Service immediately if you violate these Terms, engage in fraudulent activity, or if we reasonably believe continued access poses a risk to other users or to us. We will notify you where we are permitted to do so. Termination for cause does not entitle you to a refund.</p>
+
+      <h3>14.3 Effect of Termination</h3>
+      <p>Upon termination, your right to use the Service ceases immediately. Sections 7, 8, 9, 10, and 15 of these Terms survive termination.</p>
+    </div>
+
+    <!-- 15. Governing Law -->
+    <div class="policy-section">
+      <h2>15. Governing Law and Disputes</h2>
+      <p>These Terms are governed by and construed in accordance with the laws of the Republic of South Africa. You agree to submit to the non-exclusive jurisdiction of the courts of South Africa for the resolution of any disputes arising under or related to these Terms.</p>
+      <p>If you are located in a jurisdiction where local consumer protection law provides you with greater rights than those set out here, those rights are not waived by these Terms.</p>
+      <p>Before initiating any formal dispute process, we encourage you to contact us at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a> — most issues can be resolved quickly and informally.</p>
+    </div>
+
+    <!-- 16. Miscellaneous -->
+    <div class="policy-section">
+      <h2>16. Miscellaneous</h2>
+      <ul>
+        <li><i class="fas fa-circle"></i> <strong>Entire agreement.</strong> These Terms, together with the Privacy Policy, constitute the entire agreement between you and BreachWatcher regarding the Service and supersede any prior agreements.</li>
+        <li><i class="fas fa-circle"></i> <strong>Severability.</strong> If any provision of these Terms is found to be unenforceable, it will be modified to the minimum extent necessary to make it enforceable, and the remaining provisions will continue in full force.</li>
+        <li><i class="fas fa-circle"></i> <strong>No waiver.</strong> Our failure to enforce any right or provision of these Terms will not constitute a waiver of that right or provision.</li>
+        <li><i class="fas fa-circle"></i> <strong>Assignment.</strong> You may not assign your rights or obligations under these Terms without our prior written consent. We may assign our rights and obligations without restriction.</li>
+      </ul>
+    </div>
+
+    <!-- 17. Contact -->
+    <div class="policy-section">
+      <h2>17. Contact Us</h2>
+      <p>For questions about these Terms, to report a concern, or to request account changes, contact us at:</p>
+      <div class="highlight-card">
+        <ul>
+          <li><i class="fas fa-circle"></i> <strong>Email:</strong> <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a></li>
+          <li style="margin-bottom:0"><i class="fas fa-circle"></i> <strong>Location:</strong> Gauteng, South Africa &amp; North Carolina, United States</li>
+        </ul>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ── FOOTER ── -->
+<footer>
+  <p>© 2026 BreachWatcher. All rights reserved.</p>
+  <a href="/">← Back to Home</a>
+</footer>
+
+</body>
+</html>
