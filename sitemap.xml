@@ -9,6 +9,20 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- Legal -->
+  <url>
+    <loc>https://www.breachwatcher.io/privacy-policy.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+  <url>
+    <loc>https://www.breachwatcher.io/terms-of-service.html</loc>
+    <lastmod>2026-06-08</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
+
   <!-- Cybersecurity Tips -->
   <url>
     <loc>https://www.breachwatcher.io/cybersecurity-tips/phishing-smishing-vishing-quishing.html</loc>
