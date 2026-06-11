@@ -694,6 +694,29 @@
       border-color: rgba(239,68,68,.25);
       box-shadow: 0 16px 40px rgba(0,0,0,.35);
     }
+    #alerts-track .alert-card-more {
+      border-color: var(--border);
+      text-decoration: none;
+      justify-content: stretch;
+    }
+    #alerts-track .alert-card-more:hover {
+      border-color: var(--primary);
+      box-shadow: 0 16px 40px rgba(0,0,0,.35), 0 0 0 1px var(--border);
+    }
+    .alert-more-icon {
+      background: rgba(57,255,20,.06) !important;
+      color: var(--primary);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.6rem !important;
+      transition: background .25s;
+    }
+    .alert-card-more:hover .alert-more-icon { background: rgba(57,255,20,.12) !important; }
+    .alert-more-content { display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+    .alert-more-label { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+    .alert-more-heading { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text); line-height: 1.3; letter-spacing: 1px; }
+    .alert-more-sub { font-size: .82rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+    .alert-more-cta { font-size: .72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; margin-top: auto; transition: gap .2s; }
+    .alert-card-more:hover .alert-more-cta { gap: 12px; }
     #alerts-track .alert-icon {
       width: 100%; height: 90px; font-size: 1.5rem;
       background: rgba(239,68,68,.1); border-radius: 0; flex-shrink: 0;
@@ -931,7 +954,7 @@
     <li><a href="#service" onclick="return go('service')">The Service</a></li>
     <li><a href="#subscribe" onclick="return go('subscribe')">Subscribe</a></li>
     <li><a href="#tips" onclick="return go('tips')">Cyber Tips</a></li>
-    <li><a href="#alerts" onclick="return go('alerts')">Alerts</a></li>
+    <li><a href="security-alerts/">Alerts</a></li>
     <li><a href="#subscribe" class="nav-cta" onclick="return go('subscribe')">Get Protected</a></li>
   </ul>
   <button class="hamburger" id="hamburger" aria-label="Open menu">
@@ -945,7 +968,7 @@
   <a href="#service"   onclick="closeMob(); return go('service')">The Service</a>
   <a href="#subscribe" onclick="closeMob(); return go('subscribe')">Subscribe</a>
   <a href="#tips"      onclick="closeMob(); return go('tips')">Cybersecurity Tips</a>
-  <a href="#alerts"    onclick="closeMob(); return go('alerts')">Security Alerts</a>
+  <a href="security-alerts/">Security Alerts</a>
   <a href="#subscribe" onclick="closeMob(); return go('subscribe')" style="color:var(--primary);font-weight:800">Get Protected →</a>
 </div>
 
@@ -1313,6 +1336,21 @@
 <!-- ALERTS-CAROUSEL-START -->
 
     <div class="alert-card">
+      <div class="alert-icon"><i class="fas fa-database"></i></div>
+      <div class="alert-content">
+        <div class="alert-tags">
+          <span class="alert-tag tag-red">Zero-Day Exploit</span>
+          <span class="alert-tag tag-orange">Data Breach</span>
+          <span class="alert-tag tag-purple">Extortion</span>
+        </div>
+        <div class="alert-title">ShinyHunters — Enterprise Resource Planning Under Attack</div>
+        <div class="alert-desc">ShinyHunters is actively exploiting a zero-day in Oracle PeopleSoft servers worldwide. An emergency patch has been issued for CVE-2026-35273. If your organisation uses PeopleSoft PeopleTools 8.61 or 8.62, act immediately.</div>
+        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>June 12, 2026</div>
+        <a href="security-alerts/shinyhunters-oracle-peoplesoft.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+      </div>
+    </div>
+
+    <div class="alert-card">
       <div class="alert-icon"><i class="fas fa-robot"></i></div>
       <div class="alert-content">
         <div class="alert-tags">
@@ -1370,59 +1408,15 @@
       </div>
     </div>
 
-    <div class="alert-card">
-      <div class="alert-icon"><i class="fas fa-chart-line"></i></div>
-      <div class="alert-content">
-        <div class="alert-tags">
-          <span class="alert-tag tag-blue">Forecast</span>
-        </div>
-        <div class="alert-title">2026 Data Breach Forecast: AI-Powered Threats Are Here</div>
-        <div class="alert-desc">Our annual forecast highlights the most likely breach vectors for 2026: credential stuffing, AI-assisted phishing, and supply chain attacks continue to top the risk register.</div>
-        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 16, 2026</div>
-        <a href="security-alerts/2026-data-breach-forecast.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
+    <a href="security-alerts/" class="alert-card alert-card-more">
+      <div class="alert-icon alert-more-icon"><i class="fas fa-arrow-right"></i></div>
+      <div class="alert-content alert-more-content">
+        <div class="alert-more-label">Security Alerts</div>
+        <div class="alert-more-heading">Find more alerts here</div>
+        <div class="alert-more-sub">Browse the full archive of threat intelligence, breach reports, and security advisories.</div>
+        <div class="alert-more-cta">View all alerts <i class="fas fa-arrow-right"></i></div>
       </div>
-    </div>
-
-    <div class="alert-card">
-      <div class="alert-icon"><i class="fas fa-rocket"></i></div>
-      <div class="alert-content">
-        <div class="alert-tags">
-          <span class="alert-tag tag-red">Malware</span>
-          <span class="alert-tag tag-purple">Mobile</span>
-        </div>
-        <div class="alert-title">Fake Rocket Apps &amp; Urgent Messages Could Steal Your Data</div>
-        <div class="alert-desc">Fraudulent mobile apps circulating with urgent push notifications designed to panic users into granting excessive permissions — enabling silent data theft.</div>
-        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 4, 2026</div>
-        <a href="security-alerts/iran-conflict.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
-
-    <div class="alert-card">
-      <div class="alert-icon"><i class="fas fa-bug"></i></div>
-      <div class="alert-content">
-        <div class="alert-tags">
-          <span class="alert-tag tag-orange">Social Engineering</span>
-        </div>
-        <div class="alert-title">Beware of "ClickFix" — The Trick That Makes You Hack Yourself</div>
-        <div class="alert-desc">A novel technique tricks users into copy-pasting malicious commands into their own terminal by disguising them as browser troubleshooting steps. No exploit needed.</div>
-        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 3, 2026</div>
-        <a href="security-alerts/clickfix.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
-
-    <div class="alert-card">
-      <div class="alert-icon"><i class="fas fa-camera"></i></div>
-      <div class="alert-content">
-        <div class="alert-tags">
-          <span class="alert-tag tag-purple">Account Takeover</span>
-          <span class="alert-tag tag-blue">Data Leak</span>
-        </div>
-        <div class="alert-title">Unexpected Instagram Password Reset Emails &amp; Resurfaced User Data</div>
-        <div class="alert-desc">Instagram users are receiving unsolicited password reset emails linked to old user data resurfacing on breach forums. Enable 2FA immediately and review authorised devices.</div>
-        <div class="alert-date"><i class="fas fa-calendar-days" style="margin-right:6px"></i>March 3, 2026</div>
-        <a href="security-alerts/instagram-password-reset.html" class="alert-read-more">Read more <i class="fas fa-arrow-right"></i></a>
-      </div>
-    </div>
+    </a>
 <!-- ALERTS-CAROUSEL-END -->
     </div><!-- /alerts-track -->
     <div class="carousel-nav">
@@ -1441,7 +1435,7 @@
     <button id="openSoloForm" class="btn btn-primary">
       <i class="fas fa-shield-halved"></i> Subscribe Today
     </button>
-    <a href="#alerts" class="btn btn-outline" onclick="return go('alerts')">
+    <a href="security-alerts/" class="btn btn-outline">
       View Latest Alerts
     </a>
   </div>
@@ -1483,7 +1477,7 @@
         <li><a href="#service"   onclick="return go('service')">The Service</a></li>
         <li><a href="#subscribe" onclick="return go('subscribe')">Subscribe</a></li>
         <li><a href="#tips"      onclick="return go('tips')">Cybersecurity Tips</a></li>
-        <li><a href="#alerts"    onclick="return go('alerts')">Security Alerts</a></li>
+        <li><a href="security-alerts/">Security Alerts</a></li>
       </ul>
     </div>
     <div class="footer-col">

@@ -5,23 +5,23 @@
   <link rel="apple-touch-icon" href="../logo.jpg">
   <link rel="icon" type="image/jpeg" href="/logo.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Understand how attackers use Open Source Intelligence (OSINT) to harvest your public social media data — and what you can do to reduce your exposure.">
-  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/social-media-osint.html">
+  <meta name="description" content="ShinyHunters is a financially motivated data-theft and extortion group active since 2020. Learn about their tactics and how to protect yourself.">
+  <link rel="canonical" href="https://www.breachwatcher.io/security-alerts/shinyhunters.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/social-media-osint.html">
-  <meta property="og:title" content="Social Media Oversharing and OSINT | BreachWatcher">
-  <meta property="og:description" content="Understand how attackers use Open Source Intelligence (OSINT) to harvest your public social media data — and what you can do to reduce your exposure.">
+  <meta property="og:url" content="https://www.breachwatcher.io/security-alerts/shinyhunters.html">
+  <meta property="og:title" content="ShinyHunters — Enterprise Resource Planning Under Attack | BreachWatcher">
+  <meta property="og:description" content="ShinyHunters is a financially motivated data-theft and extortion group active since 2020. Learn about their tactics and how to protect yourself.">
   <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
   <meta property="og:site_name" content="BreachWatcher">
-  <meta property="article:published_time" content="2026-03-01T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-03-01T00:00:00+00:00">
+  <meta property="article:published_time" content="2026-06-12T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-12T00:00:00+00:00">
   <meta property="article:author" content="BreachWatcher">
   <meta name="twitter:site" content="@BreachWatcher">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="Social Media Oversharing and OSINT | BreachWatcher">
-  <meta name="twitter:description" content="Understand how attackers use Open Source Intelligence (OSINT) to harvest your public social media data — and what you can do to reduce your exposure.">
+  <meta name="twitter:title" content="ShinyHunters — Enterprise Resource Planning Under Attack | BreachWatcher">
+  <meta name="twitter:description" content="ShinyHunters is a financially motivated data-theft and extortion group active since 2020. Learn about their tactics and how to protect yourself.">
   <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
-  <title>Social Media Oversharing and OSINT | BreachWatcher</title>
+  <title>ShinyHunters — Enterprise Resource Planning Under Attack | BreachWatcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -81,7 +81,7 @@
       background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
       pointer-events: none;
     }
-    .article-header-inner { position: relative; max-width: 860px; }
+    .article-header-inner { position: relative; max-width: 860px; z-index: 1; }
     .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
     .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
     .breadcrumb a:hover { color: var(--primary); }
@@ -95,6 +95,9 @@
     .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
     .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
     .article-meta i { color: var(--primary); }
+    .article-header-image { position: absolute; right: 0; top: 0; bottom: 0; width: 48%; pointer-events: none; -webkit-mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); }
+    .article-header-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    @media (max-width: 900px) { .article-header-image { display: none; } }
 
     .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
     .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
@@ -109,14 +112,12 @@
     .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
     .alert-box p { margin: 0; font-size: .9rem; }
 
-    /* MORE TIPS */
-    .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
-    .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
-    .more-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1.25rem; }
-    .more-card { background: var(--bg); border: 1px solid var(--border-dim); border-radius: 3px; padding: 1.5rem; text-decoration: none; display: block; transition: all .25s; }
-    .more-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-3px); box-shadow: 0 12px 32px rgba(0,0,0,.4); }
-    .more-card-tag { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); margin-bottom: .6rem; }
-    .more-card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .84rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+    .action-steps { list-style: none; margin: 0 0 1.5rem; counter-reset: steps; }
+    .action-steps li { counter-increment: steps; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border-dim); align-items: start; }
+    .action-steps li:last-child { border-bottom: none; }
+    .action-steps li::before { content: counter(steps); color: var(--primary); font-size: .72rem; font-weight: 800; letter-spacing: 1px; padding-top: 3px; }
+    .action-step-title { color: var(--text); font-size: .88rem; font-weight: 700; letter-spacing: .5px; margin-bottom: .3rem; }
+    .action-step-desc { color: var(--text-muted); font-size: .88rem; line-height: 1.75; letter-spacing: .5px; }
 
     /* FOOTER */
     footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
@@ -154,12 +155,12 @@
     "@graph": [
       {
         "@type": "Article",
-        "headline": "Social Media Oversharing and OSINT | BreachWatcher",
-        "description": "Understand how attackers use Open Source Intelligence (OSINT) to harvest your public social media data — and what you can do to reduce your exposure.",
-        "url": "https://www.breachwatcher.io/cybersecurity-tips/social-media-osint.html",
+        "headline": "ShinyHunters — Enterprise Resource Planning Under Attack | BreachWatcher",
+        "description": "ShinyHunters is a financially motivated data-theft and extortion group active since 2020. Learn about their tactics and how to protect yourself.",
+        "url": "https://www.breachwatcher.io/security-alerts/shinyhunters-oracle-peoplesoft.html",
         "image": "https://www.breachwatcher.io/Banner.webp",
-        "datePublished": "2026-03-01T00:00:00+00:00",
-        "dateModified": "2026-03-01T00:00:00+00:00",
+        "datePublished": "2026-06-12T00:00:00+00:00",
+        "dateModified": "2026-06-12T00:00:00+00:00",
         "author": {
           "@type": "Organization",
           "name": "BreachWatcher",
@@ -171,14 +172,14 @@
           "url": "https://www.breachwatcher.io",
           "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
         },
-        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/social-media-osint.html"}
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/security-alerts/shinyhunters-oracle-peoplesoft.html"}
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
       {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
-      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
-      {"@type":"ListItem","position":3,"name":"Social Media Oversharing & OSINT","item":"https://www.breachwatcher.io/cybersecurity-tips/social-media-osint.html"}
+      {"@type":"ListItem","position":2,"name":"Security Alerts","item":"https://www.breachwatcher.io/#alerts"},
+      {"@type":"ListItem","position":3,"name":"ShinyHunters — Enterprise Resource Planning Under Attack","item":"https://www.breachwatcher.io/security-alerts/shinyhunters-people-soft.html"}
         ]
       }
     ]
@@ -213,7 +214,7 @@
   <a href="../#service">The Service</a>
   <a href="../#subscribe">Subscribe</a>
   <a href="../#tips">Cybersecurity Tips</a>
-  <a href="../security-alerts/">Security Alerts</a>
+  <a href="./">Security Alerts</a>
   <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
 </div>
 
@@ -222,89 +223,104 @@
     <div class="breadcrumb">
       <a href="../">Home</a>
       <span class="sep">/</span>
-      <a href="../#tips">Cybersecurity Tips</a>
+      <a href="./">Security Alerts</a>
       <span class="sep">/</span>
-      <span>Social Media Oversharing and OSINT</span>
+      <span>ShinyHunters</span>
     </div>
     <div class="article-tags">
-      <span class="article-tag tag-purple">Safe Behaviour</span>
-      <span class="article-tag tag-orange">Social Engineering</span>
+      <span class="article-tag tag-red">Zero-Day Exploit</span>
+      <span class="article-tag tag-orange">Data Breach</span>
+      <span class="article-tag tag-purple">Extortion</span>
     </div>
-    <h1 class="article-title">Social Media Oversharing and OSINT</h1>
+    <h1 class="article-title">ShinyHunters — Enterprise Resource Planning Under Attack</h1>
     <div class="article-meta">
-      <span><i class="fas fa-calendar-days"></i> March 1, 2026</span>
-      <span><i class="fas fa-user"></i> BreachWatcher</span>
-      <span><i class="fas fa-clock"></i> 5 min read</span>
+      <span><i class="fas fa-calendar-days"></i> June 12, 2026</span>
+      <span><i class="fas fa-clock"></i> 3 min read</span>
     </div>
+  </div>
+  <div class="article-header-image">
+    <img src="https://st1aan.github.io/BreachWatcher-EmailAssets/ShinyHunters.jpg" alt="ShinyHunters">
   </div>
 </header>
 
 <main class="article-body">
 
-  <h2>What Is OSINT?</h2>
-  <p><strong>Open Source Intelligence (OSINT)</strong> refers to information that is freely and publicly available — gathered from social media profiles, news articles, public records, job listings, company websites, and anywhere else data is accessible without requiring a hack or breach. Intelligence analysts use OSINT for legitimate investigative work. Cybercriminals use it to build detailed profiles of individuals before launching targeted attacks.</p>
-  <p>You don't need to have been part of a data breach to be vulnerable to OSINT. Everything you've voluntarily made public is fair game, and a determined attacker can often assemble a surprisingly complete picture of your life using only what you've posted yourself.</p>
-
-  <h2>What Attackers Learn from Your Profiles</h2>
-  <p>Social media platforms are rich sources of personal data. An attacker patiently reviewing your public posts, follower lists, and tagged photos can quickly gather information you'd never hand to a stranger in person.</p>
-  <ul>
-    <li><strong>Birthdays</strong> — commonly used as PINs, password components, and security question answers. Posted publicly on nearly every major platform</li>
-    <li><strong>Pet names</strong> — "What was your first pet's name?" is one of the most common security questions. If your pet's name features in your Instagram bio or photos, the answer is public</li>
-    <li><strong>Employer and job title</strong> — provides a pretext for spear phishing emails that reference your company, manager's name, or internal processes</li>
-    <li><strong>Location check-ins</strong> — telling the world you're on holiday is also telling any threat actor that your home is unoccupied</li>
-    <li><strong>Family members</strong> — relatives visible in tagged photos or your followers list can be used as social engineering vectors ("Hi, I'm calling on behalf of your brother...")
-    </li>
-    <li><strong>Phone number and email</strong> — sometimes listed directly; otherwise inferable from "tag a friend" posts or linked accounts</li>
-  </ul>
-
-  <h2>Security Questions Are Broken by Oversharing</h2>
-  <p>Account security questions were designed as a fallback authentication mechanism, but they rely on secrets — and most people's "secrets" are publicly posted. The questions themselves are predictable: mother's maiden name, childhood street, first car, name of your primary school. For anyone who has posted family content, hometown details, or nostalgic memories publicly, these answers are effectively public record.</p>
-  <p>Where possible, treat security question answers as additional passwords: use random, false answers stored in your password manager rather than real biographical details that are visible on your profiles.</p>
-
-  <h2>Spear Phishing: When Attackers Use Your Own Data Against You</h2>
-  <p>Generic phishing sends the same message to millions of recipients hoping some will click. <strong>Spear phishing</strong> is a targeted attack where the attacker crafts a message tailored specifically to you, using details harvested from OSINT. An email that says "Hi [your name], following up on the project we discussed at [your actual employer] last week" feels fundamentally different to a generic scam — and is far more likely to succeed.</p>
-  <p>The more personal information an attacker can reference accurately, the more legitimate their message appears. A message that names your pet, mentions your city, and references a recent life event visible on your public profile creates a false sense of familiarity that overrides normal scepticism.</p>
-
   <div class="alert-box">
-    <p><strong>Attackers don't need to hack your accounts to learn about you</strong> — they just need to read your public profiles. Review your privacy settings on every platform today and remove personal details you wouldn't hand to a stranger.</p>
+    <p><strong>⚠ Active Campaign:</strong> ShinyHunters is currently exploiting Oracle PeopleSoft servers worldwide. Oracle has issued an emergency out-of-band patch for CVE-2026-35273. If your organisation uses PeopleSoft PeopleTools 8.61 or 8.62, apply the patch immediately.</p>
   </div>
 
-  <h2>Data Harvesting Disguised as Entertainment</h2>
-  <p>Be particularly wary of viral quiz posts and "fun" questionnaires circulating on social media — "What is your rock star name? Take your first pet's name and the street you grew up on!" These posts are frequently <strong>deliberate data harvesting exercises</strong> designed to extract security question answers at scale, submitted voluntarily and cheerfully by the participants.</p>
+  <h2>What Is Happening?</h2>
+  <p><strong>ShinyHunters</strong>, a financially motivated extortion group with a long track record of large-scale data theft, has pivoted its operations toward enterprise resource planning (ERP) infrastructure. The group is actively targeting organisations running Oracle PeopleSoft, the suite used by large businesses and universities to manage HR, payroll, finance, and student records.</p>
+  <p>According to claims shared with BleepingComputer and TechCrunch, the group has compromised <strong>300 PeopleSoft instances across more than 100 organisations</strong>, with educational institutions making up the majority of known victims. The attacks affect both cloud-hosted and on-premises deployments.</p>
 
-  <h2>How to Reduce Your Exposure</h2>
+  <h2>How the Attack Works</h2>
+  <p>ShinyHunters is using what they describe as a "gadget chain", a combination of older, known vulnerabilities chained together with at least one previously unknown zero-day. Oracle has now confirmed and patched that zero-day, tracked as <strong>CVE-2026-35273</strong>: a critical remote code execution flaw in PeopleSoft PeopleTools versions 8.61 and 8.62 that an unauthenticated attacker can exploit over the network.</p>
+  <p>Once inside a PeopleSoft environment, the attackers:</p>
   <ul>
-    <li>Audit your <strong>privacy settings</strong> on every platform and set posts, friends lists, and profile information to "Friends only" or equivalent — not public</li>
-    <li>Remove your <strong>phone number, email address, and birthday</strong> from your public profile on all platforms</li>
-    <li>Avoid posting <strong>real-time location updates</strong> or holiday announcements until you're home</li>
-    <li>Think carefully before posting photos that reveal your <strong>home address</strong>, number plates, or workplace in the background</li>
-    <li>Skip the viral quiz posts — they are not worth the data exposure</li>
-    <li>Before posting anything, ask: could this information help someone impersonate me, guess my passwords, or bypass a security question?</li>
+    <li>Perform credential spraying against common PeopleSoft and Oracle administrative accounts</li>
+    <li>Attempt SSH access, falling back to key-based authentication if password attempts fail</li>
+    <li>Exfiltrate sensitive data: HR records, payroll data, student information, and Social Security numbers</li>
+    <li>Leave ransom notes directly on breached servers and attempt lateral movement to other connected PeopleSoft instances</li>
   </ul>
+  <p>Some IP addresses used in the campaign carry TLS certificates previously associated with ShinyHunters, giving threat researchers high confidence in attribution.</p>
+
+  <h2>Known Victims</h2>
+  <p>In June 2026, the <strong>University of Nottingham</strong> confirmed it suffered a cybersecurity incident linked to this PeopleSoft campaign. ShinyHunters claimed the breach and leaked tens of gigabytes of stolen data, including personal and academic records for nearly half a million current and former students.</p>
+  <p><strong>Ralph Lauren Corporation</strong> and media company <strong>Nexstar</strong> are among the victims listed, with ShinyHunters claiming access to HR and payroll data held in their PeopleSoft environments.</p>
+  <p>The broader pattern is clear: no sector is off-limits. Higher education, retail, media, and financial services organisations all rely on PeopleSoft, and all are being actively scanned and targeted.</p>
+
+  <div class="alert-box">
+    <p><strong>BreachWatcher subscribers</strong> are notified promptly if their credentials surface in any ShinyHunters breach or data leak. If you're not yet subscribed, now is the time.</p>
+  </div>
+
+  <h2>What You Should Do</h2>
+  <ol class="action-steps">
+    <li>
+      <div>
+        <div class="action-step-title">Apply the Oracle patch immediately</div>
+        <div class="action-step-desc">Oracle's out-of-band advisory addresses CVE-2026-35273 and is available through the Oracle support portal. If you cannot patch right now, apply Oracle's documented mitigations without delay.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Audit administrative credentials</div>
+        <div class="action-step-desc">Rotate all PeopleSoft and Oracle admin account passwords, eliminate shared or default credentials, and enforce unique, complex passwords across every account.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Enable multi-factor authentication (MFA)</div>
+        <div class="action-step-desc">Enable MFA on every PeopleSoft and Oracle administrative interface where it is supported.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Restrict public exposure</div>
+        <div class="action-step-desc">PeopleSoft instances should not be directly reachable from the internet without a VPN or strong network-layer controls. Review your firewall rules now.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Audit SSH key access</div>
+        <div class="action-step-desc">Review which keys have access to your PeopleSoft servers and revoke any that are unnecessary or unrecognised.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Hunt for indicators of compromise</div>
+        <div class="action-step-desc">Look for ransom notes placed on servers, unusual outbound data transfers, and authentication attempts from unfamiliar IP addresses or with common default credentials.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Monitor for credential exposure</div>
+        <div class="action-step-desc">Compromised employee credentials have been the initial foothold across multiple confirmed victims. Ensure you have ongoing monitoring in place for leaked credentials associated with your organisation's domains.</div>
+      </div>
+    </li>
+  </ol>
 
 </main>
 
-<section class="more-alerts">
-  <h3>More Cybersecurity Tips</h3>
-  <div class="more-grid">
-    <a href="./spot-fake-website.html" class="more-card">
-      <div class="more-card-tag">Safe Behaviour · Phishing</div>
-      <div class="more-card-title">How to Spot a Fake Website</div>
-    </a>
-    <a href="./phishing-smishing-vishing-quishing.html" class="more-card">
-      <div class="more-card-tag">Phishing · Social Engineering</div>
-      <div class="more-card-title">Phishing, Smishing, Vishing &amp; Quishing Explained</div>
-    </a>
-    <a href="./app-permissions.html" class="more-card">
-      <div class="more-card-tag">Mobile Security · Account &amp; Device</div>
-      <div class="more-card-title">Why You Should Check App Permissions</div>
-    </a>
-    <a href="./account-takeover.html" class="more-card">
-      <div class="more-card-tag">Account Security · Data Breach</div>
-      <div class="more-card-title">What Is Account Takeover (ATO)?</div>
-    </a>
-  </div>
-</section>
 
 <footer>
   <div class="footer-grid">
@@ -331,7 +347,6 @@
       <div class="footer-social">
         <a href="https://www.linkedin.com/company/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on LinkedIn"><i class="fab fa-linkedin"></i></a>
         <a href="https://x.com/BreachWatcher" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on X"><i class="fab fa-x-twitter"></i></a>
-        <a href="https://www.instagram.com/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on Instagram"><i class="fab fa-instagram"></i></a>
       </div>
     </div>
     <div class="footer-col">
@@ -341,7 +356,7 @@
         <li><a href="../#service">The Service</a></li>
         <li><a href="../#subscribe">Subscribe</a></li>
         <li><a href="../#tips">Cybersecurity Tips</a></li>
-        <li><a href="../security-alerts/">Security Alerts</a></li>
+        <li><a href="./">Security Alerts</a></li>
       </ul>
     </div>
     <div class="footer-col">
