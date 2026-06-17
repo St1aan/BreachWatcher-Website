@@ -14,7 +14,7 @@
   <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
   <meta property="og:site_name" content="BreachWatcher">
   <meta property="article:published_time" content="2026-02-01T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-02-01T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-17T00:00:00+00:00">
   <meta property="article:author" content="BreachWatcher">
   <meta name="twitter:site" content="@BreachWatcher">
   <meta name="twitter:card" content="summary_large_image">
@@ -109,6 +109,13 @@
     .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
     .alert-box p { margin: 0; font-size: .9rem; }
 
+    .update-section { background: var(--bg-card); border: 1px solid rgba(251,146,60,.18); border-left: 3px solid #fb923c; border-radius: 3px; padding: 1.75rem 1.75rem 1.5rem; margin: 3rem 0 0; }
+    .update-label { display: inline-flex; align-items: center; gap: 7px; font-size: .63rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase; color: #fb923c; margin-bottom: 1.25rem; }
+    .update-label i { font-size: .7rem; }
+    .update-section h2 { color: #fb923c !important; border-bottom-color: rgba(251,146,60,.2) !important; margin-top: 0 !important; }
+    .update-section p { font-size: .92rem; }
+    .update-section ul li { font-size: .88rem; }
+
     /* MORE TIPS */
     .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
     .more-alerts h3 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .72rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 2rem; }
@@ -159,7 +166,7 @@
         "url": "https://www.breachwatcher.io/cybersecurity-tips/multi-factor-authentication.html",
         "image": "https://www.breachwatcher.io/Banner.webp",
         "datePublished": "2026-02-01T00:00:00+00:00",
-        "dateModified": "2026-02-01T00:00:00+00:00",
+        "dateModified": "2026-06-17T00:00:00+00:00",
         "author": {
           "@type": "Organization",
           "name": "BreachWatcher",
@@ -234,7 +241,8 @@
     <div class="article-meta">
       <span><i class="fas fa-calendar-days"></i> February 1, 2026</span>
       <span><i class="fas fa-user"></i> BreachWatcher</span>
-      <span><i class="fas fa-clock"></i> 4 min read</span>
+      <span><i class="fas fa-clock"></i> 5 min read</span>
+      <span><i class="fas fa-rotate"></i> Updated June 2026</span>
     </div>
   </div>
 </header>
@@ -279,29 +287,32 @@
     <p><strong>Enable MFA on your email account first.</strong> Your email is the master key to resetting every other account you own. If an attacker gains access to your inbox, they can trigger password resets on your bank, social media, and cloud storage in minutes. Protecting your email with MFA is the single highest-impact security action you can take today.</p>
   </div>
 
+  <div class="update-section">
+    <div class="update-label"><i class="fas fa-rotate"></i> Updated — June 2026</div>
+
+    <h2>When MFA Isn't Enough — Session Token Hijacking</h2>
+    <p>MFA is highly effective, but a growing class of attacks bypasses it entirely — without ever needing your password or your one-time code. Understanding why requires a quick look at how websites keep you logged in.</p>
+
+    <h2>What Is a Session Token?</h2>
+    <p>Every time you successfully log in — MFA and all — the server issues your browser a <strong>session token</strong>: a long, random string stored as a cookie. Think of it as a temporary wristband at an event. You showed ID at the door (your credentials), and now the wristband proves you're authorised without needing to show ID again on every visit to the bar. Your browser silently sends this token with every page request, which is why you stay logged in as you navigate around.</p>
+    <p>Session tokens are intentionally designed to be a trusted proof of identity. The server doesn't re-verify your password or your MFA code on each request — it simply checks whether the token is valid. That's what makes them so valuable to attackers.</p>
+
+    <h2>How Attackers Exploit Them</h2>
+    <p>If an attacker can steal a valid session token, they can paste it into their own browser and the server sees a fully authenticated session — <strong>because as far as the server is concerned, they are you</strong>. No password needed. No MFA prompt triggered. This technique is commonly called <em>pass-the-cookie</em> or session hijacking.</p>
+    <p>The most common way tokens are stolen today is through <strong>infostealer malware</strong> — software like Redline, Raccoon, and Lumma Stealer that silently harvests browser cookies, saved passwords, and session tokens from an infected machine. Stolen token packages are then sold in bulk on dark web markets, where buyers can log straight into victims' accounts. This is exactly how many high-profile account takeovers happen on platforms that have MFA enabled — the attacker never encounters the MFA prompt at all.</p>
+    <ul>
+      <li><strong>Malicious browser extensions</strong> can read and exfiltrate your cookies in the background</li>
+      <li><strong>Malware on your device</strong> can access the browser's local cookie store directly</li>
+      <li><strong>Adversary-in-the-middle phishing kits</strong> (such as Evilginx) proxy your real login, capture the session token live, and replay it immediately</li>
+    </ul>
+
+    <h2>What Protects Against It</h2>
+    <p><strong>Hardware security keys (FIDO2/passkeys)</strong> provide the strongest defence here. Because the cryptographic challenge is bound to the specific browser session and the exact domain, a stolen session token from one device cannot simply be replayed from another — re-authentication is required under certain conditions and the key must be physically present. It is the one MFA method with meaningful resistance to this class of attack.</p>
+    <p>Beyond that, the fundamentals matter more than ever: keep your operating system and browser updated, avoid installing software from untrusted sources, audit your browser extensions and remove anything unnecessary, and use the <strong>"Sign out all other sessions"</strong> option on critical accounts if you suspect compromise. No MFA method fully compensates for malware running on your own machine.</p>
+  </div>
+
 </main>
 
-<section class="more-alerts">
-  <h3>More Cybersecurity Tips</h3>
-  <div class="more-grid">
-    <a href="./password-manager.html" class="more-card">
-      <div class="more-card-tag">Passwords · Best Practice</div>
-      <div class="more-card-title">Why You Need a Password Manager</div>
-    </a>
-    <a href="./passkeys.html" class="more-card">
-      <div class="more-card-tag">Authentication · Passwords</div>
-      <div class="more-card-title">Passkeys Explained — The Future of Logging In</div>
-    </a>
-    <a href="./account-takeover.html" class="more-card">
-      <div class="more-card-tag">Account Security</div>
-      <div class="more-card-title">How to Prevent Account Takeover</div>
-    </a>
-    <a href="./credential-stuffing.html" class="more-card">
-      <div class="more-card-tag">Passwords · Attacks</div>
-      <div class="more-card-title">What Is Credential Stuffing?</div>
-    </a>
-  </div>
-</section>
 
 <footer>
   <div class="footer-grid">

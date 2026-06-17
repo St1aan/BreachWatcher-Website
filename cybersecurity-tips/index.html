@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="../logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Browse all BreachWatcher cybersecurity tips — practical guides on MFA, passwords, phishing, malware, and more to help you stay safe online.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/">
+  <meta property="og:title" content="Cybersecurity Tips | BreachWatcher">
+  <meta property="og:description" content="Browse all BreachWatcher cybersecurity tips — practical guides on MFA, passwords, phishing, malware, and more to help you stay safe online.">
+  <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta name="twitter:site" content="@BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Cybersecurity Tips | BreachWatcher">
+  <meta name="twitter:description" content="Browse all BreachWatcher cybersecurity tips — practical guides on MFA, passwords, phishing, malware, and more to help you stay safe online.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
+  <title>Cybersecurity Tips | BreachWatcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-links a.active { color: var(--primary); }
+    .nav-links a.active::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* PAGE HEADER */
+    .page-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .page-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .page-header-inner { position: relative; max-width: 860px; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .page-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(2rem, 5vw, 3.2rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1rem; }
+    .page-subtitle { color: var(--text-muted); font-size: .92rem; letter-spacing: .5px; max-width: 560px; line-height: 1.75; }
+
+    /* TIPS GRID */
+    .tips-section { padding: 60px 5% 100px; }
+    .tips-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; max-width: 1200px; }
+    .tip-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-radius: 4px;
+      padding: 2rem;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      transition: all .25s;
+      position: relative;
+      overflow: hidden;
+    }
+    .tip-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 2px;
+      background: var(--primary);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .25s;
+    }
+    .tip-card:hover { border-color: rgba(57,255,20,.2); transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,.45); }
+    .tip-card:hover::before { transform: scaleX(1); }
+    .card-emoji { font-size: 1.75rem; line-height: 1; }
+    .card-tags { display: flex; gap: 6px; flex-wrap: wrap; }
+    .card-tag { font-size: .6rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .card-title { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .96rem; color: var(--text); line-height: 1.45; letter-spacing: .5px; }
+    .card-desc { color: var(--text-muted); font-size: .84rem; line-height: 1.75; letter-spacing: .3px; flex: 1; }
+    .card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: .75rem; border-top: 1px solid var(--border-dim); }
+    .card-date { font-size: .65rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+    .card-read { font-size: .68rem; font-weight: 700; color: var(--primary); letter-spacing: 1.5px; text-transform: uppercase; display: flex; align-items: center; gap: 6px; transition: gap .2s; }
+    .tip-card:hover .card-read { gap: 10px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-social { display: flex; gap: 14px; margin-top: 1rem; }
+    .footer-social a { color: var(--text-muted); font-size: 1.1rem; transition: color .2s; }
+    .footer-social a:hover { color: var(--primary); }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .page-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .tips-section { padding: 40px 5% 80px; }
+      .tips-grid { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "CollectionPage",
+        "name": "Cybersecurity Tips | BreachWatcher",
+        "description": "Browse all BreachWatcher cybersecurity tips — practical guides on MFA, passwords, phishing, malware, and more to help you stay safe online.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/",
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+          {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/cybersecurity-tips/"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="./" class="active">Cyber Tips</a></li>
+    <li><a href="../security-alerts/">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="./" style="color:var(--primary)">Cybersecurity Tips</a>
+  <a href="../security-alerts/">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="page-header">
+  <div class="page-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <span>Cybersecurity Tips</span>
+    </div>
+    <h1 class="page-title">Cybersecurity Tips</h1>
+    <p class="page-subtitle">Practical guides to help you understand threats, protect your accounts, and build better security habits. Updated as the threat landscape evolves.</p>
+  </div>
+</header>
+
+<section class="tips-section">
+  <div class="tips-grid">
+
+    <a href="session-token-hijacking.html" class="tip-card">
+      <div class="card-emoji">🍪</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Authentication</span>
+        <span class="card-tag tag-orange">Malware</span>
+      </div>
+      <div class="card-title">How Stolen Session Tokens Bypass MFA</div>
+      <div class="card-desc">Attackers don't need your password or MFA code — they steal the session token issued after you log in and replay it from their own browser, bypassing authentication entirely.</div>
+      <div class="card-footer">
+        <span class="card-date">June 17, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="app-permissions.html" class="tip-card">
+      <div class="card-emoji">📱</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Mobile Security</span>
+      </div>
+      <div class="card-title">Why You Should Check App Permissions</div>
+      <div class="card-desc">Apps requesting SMS access can intercept your OTP codes, bypassing MFA. Learn how to audit permissions on Android and iOS and spot red flags.</div>
+      <div class="card-footer">
+        <span class="card-date">May 1, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="passkeys.html" class="tip-card">
+      <div class="card-emoji">🔐</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Authentication</span>
+      </div>
+      <div class="card-title">Passkeys Explained — The Future of Logging In</div>
+      <div class="card-desc">Passkeys replace passwords entirely using device-based cryptography. They can't be phished, guessed, or stolen in a database breach — and they're already supported by major platforms.</div>
+      <div class="card-footer">
+        <span class="card-date">April 20, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="zero-days-vulnerabilities.html" class="tip-card">
+      <div class="card-emoji">🔓</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Vulnerabilities</span>
+      </div>
+      <div class="card-title">What Are Zero-Days and Software Vulnerabilities?</div>
+      <div class="card-desc">Zero-days are unpatched flaws unknown to vendors — making them extremely dangerous when actively exploited by attackers in the wild. Learn how they're discovered, sold, and used.</div>
+      <div class="card-footer">
+        <span class="card-date">April 10, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="infostealers.html" class="tip-card">
+      <div class="card-emoji">🦠</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Malware</span>
+      </div>
+      <div class="card-title">What Is an Infostealer?</div>
+      <div class="card-desc">Infostealers silently harvest your saved browser passwords, cookies, and session tokens — often bypassing MFA entirely by stealing active sessions before you ever notice the infection.</div>
+      <div class="card-footer">
+        <span class="card-date">April 1, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="ransomware.html" class="tip-card">
+      <div class="card-emoji">🔒</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Malware</span>
+      </div>
+      <div class="card-title">What Is Ransomware and How Does It Spread?</div>
+      <div class="card-desc">Ransomware encrypts your files and demands payment. It spreads through phishing emails, pirated software, and exposed remote desktop services — and recovery without a backup is rarely possible.</div>
+      <div class="card-footer">
+        <span class="card-date">March 22, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="public-wifi-vpn.html" class="tip-card">
+      <div class="card-emoji">📶</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Network Safety</span>
+      </div>
+      <div class="card-title">Public Wi-Fi Risks and When to Use a VPN</div>
+      <div class="card-desc">Public Wi-Fi exposes you to man-in-the-middle attacks and evil twin hotspots. Learn when a VPN actually helps — and when it doesn't.</div>
+      <div class="card-footer">
+        <span class="card-date">March 10, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="account-takeover.html" class="tip-card">
+      <div class="card-emoji">🚨</div>
+      <div class="card-tags">
+        <span class="card-tag tag-red">Account Security</span>
+      </div>
+      <div class="card-title">What Is Account Takeover (ATO)?</div>
+      <div class="card-desc">Account takeover connects every threat together — from breach to credential stuffing to full account loss. Learn the signs, the attack lifecycle, and how to recover if it happens to you.</div>
+      <div class="card-footer">
+        <span class="card-date">March 5, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="social-media-osint.html" class="tip-card">
+      <div class="card-emoji">👁️</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Safe Behaviour</span>
+      </div>
+      <div class="card-title">Social Media Oversharing and OSINT</div>
+      <div class="card-desc">Attackers don't need to hack you — your public profiles often reveal enough to craft convincing targeted attacks or answer your security questions. Learn what to hide and what to share.</div>
+      <div class="card-footer">
+        <span class="card-date">March 1, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="spot-fake-website.html" class="tip-card">
+      <div class="card-emoji">🌐</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Safe Behaviour</span>
+      </div>
+      <div class="card-title">How to Spot a Fake Website</div>
+      <div class="card-desc">A padlock doesn't mean a site is safe. Learn to spot lookalike domains, visual clones, and QR code redirects before you hand over your credentials or payment details.</div>
+      <div class="card-footer">
+        <span class="card-date">February 20, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="data-breach-aftermath.html" class="tip-card">
+      <div class="card-emoji">💾</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Data Breaches</span>
+      </div>
+      <div class="card-title">What Happens to Your Data After a Breach?</div>
+      <div class="card-desc">Stolen credentials don't disappear — they're sold on dark web forums, recycled into combo lists, and used in credential stuffing attacks for years. Here's the full lifecycle of a leaked record.</div>
+      <div class="card-footer">
+        <span class="card-date">February 10, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="password-manager.html" class="tip-card">
+      <div class="card-emoji">🔑</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Passwords &amp; Auth</span>
+      </div>
+      <div class="card-title">Why You Should Use a Password Manager</div>
+      <div class="card-desc">Password reuse is one of the biggest security risks. A manager generates strong, unique passwords for every account — even if one is breached, the rest stay safe.</div>
+      <div class="card-footer">
+        <span class="card-date">February 5, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="multi-factor-authentication.html" class="tip-card">
+      <div class="card-emoji">🛡️</div>
+      <div class="card-tags">
+        <span class="card-tag tag-blue">Authentication</span>
+      </div>
+      <div class="card-title">What Is Multi-Factor Authentication (MFA)?</div>
+      <div class="card-desc">MFA blocks over 99.9% of automated account attacks — but not all forms are equal. Learn the difference between SMS OTPs, authenticator apps, and hardware security keys.</div>
+      <div class="card-footer">
+        <span class="card-date">February 1, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="credential-stuffing.html" class="tip-card">
+      <div class="card-emoji">🤖</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Data Breaches</span>
+      </div>
+      <div class="card-title">What Is Credential Stuffing?</div>
+      <div class="card-desc">Attackers use leaked username and password pairs to automate logins across hundreds of sites. Password reuse is what makes this attack so devastatingly effective.</div>
+      <div class="card-footer">
+        <span class="card-date">January 20, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+    <a href="phishing-smishing-vishing-quishing.html" class="tip-card">
+      <div class="card-emoji">🎣</div>
+      <div class="card-tags">
+        <span class="card-tag tag-orange">Social Engineering</span>
+      </div>
+      <div class="card-title">What Is Phishing, Smishing, Vishing, and Quishing?</div>
+      <div class="card-desc">Fraudulent emails, SMS, phone calls, and QR codes designed to trick you into handing over credentials or installing malware. Learn to spot each attack type before you become a victim.</div>
+      <div class="card-footer">
+        <span class="card-date">January 15, 2026</span>
+        <span class="card-read">Read article <i class="fas fa-arrow-right"></i></span>
+      </div>
+    </a>
+
+  </div>
+</section>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Gauteng, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> North Carolina, United States
+        </span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/BreachWatcher" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on X"><i class="fab fa-x-twitter"></i></a>
+        <a href="https://www.instagram.com/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on Instagram"><i class="fab fa-instagram"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="./">Cybersecurity Tips</a></li>
+        <li><a href="../security-alerts/">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

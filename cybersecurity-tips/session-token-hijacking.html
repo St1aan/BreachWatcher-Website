@@ -5,23 +5,23 @@
   <link rel="apple-touch-icon" href="../logo.jpg">
   <link rel="icon" type="image/jpeg" href="/logo.jpg">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
-  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/ransomware.html">
+  <meta name="description" content="Stolen session tokens let attackers bypass MFA entirely. Learn what session tokens are, how infostealers and AiTM phishing kits steal them, and what actually protects you.">
+  <link rel="canonical" href="https://www.breachwatcher.io/cybersecurity-tips/session-token-hijacking.html">
   <meta property="og:type" content="article">
-  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/ransomware.html">
-  <meta property="og:title" content="What Is Ransomware and How Does It Spread? | BreachWatcher">
-  <meta property="og:description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
+  <meta property="og:url" content="https://www.breachwatcher.io/cybersecurity-tips/session-token-hijacking.html">
+  <meta property="og:title" content="How Stolen Session Tokens Bypass MFA | BreachWatcher">
+  <meta property="og:description" content="Stolen session tokens let attackers bypass MFA entirely. Learn what session tokens are, how infostealers and AiTM phishing kits steal them, and what actually protects you.">
   <meta property="og:image" content="https://www.breachwatcher.io/Banner.webp">
   <meta property="og:site_name" content="BreachWatcher">
-  <meta property="article:published_time" content="2026-03-22T00:00:00+00:00">
-  <meta property="article:modified_time" content="2026-03-22T00:00:00+00:00">
+  <meta property="article:published_time" content="2026-06-17T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-17T00:00:00+00:00">
   <meta property="article:author" content="BreachWatcher">
   <meta name="twitter:site" content="@BreachWatcher">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="What Is Ransomware and How Does It Spread? | BreachWatcher">
-  <meta name="twitter:description" content="Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.">
+  <meta name="twitter:title" content="How Stolen Session Tokens Bypass MFA | BreachWatcher">
+  <meta name="twitter:description" content="Stolen session tokens let attackers bypass MFA entirely. Learn what session tokens are, how infostealers and AiTM phishing kits steal them, and what actually protects you.">
   <meta name="twitter:image" content="https://www.breachwatcher.io/Banner.webp">
-  <title>What Is Ransomware and How Does It Spread? | BreachWatcher</title>
+  <title>How Stolen Session Tokens Bypass MFA | BreachWatcher</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -88,10 +88,9 @@
     .breadcrumb .sep { color: var(--border); }
     .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
     .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
-    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
-    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
     .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
-    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
     .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
     .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
     .article-meta i { color: var(--primary); }
@@ -108,6 +107,28 @@
 
     .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
     .alert-box p { margin: 0; font-size: .9rem; }
+
+    .danger-box { background: rgba(239,68,68,.05); border: 1px solid rgba(239,68,68,.2); border-left: 3px solid var(--danger); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .danger-box p { margin: 0; font-size: .9rem; }
+
+    /* diagram-style flow block */
+    .flow-block {
+      background: var(--bg-card); border: 1px solid var(--border-dim);
+      border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0;
+      display: flex; flex-direction: column; gap: .6rem;
+    }
+    .flow-step {
+      display: flex; align-items: center; gap: .85rem;
+      font-size: .85rem; color: var(--text-muted); letter-spacing: .5px;
+    }
+    .flow-step strong { color: var(--text); }
+    .flow-num {
+      flex-shrink: 0; width: 24px; height: 24px;
+      border-radius: 50%; background: rgba(57,255,20,.1); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: .68rem; font-weight: 800; color: var(--primary); letter-spacing: 0;
+    }
+    .flow-arrow { color: var(--border); font-size: .75rem; margin-left: 1.6rem; }
 
     /* MORE TIPS */
     .more-alerts { background: var(--bg-card); border-top: 1px solid var(--border-dim); padding: 80px 5%; }
@@ -154,12 +175,12 @@
     "@graph": [
       {
         "@type": "Article",
-        "headline": "What Is Ransomware and How Does It Spread? | BreachWatcher",
-        "description": "Ransomware encrypts your files and demands payment. Learn how it spreads, which groups are most active, whether to pay the ransom, and how to protect yourself.",
-        "url": "https://www.breachwatcher.io/cybersecurity-tips/ransomware.html",
+        "headline": "How Stolen Session Tokens Bypass MFA | BreachWatcher",
+        "description": "Stolen session tokens let attackers bypass MFA entirely. Learn what session tokens are, how infostealers and AiTM phishing kits steal them, and what actually protects you.",
+        "url": "https://www.breachwatcher.io/cybersecurity-tips/session-token-hijacking.html",
         "image": "https://www.breachwatcher.io/Banner.webp",
-        "datePublished": "2026-03-22T00:00:00+00:00",
-        "dateModified": "2026-03-22T00:00:00+00:00",
+        "datePublished": "2026-06-17T00:00:00+00:00",
+        "dateModified": "2026-06-17T00:00:00+00:00",
         "author": {
           "@type": "Organization",
           "name": "BreachWatcher",
@@ -171,14 +192,14 @@
           "url": "https://www.breachwatcher.io",
           "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
         },
-        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/ransomware.html"}
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/cybersecurity-tips/session-token-hijacking.html"}
       },
       {
         "@type": "BreadcrumbList",
         "itemListElement": [
-      {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
-      {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
-      {"@type":"ListItem","position":3,"name":"Ransomware","item":"https://www.breachwatcher.io/cybersecurity-tips/ransomware.html"}
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+          {"@type":"ListItem","position":2,"name":"Cybersecurity Tips","item":"https://www.breachwatcher.io/#tips"},
+          {"@type":"ListItem","position":3,"name":"How Stolen Session Tokens Bypass MFA","item":"https://www.breachwatcher.io/cybersecurity-tips/session-token-hijacking.html"}
         ]
       }
     ]
@@ -224,15 +245,16 @@
       <span class="sep">/</span>
       <a href="../#tips">Cybersecurity Tips</a>
       <span class="sep">/</span>
-      <span>Ransomware</span>
+      <span>How Stolen Session Tokens Bypass MFA</span>
     </div>
     <div class="article-tags">
-      <span class="article-tag tag-red">Malware</span>
-      <span class="article-tag tag-orange">Ransomware</span>
+      <span class="article-tag tag-blue">Authentication</span>
+      <span class="article-tag tag-orange">Malware</span>
+      <span class="article-tag tag-red">Account Security</span>
     </div>
-    <h1 class="article-title">What Is Ransomware and How Does It Spread?</h1>
+    <h1 class="article-title">How Stolen Session Tokens Bypass MFA</h1>
     <div class="article-meta">
-      <span><i class="fas fa-calendar-days"></i> March 22, 2026</span>
+      <span><i class="fas fa-calendar-days"></i> June 17, 2026</span>
       <span><i class="fas fa-user"></i> BreachWatcher</span>
       <span><i class="fas fa-clock"></i> 5 min read</span>
     </div>
@@ -241,51 +263,60 @@
 
 <main class="article-body">
 
-  <h2>What Is Ransomware?</h2>
-  <p>Ransomware is a category of <strong>malicious software that encrypts your files</strong> — documents, photos, databases, everything — and then demands payment, usually in cryptocurrency, for the decryption key needed to restore access. Without that key, your data is effectively gone. The encryption used by modern ransomware families is mathematically unbreakable by brute force; there is no way to recover your files without either paying or restoring from a backup.</p>
-  <p>The threat has evolved significantly over the past decade. Modern ransomware operators — particularly those running <strong>Ransomware-as-a-Service (RaaS)</strong> platforms — don't just encrypt your files. They first exfiltrate a copy of your sensitive data and then threaten to publish it publicly if you don't pay. This "double extortion" model means that even organisations with backups face pressure to pay, because the stolen data can still cause regulatory, legal, and reputational damage if published.</p>
+  <h2>The Problem With "You're Already Verified"</h2>
+  <p>Multi-factor authentication is one of the most effective security controls available. It stops the vast majority of automated account-compromise attacks dead in their tracks. But a growing class of attack doesn't try to break MFA at all — it waits until after you've already passed it, then takes over from there.</p>
+  <p>To understand why this works, you need to understand the mechanism websites use to keep you logged in: the <strong>session token</strong>.</p>
 
-  <h2>How It Spreads — The Main Vectors</h2>
-  <p>Ransomware reaches victims through a variety of delivery mechanisms. Understanding these is essential for knowing what to guard against:</p>
+  <h2>What Is a Session Token?</h2>
+  <p>Every time you log into a website — password entered, MFA code verified — the server needs a way to remember that you've been authenticated. It can't ask you to prove your identity on every single page load; that would make the web unusable. So instead, it issues your browser a <strong>session token</strong>: a long, randomly generated string stored as a cookie.</p>
+  <p>Think of it as a festival wristband. You showed ID and a ticket at the gate (your credentials and MFA). The wristband proves you're authorised to be inside without you having to show ID every time you buy a drink. Your browser silently presents this wristband — the cookie — with every subsequent request to the site. The server checks that the wristband is valid, and if it is, it grants access. No further verification required.</p>
+  <p>Session tokens are <strong>deliberately designed to be a trusted proof of identity</strong>. That is exactly what makes them so valuable to attackers.</p>
+
+  <h2>The Attack: Pass-the-Cookie</h2>
+  <p>If an attacker can obtain a valid, active session token, they can inject it into their own browser. From the server's perspective, every request now looks identical to a request from you — same token, same apparent identity. <strong>The MFA check already happened. It will not happen again.</strong></p>
+  <p>This technique is known as <em>pass-the-cookie</em> or session hijacking. The attacker never encounters a password prompt. They never see a MFA challenge. They simply present your wristband and walk straight in.</p>
+
+  <div class="flow-block">
+    <div class="flow-step"><div class="flow-num">1</div><span><strong>You</strong> log in — password + MFA verified ✓</span></div>
+    <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="flow-step"><div class="flow-num">2</div><span>Server issues a <strong>session token</strong> stored as a cookie in your browser</span></div>
+    <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="flow-step"><div class="flow-num">3</div><span>Attacker <strong>steals the cookie</strong> from your device or intercepts it</span></div>
+    <div class="flow-arrow"><i class="fas fa-arrow-down"></i></div>
+    <div class="flow-step"><div class="flow-num">4</div><span>Attacker injects cookie into their browser — <strong>server sees a valid session, grants full access</strong></span></div>
+  </div>
+
+  <h2>How Attackers Steal Session Tokens</h2>
+  <p>There are three primary methods attackers use to harvest session tokens.</p>
+
+  <p><strong>Infostealer malware</strong> is the most widespread. Strains like Redline, Raccoon, Lumma Stealer, and Vidar are designed specifically to locate and exfiltrate the browser's local cookie store — the file on your hard drive where Chrome, Firefox, and Edge save session tokens. The malware runs silently in the background, copies every saved cookie from every website, and transmits the haul to an attacker-controlled server. These stolen cookie packages are then sold in bulk on dark web markets, where buyers can import them directly into their own browsers and step into live, authenticated sessions. This is a significant reason why high-profile account takeovers happen even on MFA-protected accounts.</p>
+
+  <p><strong>Malicious browser extensions</strong> present a subtler risk. A browser extension runs with elevated privileges inside your browser and can read cookies for any site you visit. A malicious extension — disguised as a productivity tool, a theme, or a PDF converter — can silently read your session cookies and forward them to a remote server. Because the extension operates inside the browser, it bypasses most endpoint security tools that monitor network traffic at the OS level.</p>
+
+  <p><strong>Adversary-in-the-Middle (AiTM) phishing kits</strong> take a different approach. Tools like Evilginx act as a transparent proxy between you and the real website. You visit what looks like the legitimate login page. The kit forwards your credentials and MFA code to the real site in real time, receives the authenticated session token on your behalf, and captures it before relaying it back to your browser. You complete the login successfully and suspect nothing — but the attacker now has your session token. Microsoft's 2023 research identified AiTM phishing as the technique behind a major wave of account compromises targeting Microsoft 365 customers.</p>
+
   <ul>
-    <li><strong>Phishing emails</strong> — malicious attachments (Word documents with macros, PDFs with embedded links, ZIP archives) or links leading to drive-by download sites. This remains the single most common initial access vector.</li>
-    <li><strong>Pirated software and cracked applications</strong> — ransomware payloads are routinely embedded in pirated games, software cracks, and key generators downloaded from torrent sites and shady download portals.</li>
-    <li><strong>RDP brute-forcing</strong> — attackers scan the internet continuously for machines with <strong>Remote Desktop Protocol (RDP)</strong> exposed on port 3389. Weak or default credentials are tried systematically until access is gained. Once inside, ransomware is deployed manually.</li>
-    <li><strong>Malvertising</strong> — malicious advertisements served through legitimate ad networks that trigger automatic downloads or redirect users to exploit kit landing pages — no click required if the browser or plugins are unpatched.</li>
-    <li><strong>Supply chain attacks</strong> — compromising software update mechanisms or third-party vendors to deliver malicious code to thousands of organisations simultaneously, as seen in the Kaseya VSA and MOVEit incidents.</li>
+    <li><strong>Infostealer malware</strong> — reads the browser's local cookie store directly from disk; no network interception required</li>
+    <li><strong>Malicious extensions</strong> — run inside the browser with cookie-read permissions; difficult to detect</li>
+    <li><strong>AiTM phishing kits</strong> — proxy the real login in real time, capturing the post-MFA session token live</li>
   </ul>
 
-  <h2>Notable Ransomware Examples</h2>
-  <p>The ransomware landscape is populated by well-organised criminal groups operating with business-like efficiency:</p>
-  <ul>
-    <li><strong>WannaCry (2017)</strong> — exploited the EternalBlue vulnerability in Windows SMB, spreading automatically across networks without user interaction. It affected over 200,000 systems in 150 countries within days, crippling hospitals, telecoms, and government agencies.</li>
-    <li><strong>LockBit</strong> — one of the most prolific RaaS operations ever documented, responsible for thousands of attacks globally before law enforcement action. Its affiliate model meant anyone could deploy LockBit ransomware by renting access to the platform.</li>
-    <li><strong>Cl0p</strong> — known for large-scale mass exploitation of vulnerabilities in file transfer software (GoAnywhere MFT, MOVEit Transfer), compromising hundreds of organisations simultaneously and focusing on data theft for extortion rather than encryption alone.</li>
-  </ul>
+  <div class="danger-box">
+    <p><strong>MFA does not protect against session hijacking.</strong> Once you have authenticated and a session token has been issued, MFA's job is done. Stealing that token is the equivalent of stealing a key that has already unlocked the door — the lock is irrelevant at that point.</p>
+  </div>
 
-  <h2>Should You Pay the Ransom?</h2>
-  <p>Law enforcement agencies worldwide — including the FBI, Europol, and the NCSC — <strong>universally advise against paying the ransom</strong>. The reasoning is consistent and well-founded:</p>
-  <ul>
-    <li>Payment directly funds future attacks and signals that your sector is a profitable target.</li>
-    <li>Decryption tools provided after payment frequently fail to fully restore all files — particularly databases and custom file types.</li>
-    <li>Paying marks you as a willing payer; many victims are attacked again within 12 months.</li>
-    <li>Attackers may still publish or sell the exfiltrated data regardless of payment — there is no enforceable guarantee.</li>
-    <li>In some jurisdictions, paying ransomware groups that are under sanctions may itself carry legal risk.</li>
-  </ul>
+  <h2>Why This Matters More Than Ever</h2>
+  <p>The infostealer market has matured significantly. Malware-as-a-Service platforms sell subscription access to stealer builds for as little as $100–$200 per month, with automated dashboards for sorting and replaying stolen credentials and cookies. Stolen session tokens for corporate email, banking portals, and cryptocurrency exchanges are traded openly. The barrier to executing this class of attack is low and falling.</p>
+  <p>For individuals, the most common infection vectors are <strong>pirated software</strong>, malicious ads serving fake software downloads, and phishing emails with malware-laced attachments. You do not need to do anything obviously reckless — a single compromised download is sufficient.</p>
 
-  <h2>How to Protect Yourself</h2>
-  <p>Ransomware defences are layered — no single measure is sufficient, but the combination is highly effective:</p>
-  <ul>
-    <li><strong>Maintain regular, tested, offline backups</strong> following the 3-2-1 rule: three copies of your data, on two different media types, with one stored offline or air-gapped and unreachable by ransomware.</li>
-    <li><strong>Patch software promptly</strong> — the majority of successful ransomware attacks exploit known vulnerabilities for which patches already exist. Timely patching eliminates this avenue entirely.</li>
-    <li>Disable RDP if you don't need it. If you do need it, place it behind a VPN and enforce MFA on all remote access.</li>
-    <li>Enable MFA on every account — compromised credentials are a primary ransomware entry point, and MFA stops stolen credentials from being usable.</li>
-    <li>Never open unexpected attachments, even from known contacts — attackers frequently spoof sender addresses or compromise email accounts.</li>
-    <li>Use reputable, actively maintained security software with real-time behavioural detection.</li>
-  </ul>
+  <h2>What Actually Protects You</h2>
+  <p><strong>Hardware security keys (FIDO2 / passkeys)</strong> provide the strongest available defence. Unlike TOTP codes, a hardware key's authentication is cryptographically bound to the specific browser session and the exact domain. Certain implementations require the physical key to be present for re-authentication under conditions that flag session anomalies. A stolen cookie from one device cannot simply be replayed from a different machine without triggering re-authentication — the stolen wristband alone is not enough. If you manage high-value accounts, a hardware key is worth the investment.</p>
+  <p><strong>Device hygiene</strong> is the most broadly applicable protection. Infostealers need to run on your machine to steal your cookies. Keeping your operating system and browser updated, avoiding pirated software, and using reputable security software significantly reduces the risk of infection in the first place.</p>
+  <p><strong>Browser extension discipline</strong> matters more than most people realise. Treat extensions the same way you treat apps: only install them from publishers you trust, review what permissions they request, and remove any you no longer actively use. An extension you installed three years ago and forgot about is a silent, persistent risk.</p>
+  <p><strong>Sign out of sessions you no longer need.</strong> Most platforms offer a "manage active sessions" or "sign out all other devices" option in account settings. Using it invalidates existing tokens, which limits the damage window if a token has already been stolen but not yet used.</p>
 
   <div class="alert-box">
-    <p><strong>Ransomware often starts with compromised credentials.</strong> BreachWatcher ensures you know immediately when your email appears in a breach — letting you change passwords before attackers can use them to gain initial access to your systems.</p>
+    <p><strong>The threat model has shifted.</strong> For years, MFA was the answer to credential theft. It still is — for attacks that rely on stolen passwords. But attackers have adapted. The modern threat doesn't steal your password; it waits for you to use it, then steals the session that follows. Protecting your devices from malware is now just as important as protecting your passwords.</p>
   </div>
 
 </main>

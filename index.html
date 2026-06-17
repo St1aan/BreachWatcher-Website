@@ -404,6 +404,16 @@
     }
     a.tip-card { text-decoration: none; color: inherit; display: block; }
     .tip-card:hover { transform: translateY(-3px); border-color: rgba(57,255,20,.18); box-shadow: 0 16px 40px rgba(0,0,0,.35); }
+    .tip-card-more { border-color: var(--border); text-decoration: none; }
+    .tip-card-more:hover { border-color: var(--primary); box-shadow: 0 16px 40px rgba(0,0,0,.35), 0 0 0 1px var(--border); }
+    .tip-more-icon { background: rgba(57,255,20,.06) !important; color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 1.6rem !important; transition: background .25s; }
+    .tip-card-more:hover .tip-more-icon { background: rgba(57,255,20,.12) !important; }
+    .tip-more-content { display: flex; flex-direction: column; gap: .6rem; flex: 1; }
+    .tip-more-label { font-size: .6rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+    .tip-more-heading { font-family: 'DM Serif Display', serif; font-size: 1.25rem; color: var(--text); line-height: 1.3; letter-spacing: 1px; }
+    .tip-more-sub { font-size: .82rem; color: var(--text-muted); line-height: 1.7; flex: 1; }
+    .tip-more-cta { font-size: .72rem; font-weight: 700; color: var(--primary); text-transform: uppercase; letter-spacing: 2px; display: flex; align-items: center; gap: 8px; margin-top: auto; transition: gap .2s; }
+    .tip-card-more:hover .tip-more-cta { gap: 12px; }
     .tip-header {
       padding: 1.5rem; font-size: 2.4rem;
       background: linear-gradient(135deg, rgba(57,255,20,.05), rgba(11,15,14,.9));
@@ -1185,111 +1195,12 @@
   <div class="carousel-container">
     <div class="carousel-track" id="tips-track">
 
-    <a href="cybersecurity-tips/phishing-smishing-vishing-quishing.html" class="tip-card">
-      <div class="tip-header">🎣</div>
+    <a href="cybersecurity-tips/session-token-hijacking.html" class="tip-card">
+      <div class="tip-header">🍪</div>
       <div class="tip-body">
-        <div class="tip-tag">Social Engineering</div>
-        <div class="tip-title">What is phishing, smishing, vishing, and quishing?</div>
-        <div class="tip-excerpt">Fraudulent emails, SMS, phone calls, and QR codes designed to trick you. Learn to spot each attack type before you become a victim.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/zero-days-vulnerabilities.html" class="tip-card">
-      <div class="tip-header">🔓</div>
-      <div class="tip-body">
-        <div class="tip-tag">Vulnerabilities</div>
-        <div class="tip-title">What are zero-days and software vulnerabilities?</div>
-        <div class="tip-excerpt">Zero-days are unpatched flaws unknown to vendors — making them extremely dangerous when actively exploited by attackers in the wild.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/password-manager.html" class="tip-card">
-      <div class="tip-header">🔑</div>
-      <div class="tip-body">
-        <div class="tip-tag">Passwords &amp; Auth</div>
-        <div class="tip-title">Why you should use a password manager</div>
-        <div class="tip-excerpt">Password reuse is one of the biggest security risks. A manager generates strong, unique passwords for every account — even if one is breached, the rest stay safe.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/multi-factor-authentication.html" class="tip-card">
-      <div class="tip-header">🛡️</div>
-      <div class="tip-body">
-        <div class="tip-tag">Authentication</div>
-        <div class="tip-title">What is multi-factor authentication (MFA)?</div>
-        <div class="tip-excerpt">SMS OTP, authenticator apps, hardware keys — not all MFA is equal. Learn which method actually keeps attackers out and which can be bypassed.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/passkeys.html" class="tip-card">
-      <div class="tip-header">🔐</div>
-      <div class="tip-body">
-        <div class="tip-tag">Authentication</div>
-        <div class="tip-title">Passkeys explained — the future of logging in</div>
-        <div class="tip-excerpt">Passkeys replace passwords with cryptographic key pairs. They can't be phished, stolen in a breach, or reused — and major platforms support them today.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/data-breach-aftermath.html" class="tip-card">
-      <div class="tip-header">💾</div>
-      <div class="tip-body">
-        <div class="tip-tag">Data Breaches</div>
-        <div class="tip-title">What happens to your data after a breach?</div>
-        <div class="tip-excerpt">Stolen credentials don't disappear — they're sold on dark web forums, recycled into combo lists, and used in credential stuffing attacks for years.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/credential-stuffing.html" class="tip-card">
-      <div class="tip-header">🤖</div>
-      <div class="tip-body">
-        <div class="tip-tag">Data Breaches</div>
-        <div class="tip-title">What is credential stuffing?</div>
-        <div class="tip-excerpt">Attackers use leaked username and password pairs to automate logins across hundreds of sites. Password reuse is what makes this attack so devastatingly effective.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/ransomware.html" class="tip-card">
-      <div class="tip-header">🔒</div>
-      <div class="tip-body">
-        <div class="tip-tag">Malware</div>
-        <div class="tip-title">What is ransomware and how does it spread?</div>
-        <div class="tip-excerpt">Ransomware encrypts your files and demands payment. It spreads through phishing emails, pirated software, and exposed remote desktop services.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/infostealers.html" class="tip-card">
-      <div class="tip-header">🦠</div>
-      <div class="tip-body">
-        <div class="tip-tag">Malware</div>
-        <div class="tip-title">What is an infostealer?</div>
-        <div class="tip-excerpt">Infostealers silently harvest your saved browser passwords, cookies, and session tokens — often bypassing MFA entirely by stealing active sessions.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/public-wifi-vpn.html" class="tip-card">
-      <div class="tip-header">📶</div>
-      <div class="tip-body">
-        <div class="tip-tag">Network Safety</div>
-        <div class="tip-title">Public Wi-Fi risks and when to use a VPN</div>
-        <div class="tip-excerpt">Public Wi-Fi exposes you to man-in-the-middle attacks and evil twin hotspots. Learn when a VPN actually helps — and when it doesn't.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/spot-fake-website.html" class="tip-card">
-      <div class="tip-header">🌐</div>
-      <div class="tip-body">
-        <div class="tip-tag">Safe Behaviour</div>
-        <div class="tip-title">How to spot a fake website</div>
-        <div class="tip-excerpt">A padlock doesn't mean a site is safe. Learn to spot lookalike domains, visual clones, and QR code redirects before you hand over your credentials.</div>
-      </div>
-    </a>
-
-    <a href="cybersecurity-tips/social-media-osint.html" class="tip-card">
-      <div class="tip-header">👁️</div>
-      <div class="tip-body">
-        <div class="tip-tag">Safe Behaviour</div>
-        <div class="tip-title">Social media oversharing and OSINT</div>
-        <div class="tip-excerpt">Attackers don't need to hack you — your public profiles often reveal enough to craft convincing targeted attacks or answer your security questions.</div>
+        <div class="tip-tag">Authentication · Malware</div>
+        <div class="tip-title">How stolen session tokens bypass MFA</div>
+        <div class="tip-excerpt">Attackers don’t need your password or MFA code — they steal the session token issued after you log in and replay it from their own browser, bypassing authentication entirely.</div>
       </div>
     </a>
 
@@ -1302,15 +1213,44 @@
       </div>
     </a>
 
-    <a href="cybersecurity-tips/account-takeover.html" class="tip-card">
-      <div class="tip-header">🚨</div>
+    <a href="cybersecurity-tips/infostealers.html" class="tip-card">
+      <div class="tip-header">🦠</div>
       <div class="tip-body">
-        <div class="tip-tag">Account Security</div>
-        <div class="tip-title">What is account takeover (ATO)?</div>
-        <div class="tip-excerpt">Account takeover connects every threat together — from breach to credential stuffing to full account loss. Learn the signs, the lifecycle, and how to recover.</div>
+        <div class="tip-tag">Malware</div>
+        <div class="tip-title">What is an infostealer?</div>
+        <div class="tip-excerpt">Infostealers silently harvest your saved browser passwords, cookies, and session tokens — often bypassing MFA entirely by stealing active sessions.</div>
       </div>
     </a>
 
+    <a href="cybersecurity-tips/multi-factor-authentication.html" class="tip-card">
+      <div class="tip-header">🛡️</div>
+      <div class="tip-body">
+        <div class="tip-tag">Authentication</div>
+        <div class="tip-title">What is multi-factor authentication (MFA)?</div>
+        <div class="tip-excerpt">MFA blocks over 99.9% of automated account-compromise attacks. Learn how SMS OTPs, authenticator apps, and hardware keys differ — and which to use.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/phishing-smishing-vishing-quishing.html" class="tip-card">
+      <div class="tip-header">🎣</div>
+      <div class="tip-body">
+        <div class="tip-tag">Social Engineering</div>
+        <div class="tip-title">What is phishing, smishing, vishing, and quishing?</div>
+        <div class="tip-excerpt">Fraudulent emails, SMS, phone calls, and QR codes designed to trick you. Learn to spot each attack type before you become a victim.</div>
+      </div>
+    </a>
+
+    <a href="cybersecurity-tips/" class="tip-card tip-card-more">
+      <div class="tip-header tip-more-icon"><i class="fas fa-arrow-right"></i></div>
+      <div class="tip-body tip-more-content">
+        <div class="tip-more-label">Cybersecurity Tips</div>
+        <div class="tip-more-heading">Find more tips here</div>
+        <div class="tip-more-sub">Browse the full library of practical security guides — passwords, MFA, malware, safe browsing, and more.</div>
+        <div class="tip-more-cta">View all tips <i class="fas fa-arrow-right"></i></div>
+      </div>
+    </a>
+
+    
     </div><!-- /tips-track -->
     <div class="carousel-nav">
       <button class="carousel-btn" id="tips-prev" disabled aria-label="Previous tips"><i class="fas fa-arrow-left"></i></button>
