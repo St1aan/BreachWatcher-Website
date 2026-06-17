@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Referral Offer | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-link img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-text span { color: var(--primary); }
+    .logo-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 4rem 5% 5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 0%, rgba(57,255,20,.04), transparent),
+        radial-gradient(ellipse 40% 60% at 0% 80%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(57,255,20,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 5%, transparent 100%);
+    }
+
+    .page-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 860px;
+    }
+
+    /* ── HERO ── */
+    .hero-section {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+    .badge {
+      display: inline-flex; align-items: center; gap: 8px;
+      background: rgba(57,255,20,.06); border: 1px solid rgba(57,255,20,.22);
+      border-radius: 3px; padding: 6px 14px;
+      font-size: .65rem; color: var(--primary); font-weight: 700;
+      letter-spacing: 3px; text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+    .badge .dot {
+      width: 7px; height: 7px; background: var(--primary);
+      border-radius: 50%; animation: blink 1.4s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+    @keyframes blink { 0%,100% { opacity: 1; } 50% { opacity: .3; } }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      line-height: 1.2;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+    h1 span {
+      background: linear-gradient(135deg, #39FF14, #83F806);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+    }
+    .lead {
+      color: var(--text-muted);
+      font-size: .92rem;
+      line-height: 1.85;
+      letter-spacing: .5px;
+      max-width: 540px;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* ── REFERRAL CODE BLOCK ── */
+    .ref-block {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: .6rem;
+    }
+    .ref-label {
+      font-size: .68rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--text-muted);
+    }
+    .ref-input-wrap {
+      display: flex; align-items: center; gap: .75rem;
+    }
+    #refCodeInput {
+      background: var(--bg-card);
+      border: 1.5px solid var(--border);
+      border-radius: 3px;
+      color: var(--primary);
+      font-family: 'Montserrat', monospace;
+      font-size: 1.05rem;
+      font-weight: 800;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      padding: 10px 18px;
+      text-align: center;
+      width: 220px;
+      outline: none;
+      transition: border-color .2s, box-shadow .2s;
+    }
+    #refCodeInput:focus {
+      border-color: var(--primary);
+      box-shadow: 0 0 0 3px rgba(57,255,20,.08);
+    }
+    #refCodeInput::placeholder { color: rgba(57,255,20,.3); letter-spacing: 2px; }
+    .ref-hint {
+      font-size: .7rem; color: var(--text-muted); letter-spacing: .5px; text-align: center;
+    }
+
+    /* ── PLAN CARDS ── */
+    .plans-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .plan-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-radius: 3px;
+      padding: 2.5rem 2rem;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      overflow: hidden;
+      transition: transform .3s, box-shadow .3s;
+    }
+    .plan-card.featured {
+      border-color: rgba(57,255,20,.3);
+      box-shadow: 0 0 40px rgba(57,255,20,.05);
+    }
+    .plan-card:hover { transform: translateY(-4px); box-shadow: 0 24px 50px rgba(0,0,0,.5); }
+    .featured-tag {
+      position: absolute; top: 1.5rem; right: 1.5rem;
+      background: var(--primary); color: #000;
+      font-weight: 800; font-size: .62rem;
+      padding: 4px 12px; border-radius: 2px;
+      text-transform: uppercase; letter-spacing: 2px;
+    }
+    .plan-name {
+      font-weight: 700; font-size: .75rem;
+      color: var(--text-muted); text-transform: uppercase; letter-spacing: 3px;
+      margin-bottom: .9rem;
+    }
+    .plan-price {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 2.8rem; color: var(--text); line-height: 1;
+      margin-bottom: .25rem; letter-spacing: 2px;
+    }
+    .plan-price span {
+      font-size: .88rem; font-weight: 400; color: var(--text-muted);
+      font-family: 'Montserrat', sans-serif; letter-spacing: 1px;
+    }
+    .plan-desc {
+      color: var(--text-muted); font-size: .84rem;
+      margin-bottom: 1.75rem; padding-bottom: 1.75rem;
+      border-bottom: 1px solid var(--border-dim);
+      line-height: 1.8; letter-spacing: .5px;
+    }
+    .plan-features { list-style: none; margin-bottom: 2rem; flex: 1; }
+    .plan-features li {
+      display: flex; align-items: flex-start; gap: 10px;
+      font-size: .84rem; padding: .45rem 0;
+      color: var(--text-muted); letter-spacing: .5px;
+    }
+    .plan-features li i { flex-shrink: 0; margin-top: 2px; font-size: .82rem; }
+    .plan-features li span { color: var(--text); }
+    .check { color: var(--primary); }
+
+    .subscribe-btn {
+      width: 100%; padding: 14px;
+      background: var(--primary); color: #000;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .76rem; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s, transform .15s;
+      margin-top: auto;
+    }
+    .subscribe-btn:hover {
+      background: #55ff33;
+      box-shadow: 0 0 32px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+
+    /* ── MODALS ── */
+    #personalModal, #familyModal {
+      display: none; position: fixed; z-index: 99999; inset: 0;
+      background: rgba(0,0,0,.75); backdrop-filter: blur(6px);
+      justify-content: center; align-items: center;
+    }
+    @keyframes fadeIn { from{opacity:0;transform:scale(.95);} to{opacity:1;transform:scale(1);} }
+
+    .modal-wrapper {
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-top: 2px solid var(--primary);
+      border-radius: 3px;
+      padding: 2rem 2rem 1.75rem;
+      width: 90%; max-width: 460px;
+      box-shadow: 0 0 48px rgba(57,255,20,.07);
+      animation: fadeIn .25s ease-in-out;
+      position: relative;
+    }
+    .modal-close {
+      position: absolute; top: 1rem; right: 1.1rem;
+      cursor: pointer; font-size: 1.1rem;
+      color: var(--text-muted); transition: color .2s;
+      background: none; border: none;
+    }
+    .modal-close:hover { color: var(--text); }
+    .modal-title {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: 1.35rem; letter-spacing: 2px;
+      color: var(--text); margin-bottom: .35rem; text-align: center;
+    }
+    .modal-sub {
+      font-size: .78rem; color: var(--text-muted); text-align: center;
+      letter-spacing: 1px; margin-bottom: 1rem;
+    }
+
+    /* referral code pill inside modal */
+    .modal-ref-pill {
+      display: flex; align-items: center; justify-content: center; gap: 8px;
+      background: rgba(57,255,20,.05); border: 1px solid var(--border);
+      border-radius: 3px; padding: 7px 14px; margin-bottom: 1.5rem;
+      font-size: .72rem; color: var(--text-muted); letter-spacing: 1.5px;
+    }
+    .modal-ref-pill strong { color: var(--primary); letter-spacing: 3px; text-transform: uppercase; }
+
+    .pm-label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .65rem;
+    }
+    .payment-btns { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+    .payment-btn {
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      gap: .3rem; padding: .9rem .5rem;
+      background: var(--bg); border: 1.5px solid var(--border-dim);
+      border-radius: 3px; cursor: pointer; transition: all .2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .payment-btn .pm-name { font-weight: 800; font-size: .82rem; letter-spacing: 1px; color: var(--text); }
+    .payment-btn .pm-note { font-size: .62rem; color: var(--text-muted); letter-spacing: .8px; }
+    .payment-btn.payfast-btn:hover { border-color: var(--primary); background: rgba(57,255,20,.04); transform: translateY(-1px); }
+    .payment-btn.stripe-btn:hover  { border-color: #635bff; background: rgba(99,91,255,.06); transform: translateY(-1px); }
+
+    .modal-label {
+      display: block; font-size: .72rem; font-weight: 700;
+      letter-spacing: 2px; text-transform: uppercase;
+      color: var(--text-muted); margin-bottom: .35rem; margin-top: 1rem;
+    }
+    .modal-label:first-child { margin-top: 0; }
+    .modal-email-input {
+      width: 100%; padding: 10px 12px;
+      background: var(--bg); color: var(--text);
+      border: 1px solid var(--border-dim); border-radius: 3px;
+      font-family: 'Montserrat', sans-serif; font-size: .85rem;
+      transition: border-color .2s;
+    }
+    .modal-email-input:focus { outline: none; border-color: var(--primary); }
+    .modal-email-input::placeholder { color: var(--text-muted); }
+
+    .modal-back-btn {
+      background: none; border: none; cursor: pointer;
+      color: var(--text-muted); font-family: 'Montserrat', sans-serif;
+      font-size: .72rem; letter-spacing: 1.5px; padding: 0; margin-bottom: .85rem;
+      transition: color .2s; display: flex; align-items: center; gap: 6px;
+    }
+    .modal-back-btn:hover { color: var(--text); }
+    .modal-submit-btn {
+      width: 100%; margin-top: 1.25rem; padding: 13px;
+      background: var(--primary); color: #000;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .75rem; letter-spacing: 2.5px; text-transform: uppercase;
+      transition: background .2s, box-shadow .2s;
+    }
+    .modal-submit-btn:hover { background: #55ff33; box-shadow: 0 0 24px var(--primary-glow); }
+
+    .modal-thank-you {
+      text-align: center; padding: 1.5rem 1rem;
+      font-weight: 700; font-size: .9rem; letter-spacing: 1.5px; color: var(--primary);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-dim);
+      padding: 1.5rem 5%;
+      text-align: center;
+    }
+    footer p { font-size: .72rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      .plans-grid { grid-template-columns: 1fr; }
+      #refCodeInput { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo-link">
+    <img src="/logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="logo-text">Breach<span>Watcher</span></div>
+      <span class="logo-tagline">we watch for you</span>
+    </div>
+  </a>
+</header>
+
+<main>
+  <div class="hero-grid"></div>
+
+  <div class="page-wrap">
+
+    <!-- Hero -->
+    <div class="hero-section">
+      <div class="badge"><div class="dot"></div> Referral Offer</div>
+      <h1>You've been <span>referred</span></h1>
+      <p class="lead">
+        A BreachWatcher member wants to keep you protected. Enter your referral code below and choose the plan that's right for you.
+      </p>
+
+      <div class="ref-block">
+        <span class="ref-label">Your referral code</span>
+        <div class="ref-input-wrap">
+          <input
+            type="text"
+            id="refCodeInput"
+            placeholder="e.g. ABC123"
+            maxlength="32"
+            autocomplete="off"
+            spellcheck="false"
+          >
+        </div>
+        <span class="ref-hint">Pre-filled from your referral link &mdash; edit if needed</span>
+      </div>
+    </div>
+
+    <!-- Plan Cards -->
+    <div class="plans-grid">
+
+      <!-- Personal -->
+      <div class="plan-card">
+        <div class="plan-name">Personal</div>
+        <div class="plan-price">$60 <span>/ year</span></div>
+        <div class="plan-desc">Full breach monitoring for one email address per year.</div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check check"></i><span>1 email address monitored</span></li>
+          <li><i class="fas fa-check check"></i><span>Get 2 months free</span></li>
+          <li><i class="fas fa-check check"></i><span>Breach notification emails</span></li>
+          <li><i class="fas fa-check check"></i><span>Security alert emails</span></li>
+          <li><i class="fas fa-check check"></i><span>Cybersecurity tips emails</span></li>
+        </ul>
+        <button class="subscribe-btn" onclick="openPersonalModal()">Subscribe Now</button>
+      </div>
+
+      <!-- Family -->
+      <div class="plan-card featured">
+        <div class="featured-tag">Most Popular</div>
+        <div class="plan-name">Family</div>
+        <div class="plan-price">$180 <span>/ year</span></div>
+        <div class="plan-desc">Full breach monitoring for four email addresses per year.</div>
+        <ul class="plan-features">
+          <li><i class="fas fa-check check"></i><span>Pay for 3 and get 4</span></li>
+          <li><i class="fas fa-check check"></i><span>Get 2 months free</span></li>
+          <li><i class="fas fa-check check"></i><span>Breach notification emails</span></li>
+          <li><i class="fas fa-check check"></i><span>Security alert emails</span></li>
+          <li><i class="fas fa-check check"></i><span>Cybersecurity tips emails</span></li>
+        </ul>
+        <button class="subscribe-btn" onclick="openFamilyModal()">Subscribe Now</button>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<footer>
+  <p>© 2026 BreachWatcher. All rights reserved.</p>
+</footer>
+
+
+<!-- ─── PERSONAL MODAL ─── -->
+<div id="personalModal">
+  <div class="modal-wrapper">
+    <button class="modal-close" onclick="closePersonalModal()">✖</button>
+    <p class="modal-title">Personal Plan</p>
+    <p class="modal-sub">12-month subscription · 1 email address monitored</p>
+
+    <div class="modal-ref-pill">
+      Referral code: &nbsp;<strong id="personalModalRef">—</strong>
+    </div>
+
+    <form id="personalPayFastForm" action="https://www.payfast.co.za/eng/process" method="post" style="display:none">
+      <input type="hidden" id="personalPayFastEmail" name="email_address" value="">
+      <input type="hidden" id="personalPayFastRef"   name="custom_str1"   value="">
+      <input type="hidden" name="merchant_id"  value="10589250">
+      <input type="hidden" name="merchant_key" value="705jrsa3dmzcy">
+      <input type="hidden" name="amount"       value="980.00">
+      <input type="hidden" name="item_name"    value="12 Month BreachWatcher Subscription">
+      <input type="hidden" name="notify_url"   value="https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce">
+      <input type="hidden" name="return_url"   value="https://breachwatcher.io">
+    </form>
+
+    <div id="personalStep1">
+      <span class="pm-label">Choose payment method</span>
+      <div class="payment-btns">
+        <button type="button" class="payment-btn payfast-btn" onclick="personalSelectPayFast()">
+          <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
+          <span class="pm-name">PayFast</span>
+        </button>
+        <button type="button" class="payment-btn stripe-btn" onclick="personalSelectStripe()">
+          <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
+          <span class="pm-name">Stripe</span>
+          <span class="pm-note">Credit / Debit Card</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="personalStep2" style="display:none">
+      <button type="button" class="modal-back-btn" onclick="personalBack()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+      <label class="modal-label" for="personalEmailInput">Email Address</label>
+      <input class="modal-email-input" type="email" id="personalEmailInput" placeholder="your@email.com">
+      <button type="button" class="modal-submit-btn" onclick="submitPersonalPayFast()">Proceed to Payment →</button>
+    </div>
+
+    <div id="personalThankYou" class="modal-thank-you" style="display:none">
+      ✅ Thank you! You will be directed to the payments page.
+    </div>
+  </div>
+</div>
+
+
+<!-- ─── FAMILY MODAL ─── -->
+<div id="familyModal">
+  <div class="modal-wrapper">
+    <button class="modal-close" onclick="closeFamilyModal()">✖</button>
+    <p class="modal-title">Family Plan</p>
+    <p class="modal-sub">12-month subscription · 4 email addresses monitored</p>
+
+    <div class="modal-ref-pill">
+      Referral code: &nbsp;<strong id="familyModalRef">—</strong>
+    </div>
+
+    <form id="familyPayFastForm" action="https://www.payfast.co.za/eng/process" method="post" style="display:none">
+      <input type="hidden" id="familyPayFastEmail1" name="custom_str1" value="">
+      <input type="hidden" id="familyPayFastEmail2" name="custom_str2" value="">
+      <input type="hidden" id="familyPayFastEmail3" name="custom_str3" value="">
+      <input type="hidden" id="familyPayFastEmail4" name="custom_str4" value="">
+      <input type="hidden" id="familyPayFastRef"    name="custom_str5" value="">
+      <input type="hidden" name="merchant_id"  value="10589250">
+      <input type="hidden" name="merchant_key" value="705jrsa3dmzcy">
+      <input type="hidden" name="amount"       value="2940.00">
+      <input type="hidden" name="item_name"    value="12 Month Family BreachWatcher Subscription">
+      <input type="hidden" name="notify_url"   value="https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce">
+      <input type="hidden" name="return_url"   value="https://breachwatcher.io">
+    </form>
+
+    <div id="familyStep1">
+      <span class="pm-label">Choose payment method</span>
+      <div class="payment-btns">
+        <button type="button" class="payment-btn payfast-btn" onclick="familySelectPayFast()">
+          <i class="fas fa-building-columns" style="font-size:1.05rem;color:var(--primary)"></i>
+          <span class="pm-name">PayFast</span>
+        </button>
+        <button type="button" class="payment-btn stripe-btn" onclick="familySelectStripe()">
+          <i class="fas fa-credit-card" style="font-size:1.05rem;color:#635bff"></i>
+          <span class="pm-name">Stripe</span>
+          <span class="pm-note">Credit / Debit Card</span>
+        </button>
+      </div>
+    </div>
+
+    <div id="familyStep2" style="display:none">
+      <button type="button" class="modal-back-btn" onclick="familyBack()">
+        <i class="fas fa-arrow-left"></i> Back
+      </button>
+      <label class="modal-label" for="familyEmail1">Email Address #1</label>
+      <input class="modal-email-input" type="email" id="familyEmail1" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail2">Email Address #2</label>
+      <input class="modal-email-input" type="email" id="familyEmail2" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail3">Email Address #3</label>
+      <input class="modal-email-input" type="email" id="familyEmail3" placeholder="your@email.com">
+      <label class="modal-label" for="familyEmail4">Email Address #4</label>
+      <input class="modal-email-input" type="email" id="familyEmail4" placeholder="your@email.com">
+      <button type="button" class="modal-submit-btn" onclick="submitFamilyPayFast()">Proceed to Payment →</button>
+    </div>
+
+    <div id="familyThankYou" class="modal-thank-you" style="display:none">
+      ✅ Thank you! You will be directed to the payments page.
+    </div>
+  </div>
+</div>
+
+
+<script>
+  const TINES_WEBHOOK     = 'https://divine-lake-6964.tines.com/webhook/f3e4d8c0fa8fce7b81e24853efe685dc/68eb11efc23d4395416019099d4417ce';
+  const STRIPE_PERSONAL   = 'https://buy.stripe.com/4gM9AT0r0die2B5cr86Na00';
+  const STRIPE_FAMILY     = 'https://buy.stripe.com/5kQ5kD5LkguqdfJ9eW6Na01';
+  const EMAIL_RE          = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+  // ── Read referral code from URL ──────────────────────────────────────────
+  (function() {
+    var params = new URLSearchParams(window.location.search);
+    var ref = params.get('ref') || params.get('referral') || '';
+    if (ref) document.getElementById('refCodeInput').value = ref.toUpperCase();
+  })();
+
+  function getRefCode() {
+    return document.getElementById('refCodeInput').value.trim().toUpperCase() || 'N/A';
+  }
+
+  function notifyTines(payload) {
+    fetch(TINES_WEBHOOK, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(payload)
+    }).catch(function() {});
+  }
+
+  // ── Close modals on backdrop click ──────────────────────────────────────
+  window.addEventListener('click', function(e) {
+    if (e.target === document.getElementById('personalModal')) closePersonalModal();
+    if (e.target === document.getElementById('familyModal'))   closeFamilyModal();
+  });
+
+
+  // ════════════════════════════════
+  //  PERSONAL MODAL
+  // ════════════════════════════════
+  function openPersonalModal() {
+    document.getElementById('personalModalRef').textContent = getRefCode();
+    document.getElementById('personalModal').style.display = 'flex';
+  }
+  function closePersonalModal() {
+    document.getElementById('personalModal').style.display = 'none';
+    document.getElementById('personalStep1').style.display = 'block';
+    document.getElementById('personalStep2').style.display = 'none';
+    document.getElementById('personalThankYou').style.display = 'none';
+    document.getElementById('personalEmailInput').value = '';
+    document.getElementById('personalEmailInput').style.borderColor = '';
+  }
+  function personalSelectPayFast() {
+    document.getElementById('personalStep1').style.display = 'none';
+    document.getElementById('personalStep2').style.display = 'block';
+    document.getElementById('personalEmailInput').focus();
+  }
+  function personalSelectStripe() {
+    var ref = getRefCode();
+    notifyTines({ email: null, referral_code: ref, plan: 'Personal', Path: 'referral' });
+    showPersonalThankYou();
+    setTimeout(function() { window.location.href = STRIPE_PERSONAL + '?client_reference_id=' + encodeURIComponent(ref); }, 600);
+  }
+  function personalBack() {
+    document.getElementById('personalStep2').style.display = 'none';
+    document.getElementById('personalStep1').style.display = 'block';
+    document.getElementById('personalEmailInput').style.borderColor = '';
+  }
+  function submitPersonalPayFast() {
+    var input = document.getElementById('personalEmailInput');
+    var email = input.value.trim();
+    if (!email || !EMAIL_RE.test(email)) {
+      input.style.borderColor = 'var(--danger)';
+      input.focus();
+      return;
+    }
+    input.style.borderColor = '';
+    var ref = getRefCode();
+    notifyTines({ email: email, referral_code: ref, plan: 'Personal', Path: 'referral' });
+    document.getElementById('personalPayFastEmail').value = email;
+    document.getElementById('personalPayFastRef').value   = ref;
+    showPersonalThankYou();
+    setTimeout(function() { document.getElementById('personalPayFastForm').submit(); }, 600);
+  }
+  function showPersonalThankYou() {
+    document.getElementById('personalStep1').style.display = 'none';
+    document.getElementById('personalStep2').style.display = 'none';
+    document.getElementById('personalThankYou').style.display = 'block';
+  }
+
+
+  // ════════════════════════════════
+  //  FAMILY MODAL
+  // ════════════════════════════════
+  function openFamilyModal() {
+    document.getElementById('familyModalRef').textContent = getRefCode();
+    document.getElementById('familyModal').style.display = 'flex';
+  }
+  function closeFamilyModal() {
+    document.getElementById('familyModal').style.display = 'none';
+    document.getElementById('familyStep1').style.display = 'block';
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyThankYou').style.display = 'none';
+    ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'].forEach(function(id) {
+      var inp = document.getElementById(id);
+      inp.value = '';
+      inp.style.borderColor = '';
+    });
+  }
+  function familySelectPayFast() {
+    document.getElementById('familyStep1').style.display = 'none';
+    document.getElementById('familyStep2').style.display = 'block';
+    document.getElementById('familyEmail1').focus();
+  }
+  function familySelectStripe() {
+    var ref = getRefCode();
+    notifyTines({ emails: null, referral_code: ref, plan: 'Family', Path: 'referral' });
+    showFamilyThankYou();
+    setTimeout(function() { window.location.href = STRIPE_FAMILY + '?client_reference_id=' + encodeURIComponent(ref); }, 600);
+  }
+  function familyBack() {
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyStep1').style.display = 'block';
+    ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'].forEach(function(id) {
+      document.getElementById(id).style.borderColor = '';
+    });
+  }
+  function submitFamilyPayFast() {
+    var ids    = ['familyEmail1','familyEmail2','familyEmail3','familyEmail4'];
+    var emails = [];
+    var valid  = true;
+    ids.forEach(function(id) {
+      var input = document.getElementById(id);
+      var val   = input.value.trim();
+      if (!val || !EMAIL_RE.test(val)) {
+        input.style.borderColor = 'var(--danger)';
+        if (valid) input.focus();
+        valid = false;
+      } else {
+        input.style.borderColor = '';
+        emails.push(val);
+      }
+    });
+    if (!valid) return;
+    var ref = getRefCode();
+    notifyTines({ emails: emails, referral_code: ref, plan: 'Family', Path: 'referral' });
+    document.getElementById('familyPayFastEmail1').value = emails[0];
+    document.getElementById('familyPayFastEmail2').value = emails[1];
+    document.getElementById('familyPayFastEmail3').value = emails[2];
+    document.getElementById('familyPayFastEmail4').value = emails[3];
+    document.getElementById('familyPayFastRef').value    = ref;
+    showFamilyThankYou();
+    setTimeout(function() { document.getElementById('familyPayFastForm').submit(); }, 600);
+  }
+  function showFamilyThankYou() {
+    document.getElementById('familyStep1').style.display = 'none';
+    document.getElementById('familyStep2').style.display = 'none';
+    document.getElementById('familyThankYou').style.display = 'block';
+  }
+</script>
+
+</body>
+</html>
