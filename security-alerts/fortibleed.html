@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="../logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A Russian-speaking threat group has compromised over 73,000 Fortinet FortiGate firewalls worldwide using previously leaked credentials. No new vulnerability required — rotate all Fortinet passwords now.">
+  <link rel="canonical" href="https://www.breachwatcher.io/security-alerts/fortibleed.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/security-alerts/fortibleed.html">
+  <meta property="og:title" content="FortiBleed — The 73,000+ Fortinet Firewall Credential Dump | BreachWatcher">
+  <meta property="og:description" content="A Russian-speaking threat group has compromised over 73,000 Fortinet FortiGate firewalls worldwide using previously leaked credentials. No new vulnerability required — rotate all Fortinet passwords now.">
+  <meta property="og:image" content="https://st1aan.github.io/BreachWatcher-EmailAssets/fortibleed.jpeg">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-06-18T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-18T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:site" content="@BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="FortiBleed — The 73,000+ Fortinet Firewall Credential Dump | BreachWatcher">
+  <meta name="twitter:description" content="A Russian-speaking threat group has compromised over 73,000 Fortinet FortiGate firewalls worldwide using previously leaked credentials. No new vulnerability required — rotate all Fortinet passwords now.">
+  <meta name="twitter:image" content="https://st1aan.github.io/BreachWatcher-EmailAssets/fortibleed.jpeg">
+  <title>FortiBleed — The 73,000+ Fortinet Firewall Credential Dump | BreachWatcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; z-index: 1; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+    .article-header-image { position: absolute; right: 0; top: 0; bottom: 0; width: 48%; pointer-events: none; -webkit-mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); }
+    .article-header-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    @media (max-width: 900px) { .article-header-image { display: none; } }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    .action-steps { list-style: none; margin: 0 0 1.5rem; counter-reset: steps; }
+    .action-steps li { counter-increment: steps; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border-dim); align-items: start; }
+    .action-steps li:last-child { border-bottom: none; }
+    .action-steps li::before { content: counter(steps); color: var(--primary); font-size: .72rem; font-weight: 800; letter-spacing: 1px; padding-top: 3px; }
+    .action-step-title { color: var(--text); font-size: .88rem; font-weight: 700; letter-spacing: .5px; margin-bottom: .3rem; }
+    .action-step-desc { color: var(--text-muted); font-size: .88rem; line-height: 1.75; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-social { display: flex; gap: 14px; margin-top: 1rem; }
+    .footer-social a { color: var(--text-muted); font-size: 1.1rem; transition: color .2s; }
+    .footer-social a:hover { color: var(--primary); }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "FortiBleed — The 73,000+ Fortinet Firewall Credential Dump | BreachWatcher",
+        "description": "A Russian-speaking threat group has compromised over 73,000 Fortinet FortiGate firewalls worldwide using previously leaked credentials. No new vulnerability required — rotate all Fortinet passwords now.",
+        "url": "https://www.breachwatcher.io/security-alerts/fortibleed.html",
+        "image": "https://st1aan.github.io/BreachWatcher-EmailAssets/fortibleed.jpeg",
+        "datePublished": "2026-06-18T00:00:00+00:00",
+        "dateModified": "2026-06-18T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/security-alerts/fortibleed.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+          {"@type":"ListItem","position":2,"name":"Security Alerts","item":"https://www.breachwatcher.io/security-alerts/"},
+          {"@type":"ListItem","position":3,"name":"FortiBleed — The 73,000+ Fortinet Firewall Credential Dump","item":"https://www.breachwatcher.io/security-alerts/fortibleed.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../security-alerts/">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="./">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Security Alerts</a>
+      <span class="sep">/</span>
+      <span>FortiBleed</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-red">Credential Stuffing</span>
+      <span class="article-tag tag-orange">Data Breach</span>
+      <span class="article-tag tag-purple">Active Campaign</span>
+    </div>
+    <h1 class="article-title">FortiBleed — The 73,000+ Fortinet Firewall Credential Dump</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> June 18, 2026</span>
+      <span><i class="fas fa-clock"></i> 4 min read</span>
+    </div>
+  </div>
+  <div class="article-header-image">
+    <img src="https://st1aan.github.io/BreachWatcher-EmailAssets/fortibleed.jpeg" alt="FortiBleed — Fortinet Firewalls Compromised">
+  </div>
+</header>
+
+<main class="article-body">
+
+  <div class="alert-box">
+    <p><strong>⚠ Active Campaign:</strong> A Russian-speaking threat group has compromised administrator credentials on over 73,000 internet-facing Fortinet FortiGate firewalls across 194 countries. No new vulnerability is required — attackers are systematically breaking in using previously leaked passwords. If your organisation runs a Fortinet firewall or SSL VPN, rotate all credentials and enable MFA immediately.</p>
+  </div>
+
+  <h2>What Is Happening?</h2>
+  <p>In mid-June 2026, security researcher Volodymyr "Bob" Diachenko discovered a publicly exposed database containing administrator and VPN credentials for tens of thousands of Fortinet FortiGate firewalls. The campaign, now widely referred to as <strong>FortiBleed</strong>, has since been corroborated by threat intelligence firms Hudson Rock and SOCRadar, and independently verified by researcher Kevin Beaumont.</p>
+  <p>The scale is significant. Attackers targeted <strong>73,932 unique firewall URLs across 194 countries</strong>, executing an estimated 1.16 billion credential-based attempts against more than 320,000 FortiGate devices. In parallel, the same group launched 2.1 billion brute-force attempts against over 160,000 MSSQL servers, resulting in more than 21,000 additional confirmed compromised domains.</p>
+  <p>FortiBleed is not a new vulnerability. It is an industrial-scale credential-stuffing operation that exploits a far more common problem: organisations that have never rotated their Fortinet passwords following earlier breaches.</p>
+
+  <h2>How the Attack Works</h2>
+  <p>The operation is fully automated. Threat actors scan the internet for exposed Fortinet firewalls and VPN gateways, then test each one against a curated credential list compiled from historical Fortinet breach data, infostealer malware logs, and previously leaked databases. Every successful login is recorded.</p>
+  <p>Once inside a device, the attackers do not simply take note and move on. They:</p>
+  <ul>
+    <li>Use the compromised firewall as a listening post, intercepting SSL VPN authentication hashes from active sessions passing through the device</li>
+    <li>Crack those intercepted hashes offline using a dedicated 45-GPU cluster managed through the Hashtopolis framework</li>
+    <li>Feed newly cracked passwords back into the scanning infrastructure, creating a self-reinforcing cycle of compromise</li>
+    <li>Pivot directly into internal Active Directory environments to establish deep, persistent network footholds</li>
+  </ul>
+  <p>One of the most troubling findings is that many of the compromised passwords were complex by conventional standards. Hudson Rock noted that credential complexity provides no meaningful protection when passwords already exist in an attacker's database — whether recovered through infostealer malware, prior device-level exploits, or legacy breach datasets.</p>
+
+  <h2>Who Was Affected?</h2>
+  <p>The confirmed victim list spans virtually every sector of the global economy. Named organisations include <strong>Accenture, Comcast, Foxconn, Lenovo, Oracle, Samsung, Siemens, and PwC</strong>, alongside thousands of government entities, critical infrastructure operators, and mid-market businesses. A Turkish NATO defense contractor is among the confirmed victims, with classified defense documents reportedly exfiltrated in the process.</p>
+  <p>Fortinet has responded publicly, stating that the data circulating online "is a resharing of data from previous incidents, as well as bruteforcing of credentials, and is not related to any recent incident or advisory." The company added that organisations following routine best practices, including regular credential rotation, face minimal risk from this campaign.</p>
+  <p>Independent researchers have confirmed the data is legitimate. Whether individual credentials originate from a prior breach or this campaign, the practical outcome is the same: a working, verified database of administrator access to tens of thousands of corporate and government firewalls.</p>
+
+  <div class="alert-box">
+    <p><strong>BreachWatcher subscribers</strong> are notified promptly if their credentials surface in any FortiBleed-linked breach or data leak. If you are not yet subscribed, now is the time to act.</p>
+  </div>
+
+  <h2>What You Should Do</h2>
+  <ol class="action-steps">
+    <li>
+      <div>
+        <div class="action-step-title">Rotate all Fortinet credentials immediately</div>
+        <div class="action-step-desc">Reset administrator passwords and VPN user accounts on every FortiGate device exposed to the internet. Treat all credentials on internet-facing devices as compromised until proven otherwise. Prioritise privileged accounts first.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Enable multi-factor authentication</div>
+        <div class="action-step-desc">Enable MFA on every Fortinet administrative interface and SSL VPN where supported. Stolen credentials alone cannot complete a login when MFA is in place.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Restrict management interface exposure</div>
+        <div class="action-step-desc">Apply local-in policies to limit admin panel access to trusted internal IP ranges only. Fortinet management interfaces should never be directly reachable from the public internet.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Review access logs for signs of intrusion</div>
+        <div class="action-step-desc">Look for anomalous admin sessions, logins from unexpected geographies, unusual outbound traffic volumes, and authentication events tied to accounts that should not be active.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Check your exposure against published indicators</div>
+        <div class="action-step-desc">SOCRadar and Hudson Rock have both published IOC lists and lookup tools tied to the FortiBleed dataset. Cross-reference your public IP addresses and FortiGate serial numbers.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Assume breach posture for your VPN boundary</div>
+        <div class="action-step-desc">Apply zero-trust principles: microsegmentation, least-privilege access, and continuous session validation for all VPN-authenticated users. A compromised perimeter device should not grant unrestricted internal access.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Monitor for credential exposure on an ongoing basis</div>
+        <div class="action-step-desc">Infostealer-harvested credentials are the recurring fuel for campaigns like FortiBleed. Continuous monitoring for leaked credentials tied to your organisation's domains is the most reliable early warning available.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div style="background: var(--bg-card); border: 1px solid var(--border); border-radius: 4px; padding: 2.5rem 2rem; margin-top: 3rem; text-align: center;">
+    <p style="font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin-bottom: 1rem;">Is Your Business Exposed?</p>
+    <p style="font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.3; letter-spacing: 2px; color: var(--text); margin-bottom: 2rem;">We'll check if your organization appears in the FortiBleed dataset — at no cost.</p>
+    <a href="mailto:thebreachwatcher@gmail.com?subject=FortiBleed%20Exposure%20Check&body=Hi%20BreachWatcher%2C%0A%0AI%20would%20like%20to%20check%20whether%20my%20organisation%20appears%20in%20the%20FortiBleed%20dataset.%0A%0AOrganisation%3A%20%0ADomain(s)%3A%20%0APublic%20IP%20range(s)%3A%20%0A%0AThank%20you." style="display: inline-block; background: var(--primary); color: #000; font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: .78rem; letter-spacing: 2px; text-transform: uppercase; text-decoration: none; padding: 14px 32px; border-radius: 3px; transition: background .2s, box-shadow .2s;" onmouseover="this.style.background='#55ff33';this.style.boxShadow='0 0 24px rgba(57,255,20,0.35)'" onmouseout="this.style.background='var(--primary)';this.style.boxShadow='none'">Reach out to us today →</a>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Gauteng, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> North Carolina, United States
+        </span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/BreachWatcher" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on X"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="./">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>
