@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Unsubscribe | BreachWatcher</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── HEADER ── */
+    header {
+      padding: 1.5rem 5%;
+      border-bottom: 1px solid var(--border-dim);
+      display: flex;
+      align-items: center;
+    }
+    .logo-link { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .logo-link img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .logo-text { font-weight: 800; font-size: 1.1rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .logo-text span { color: var(--primary); }
+    .logo-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+
+    /* ── MAIN ── */
+    main {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 4rem 5%;
+      position: relative;
+      overflow: hidden;
+    }
+    main::before {
+      content: '';
+      position: absolute; inset: 0;
+      background:
+        radial-gradient(ellipse 55% 55% at 50% 0%, rgba(57,255,20,.04), transparent),
+        radial-gradient(ellipse 40% 60% at 0% 80%, rgba(57,255,20,.02), transparent);
+      pointer-events: none;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(57,255,20,.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(57,255,20,.025) 1px, transparent 1px);
+      background-size: 48px 48px;
+      mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 5%, transparent 100%);
+    }
+
+    .page-card {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-dim);
+      border-top: 2px solid var(--primary);
+      border-radius: 4px;
+      padding: 3rem 3rem 2.5rem;
+      box-shadow: 0 0 60px rgba(57,255,20,.04);
+      text-align: center;
+    }
+
+    .state-icon {
+      width: 64px; height: 64px;
+      background: rgba(251,146,60,.1);
+      border: 1px solid rgba(251,146,60,.25);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      color: #fb923c;
+    }
+
+    h1 {
+      font-family: 'DM Serif Display', serif;
+      font-weight: 400;
+      font-size: clamp(1.7rem, 4vw, 2.1rem);
+      line-height: 1.2;
+      letter-spacing: 2px;
+      margin-bottom: 1rem;
+    }
+
+    .lead {
+      color: var(--text-muted);
+      font-size: .88rem;
+      line-height: 1.85;
+      letter-spacing: .5px;
+      margin-bottom: 2rem;
+    }
+
+    .btn-group { display: flex; flex-direction: column; gap: .75rem; margin-bottom: 1.5rem; }
+
+    .email-btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      width: 100%; padding: 15px;
+      background: var(--primary); color: #000;
+      border: none; border-radius: 3px; cursor: pointer;
+      font-family: 'Montserrat', sans-serif; font-weight: 800;
+      font-size: .78rem; letter-spacing: 2.5px; text-transform: uppercase;
+      text-decoration: none;
+      transition: background .2s, box-shadow .2s, transform .15s;
+    }
+    .email-btn:hover {
+      background: #55ff33;
+      box-shadow: 0 0 32px var(--primary-glow);
+      transform: translateY(-1px);
+    }
+    .email-btn.secondary {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--border-dim);
+    }
+    .email-btn.secondary:hover {
+      background: rgba(255,255,255,.04);
+      box-shadow: none;
+    }
+
+    .email-display {
+      font-size: .8rem; color: var(--text-muted);
+      letter-spacing: .5px; margin-bottom: 1.75rem;
+    }
+    .email-display a {
+      color: var(--primary); text-decoration: none;
+    }
+    .email-display a:hover { text-decoration: underline; }
+
+    .back-link {
+      display: block;
+      font-size: .75rem; color: var(--text-muted);
+      letter-spacing: .5px; text-decoration: none;
+      transition: color .2s;
+    }
+    .back-link:hover { color: var(--text); }
+
+    /* ── FOOTER ── */
+    footer {
+      border-top: 1px solid var(--border-dim);
+      padding: 1.5rem 5%;
+      text-align: center;
+    }
+    footer p { font-size: .72rem; color: var(--text-muted); letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 600px) {
+      .page-card { padding: 2rem 1.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <a href="/" class="logo-link">
+    <img src="/logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="logo-text">Breach<span>Watcher</span></div>
+      <span class="logo-tagline">we watch for you</span>
+    </div>
+  </a>
+</header>
+
+<main>
+  <div class="hero-grid"></div>
+
+  <div class="page-card">
+    <div class="state-icon"><i class="fas fa-bell-slash"></i></div>
+    <h1>Unsubscribe</h1>
+    <p class="lead">
+      To unsubscribe from all BreachWatcher alerts and communications, send us an email and we'll remove you within 24 hours.
+    </p>
+    <div class="btn-group">
+      <a
+        class="email-btn"
+        href="https://mail.google.com/mail/?view=cm&to=thebreachwatcher@gmail.com&su=Unsubscribe%20Request&body=Hi%2C%0A%0APlease%20unsubscribe%20me%20from%20all%20BreachWatcher%20alerts%20and%20communications.%0A%0AThank%20you."
+        target="_blank" rel="noopener"
+      >
+        <i class="fab fa-google"></i> Open in Gmail
+      </a>
+      <a
+        class="email-btn secondary"
+        href="mailto:thebreachwatcher@gmail.com?subject=Unsubscribe%20Request&body=Hi%2C%0A%0APlease%20unsubscribe%20me%20from%20all%20BreachWatcher%20alerts%20and%20communications.%0A%0AThank%20you."
+      >
+        <i class="fas fa-envelope"></i> Open in Mail App
+      </a>
+    </div>
+    <p class="email-display">Or email us directly at <a href="mailto:thebreachwatcher@gmail.com">thebreachwatcher@gmail.com</a></p>
+    <a href="/" class="back-link">No thanks, take me back</a>
+  </div>
+</main>
+
+<footer>
+  <p>&copy; 2026 BreachWatcher &mdash; All rights reserved</p>
+</footer>
+
+</body>
+</html>
