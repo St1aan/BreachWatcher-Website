@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="../images/logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="A previously unknown extortion group called Icarus breached Klue's SaaS platform, harvesting OAuth tokens to infiltrate Salesforce environments at Huntress, Recorded Future, LastPass, and 15+ other organisations.">
+  <link rel="canonical" href="https://www.breachwatcher.io/security-alerts/icarus.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/security-alerts/icarus.html">
+  <meta property="og:title" content="Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach | BreachWatcher">
+  <meta property="og:description" content="A previously unknown extortion group called Icarus breached Klue's SaaS platform, harvesting OAuth tokens to infiltrate Salesforce environments at Huntress, Recorded Future, LastPass, and 15+ other organisations.">
+  <meta property="og:image" content="https://www.breachwatcher.io/images/Icarus.jpg">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-06-25T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-06-25T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:site" content="@BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach | BreachWatcher">
+  <meta name="twitter:description" content="A previously unknown extortion group called Icarus breached Klue's SaaS platform, harvesting OAuth tokens to infiltrate Salesforce environments at Huntress, Recorded Future, LastPass, and 15+ other organisations.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/images/Icarus.jpg">
+  <title>Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach | BreachWatcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; z-index: 1; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+    .article-header-image { position: absolute; right: 0; top: 0; bottom: 0; width: 48%; pointer-events: none; -webkit-mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); mask-image: linear-gradient(100deg, transparent 0%, transparent 18%, rgba(0,0,0,.35) 42%, black 68%); }
+    .article-header-image img { width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block; }
+    @media (max-width: 900px) { .article-header-image { display: none; } }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    @media (min-width: 1100px) {
+      .article-body { max-width: 960px; padding: 70px 4% 100px; }
+      .article-body p { font-size: 1.05rem; }
+      .article-body ul li { font-size: 1rem; }
+      .article-body dt { font-size: 1rem; }
+      .article-body dd { font-size: 1rem; }
+    }
+    @media (min-width: 1400px) {
+      .article-body { max-width: 1100px; }
+    }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+    .article-body ul li strong { color: var(--text); font-weight: 600; }
+
+    .article-body dl { margin: 0 0 1.5rem; }
+    .article-body dt { color: var(--text); font-weight: 700; font-size: .9rem; letter-spacing: .5px; padding-top: .85rem; display: flex; align-items: center; gap: 10px; }
+    .article-body dt::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; }
+    .article-body dd { color: var(--text-muted); font-size: .9rem; line-height: 1.75; letter-spacing: .5px; padding: .35rem 0 .85rem 1.35rem; border-bottom: 1px solid var(--border-dim); margin: 0; }
+    .article-body dd:last-child { border-bottom: none; }
+
+    .sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dim); }
+    .sources h3 { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .sources ol { list-style: none; counter-reset: sources; display: flex; flex-direction: column; gap: .6rem; }
+    .sources ol li { counter-increment: sources; display: flex; gap: 10px; align-items: baseline; font-size: .8rem; }
+    .sources ol li::before { content: counter(sources); color: var(--primary); font-size: .65rem; font-weight: 800; flex-shrink: 0; padding-top: 1px; }
+    .sources ol li a { color: var(--text-muted); text-decoration: none; letter-spacing: .3px; line-height: 1.6; transition: color .2s; }
+    .sources ol li a:hover { color: var(--text); }
+    .sources ol li .source-pub { color: var(--text); font-weight: 600; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+
+    .alert-box-danger { background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.25); border-left: 3px solid var(--danger); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box-danger p { margin: 0; font-size: .9rem; color: var(--text-muted); }
+    .alert-box-danger p strong { color: #f87171; }
+
+    /* IOC TABLE */
+    .ioc-table { width: 100%; border-collapse: collapse; margin: 0 0 1.5rem; font-size: .85rem; }
+    .ioc-table thead tr { border-bottom: 1px solid var(--border); }
+    .ioc-table th { text-align: left; padding: .6rem .75rem; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+    .ioc-table td { padding: .65rem .75rem; color: var(--text-muted); border-bottom: 1px solid var(--border-dim); vertical-align: top; line-height: 1.6; }
+    .ioc-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; width: 30%; }
+    .ioc-table tr:last-child td { border-bottom: none; }
+    .ioc-table code { font-family: 'Courier New', monospace; font-size: .8rem; color: #f87171; background: rgba(239,68,68,.08); padding: 1px 5px; border-radius: 2px; }
+
+    .action-steps { list-style: none; margin: 0 0 1.5rem; counter-reset: steps; }
+    .action-steps li { counter-increment: steps; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border-dim); align-items: start; }
+    .action-steps li:last-child { border-bottom: none; }
+    .action-steps li::before { content: counter(steps); color: var(--primary); font-size: .72rem; font-weight: 800; letter-spacing: 1px; padding-top: 3px; }
+    .action-step-title { color: var(--text); font-size: .88rem; font-weight: 700; letter-spacing: .5px; margin-bottom: .3rem; }
+    .action-step-desc { color: var(--text-muted); font-size: .88rem; line-height: 1.75; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-social { display: flex; gap: 14px; margin-top: 1rem; }
+    .footer-social a { color: var(--text-muted); font-size: 1.1rem; transition: color .2s; }
+    .footer-social a:hover { color: var(--primary); }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ioc-table td:first-child { white-space: normal; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach | BreachWatcher",
+        "description": "A previously unknown extortion group called Icarus breached Klue's SaaS platform, harvesting OAuth tokens to infiltrate Salesforce environments at Huntress, Recorded Future, LastPass, and 15+ other organisations.",
+        "url": "https://www.breachwatcher.io/security-alerts/icarus.html",
+        "image": "https://www.breachwatcher.io/images/Icarus.jpg",
+        "datePublished": "2026-06-25T00:00:00+00:00",
+        "dateModified": "2026-06-25T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/images/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/security-alerts/icarus.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+          {"@type":"ListItem","position":2,"name":"Security Alerts","item":"https://www.breachwatcher.io/security-alerts/"},
+          {"@type":"ListItem","position":3,"name":"Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach","item":"https://www.breachwatcher.io/security-alerts/icarus.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../images/logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../security-alerts/">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="./">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Security Alerts</a>
+      <span class="sep">/</span>
+      <span>Icarus</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-red">Supply Chain</span>
+      <span class="article-tag tag-orange">Data Extortion</span>
+      <span class="article-tag tag-purple">OAuth Abuse</span>
+    </div>
+    <h1 class="article-title">Icarus: The Extortion Group Behind the Klue–Salesforce Supply Chain Breach</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> June 25, 2026</span>
+      <span><i class="fas fa-clock"></i> 6 min read</span>
+    </div>
+  </div>
+  <div class="article-header-image">
+    <img src="../images/Icarus.jpg" alt="Icarus: Klue Salesforce Supply Chain Breach">
+  </div>
+</header>
+
+<main class="article-body">
+
+  <div class="alert-box">
+    <p><strong>⚠ Active Incident:</strong> A new extortion group called Icarus has breached competitive-intelligence vendor Klue and used stolen OAuth tokens to extract CRM data from over 15 organisations. Victims included Huntress, Recorded Future, LastPass, and BeyondTrust. If your organisation connects any third-party SaaS tool to Salesforce or other CRM platforms, audit and revoke all OAuth tokens immediately. This incident is under active investigation.</p>
+  </div>
+
+  <h2>What Is Happening?</h2>
+  <p>Icarus is a data-theft and extortion group that has emerged as the actor behind one of 2026's most significant SaaS supply chain incidents. Their entry point was <strong>Klue</strong>, a competitive-intelligence platform used by sales and marketing teams across the technology industry. By compromising Klue's backend integration infrastructure, Icarus was able to harvest the OAuth tokens that Klue's customers use to connect the platform to their CRM environments, then use those tokens to walk directly into customer data.</p>
+  <p>A key clarification up front: Icarus is <strong>not</strong> a standard ransomware group. They do not encrypt files using software or malware. Their business model is pure data theft followed by extortion. They steal the data, threaten to publish it, and pressure victims into paying for silence. This is the same playbook used by groups like ShinyHunters, and it is becoming increasingly common as cloud integrations multiply the attack surface available to a single compromised vendor.</p>
+
+  <h2>Who Is Icarus?</h2>
+  <p>Icarus is a previously unknown group that, according to incident responders at Huntress, has been active since at least <strong>April 28, 2026</strong>. Before the Klue campaign, the group had listed two earlier victims on its dark-web data leak site, with stolen data hosted via the file-sharing service gofile[.]io. Several characteristics distinguish the group:</p>
+  <dl>
+    <dt>Communication via Session</dt>
+    <dd>Rather than traditional email-only extortion or dark-web forums, Icarus directs victims to negotiate through the privacy-focused Session messenger application. This move is designed to limit investigators' ability to monitor their communications.</dd>
+    <dt>Selective leak-site pressure</dt>
+    <dd>Icarus runs a Tor-based data leak site where it names victims and applies public pressure, but has been observed listing victims without supplying working download links. using the threat of publication as leverage rather than releasing data immediately.</dd>
+    <dt>Language designed to minimise</dt>
+    <dd>Leak-site copy described stolen data as "borrowed" rather than stolen, a framing choice that suggests an attempt to reduce the perceived severity of their actions.</dd>
+    <dt>Russian-linked infrastructure</dt>
+    <dd>The IP address hosting Icarus's leak content resolves to an autonomous system registered to a Russian hosting entity with a documented history of bulletproof hosting.</dd>
+    <dt>OAuth-abuse tradecraft overlap</dt>
+    <dd>The technique used in this incident closely mirrors the approach behind the 2025 Salesloft Drift and Gainsight incidents linked to ShinyHunters and the threat cluster UNC6395. Researchers have not yet formally attributed Icarus to either group.</dd>
+    <dt>Operational immaturity</dt>
+    <dd>Investigators observed at least one operator using the handle "mr bean" in extortion messages and noted the group corrected a messaging error mid-campaign. These are indicators of a relatively young operation still refining its tradecraft.</dd>
+  </dl>
+
+  <h2>How the Attack Unfolded</h2>
+  <p>Icarus's entry point into Klue was not a zero-day vulnerability, it was a long-forgotten credential. According to Klue's CEO and multiple incident response teams, the attacker used a <strong>dormant legacy credential</strong> tied to a third-party integration Klue had built years earlier and subsequently abandoned, but never formally deactivated. This is the kind of exposure that accumulates silently as organisations grow and integrations are added without a corresponding offboarding process.</p>
+  <p>Once inside Klue's integration infrastructure, the attacker moved methodically:</p>
+  <dl>
+    <dt>Backend infiltration</dt>
+    <dd>Gained access to Klue's backend integration layer, which sits between Klue and its customers' connected SaaS environments.</dd>
+    <dt>Token harvesting</dt>
+    <dd>Pushed unauthorised code specifically designed to harvest the <strong>OAuth tokens and refresh tokens</strong> that Klue's customers use to grant the platform access to platforms like Salesforce, Gong, HubSpot, and others.</dd>
+    <dt>Credential abuse</dt>
+    <dd>Used those stolen tokens to authenticate directly into customers' connected environments, bypassing the need for usernames or passwords entirely.</dd>
+    <dt>Mass data extraction</dt>
+    <dd>Ran automated <strong>Python-based scripts</strong> against the Salesforce REST API for roughly 24 continuous hours, pulling bulk CRM data in a pattern that stood out clearly from normal integration traffic.</dd>
+  </dl>
+  <p>Klue detected the anomalous activity around <strong>June 11–12, 2026</strong>, and responded by disabling integrations with Salesforce, HubSpot, SharePoint, Zoom, Gong, Chorus, Clari, Google Drive, and Slack. Salesforce separately disabled Klue's "Battlecards" connector platform-wide while the investigation proceeded.</p>
+
+  <h2>Who Was Affected?</h2>
+  <p>As of this alert, <strong>15 or more organisations</strong> have been confirmed or strongly linked to the breach. The victim list is notable for how heavily it skews toward the cybersecurity industry itself. This is a reminder that security vendors are high-value targets precisely because of the sensitive data their customers entrust to them:</p>
+  <dl>
+    <dt>Confirmed victims</dt>
+    <dd>Huntress, Recorded Future, BeyondTrust, LastPass, HackerOne, Insurity, Jamf, OneTrust, Snyk, Sprout Social, Tanium, 8x8, Pendo, and Klue itself.</dd>
+    <dt>Additional targets</dt>
+    <dd>Icarus's leak site separately named a Swiss AI communications firm and reportedly listed additional unnamed victims before the site went offline.</dd>
+    <dt>True scope</dt>
+    <dd>Huntress has cautioned that the true victim count is likely higher, with further disclosures expected as affected Klue customers complete their own investigations.</dd>
+  </dl>
+
+  <h2>What Data Was Taken?</h2>
+  <p>The pattern across disclosures from affected organisations is consistent: the stolen data is <strong>CRM and sales-related business data</strong>, not core product, source code, or infrastructure credentials. Typical exposure included:</p>
+  <ul>
+    <li>Business contact details; names, job titles, email addresses, phone numbers, and mailing addresses.</li>
+    <li>Sales communications, pipeline opportunity notes, and price quotes.</li>
+    <li>Subscription and pricing details, as well as product usage data.</li>
+    <li>Support case records, in some instances.</li>
+  </ul>
+  <p>Affected organisations have consistently confirmed that <strong>passwords, payment card data, customer vaults, threat intelligence feeds, and product telemetry were not compromised</strong> and exposure was limited to systems reachable through the Klue integration. That said, sales and contact data is ideal fuel for convincing follow-on phishing campaigns, invoice fraud, and business email compromise targeting customers and partners.</p>
+
+  <h2>Extortion Tactics</h2>
+  <p>Beyond the leak-site pressure, Icarus directly contacted employees at affected organisations via email. The messages carried subject lines like <strong>"top secret email"</strong> and gave recipients as little as 48 hours to initiate contact through Session before data would be published.</p>
+  <p>Critically, these extortion emails were sent from the <strong>real, hijacked mail servers</strong> of an unrelated Australian retail group. This means the messages pass standard email authentication checks, SPF and DMARC validation succeeds because the sending server is legitimate, even though the content is fraudulent. Filtering or dismissing these messages based on authentication signals alone is not reliable.</p>
+
+  <h2>Known Indicators of Compromise</h2>
+  <table class="ioc-table">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Indicator</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>IP Addresses</td>
+        <td><code>138.226.246.94</code> &nbsp; <code>212.86.125.24</code> &nbsp; <code>213.111.148.90</code> &nbsp; <code>94.154.32.160</code></td>
+      </tr>
+      <tr>
+        <td>Extortion Email Domains</td>
+        <td><code>house.com.au</code> &nbsp; <code>robinskitchen.com.au</code> &nbsp; <code>baccarat.com.au</code></td>
+      </tr>
+      <tr>
+        <td>Data Drop Service (abused)</td>
+        <td><code>gofile.io</code></td>
+      </tr>
+      <tr>
+        <td>Salesforce API Paths Targeted</td>
+        <td><code>/services/data/v59.0/sobjects</code> &nbsp; <code>/services/data/v59.0/query/</code></td>
+      </tr>
+      <tr>
+        <td>Suspicious User-Agents</td>
+        <td><code>Python-urllib/3.12</code> &nbsp; <code>Python-urllib/3.14</code> &nbsp; blank / empty UA</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="alert-box-danger">
+    <p><strong>Note on the extortion email domains:</strong> The domains listed above belong to legitimate Australian businesses whose mail infrastructure was compromised and hijacked for this campaign. Emails from these domains may pass SPF and DMARC checks, do not trust authentication results alone when evaluating messages related to this incident.</p>
+  </div>
+
+  <h2>What You Should Do</h2>
+  <ol class="action-steps">
+    <li>
+      <div>
+        <div class="action-step-title">Revoke and rotate all OAuth tokens linked to Klue</div>
+        <div class="action-step-desc">A password reset is not sufficient. OAuth access tokens and refresh tokens must be explicitly revoked at the authorisation server level for every platform Klue was connected to, including Salesforce, HubSpot, Gong, SharePoint, Google Drive, Zoom, Slack, Chorus, and Clari.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Terminate active sessions, not just tokens</div>
+        <div class="action-step-desc">Revoke all active sessions on affected services for any account that was accessible through the Klue integration. Active sessions established using stolen tokens remain valid even after the token itself is rotated, unless explicitly invalidated.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Audit every third-party OAuth integration on your CRM</div>
+        <div class="action-step-desc">Enumerate every application with OAuth access to Salesforce and other connected platforms. Remove any integration that is no longer in active use. Apply least-privilege scoping to everything that remains, dormant, over-permissioned integrations are exactly what made this attack possible.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Review Salesforce and CRM API logs for anomalous activity</div>
+        <div class="action-step-desc">Look for unusual query volume, bulk export patterns, or the specific IP addresses and user-agents listed in the IOC table above. The attacker ran automated Python scripts against the Salesforce REST API for approximately 24 hours, this traffic pattern should stand out clearly from normal integration activity.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Search for extortion emails and preserve them</div>
+        <div class="action-step-desc">Search email and spam folders across your organisation for messages referencing Klue, the subject line "top secret email," or the domains listed in the IOC table. Preserve any matches for forensic purposes. Do not delete them and do not reply independently of your incident response team.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Do not pay or engage with the threat actor directly</div>
+        <div class="action-step-desc">If you receive extortion contact, route it immediately through your incident response team, legal counsel, and law enforcement. Direct engagement without legal oversight typically worsens outcomes and may create additional legal exposure.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Do not download or open leaked data from dark-web sites</div>
+        <div class="action-step-desc">Leak archives circulated via Icarus's site or gofile.io should not be opened. Archives linked to extortion campaigns frequently contain embedded malware targeting the curious. Confirm your specific exposure through your IR team and official Klue communications, not by downloading attacker-controlled files.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Alert sales and customer-facing teams to follow-on social engineering</div>
+        <div class="action-step-desc">Stolen CRM and contact data is ideal material for targeted phishing, invoice fraud, and business email compromise. Brief your sales, finance, and customer success teams now. The stolen data gives attackers the context needed to craft highly convincing impersonation attempts targeting your customers and partners.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Restrict integration accounts to known IP ranges</div>
+        <div class="action-step-desc">Where your SaaS platforms support it, limit OAuth integration access to authorised IP address ranges. This does not prevent all attacks, but it substantially reduces the blast radius of future credential or token theft.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Contact Klue directly if you haven't confirmed your exposure</div>
+        <div class="action-step-desc">If you are a current or former Klue customer and haven't received specific breach notification, contact Klue's security team directly to request your incident details. Do not wait for a general public notice, ask for your specific exposure now.</div>
+      </div>
+    </li>
+  </ol>
+
+  <div class="alert-box">
+    <p><strong>This alert will be updated</strong> as additional victims are confirmed and technical details emerge. The incident remains under active investigation by Klue, Salesforce, and the security teams of affected customers.</p>
+  </div>
+
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.securityweek.com/beyondtrust-lastpass-impacted-by-klue-salesforce-incident/" target="_blank" rel="noopener noreferrer"><span class="source-pub">SecurityWeek</span> — BeyondTrust, LastPass Impacted by Klue-Salesforce Incident</a></li>
+      <li><a href="https://www.csoonline.com/article/4187907/klue-breach-exposed-salesforce-crm-data-through-stolen-oauth-tokens.html" target="_blank" rel="noopener noreferrer"><span class="source-pub">CSO Online</span> — Klue breach exposed Salesforce CRM data through stolen OAuth tokens</a></li>
+      <li><a href="https://www.huntress.com/blog/klue-breach-investigation" target="_blank" rel="noopener noreferrer"><span class="source-pub">Huntress</span> — Cybercrime Breaches Klue: Salesforce Data Impacted for Many Victims, including Huntress</a></li>
+      <li><a href="https://www.threatlocker.com/blog/klue-saas-supply-chain-compromise-through-long-lived-oauth-tokens" target="_blank" rel="noopener noreferrer"><span class="source-pub">ThreatLocker</span> — Klue: SaaS supply chain compromise through long-lived OAuth tokens</a></li>
+      <li><a href="https://www.computing.co.uk/news/2026/security/lastpass-supply-chain-attack-exposed-customer-data" target="_blank" rel="noopener noreferrer"><span class="source-pub">Computing.co.uk</span> — LastPass says supply chain attack exposed customer data</a></li>
+      <li><a href="https://www.channelinsider.com/security/klue-breach-salesforce-oauth-token-theft/" target="_blank" rel="noopener noreferrer"><span class="source-pub">Channel Insider</span> — Klue Breach Exposes Salesforce Data Through OAuth Token Theft</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../images/logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Gauteng, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> North Carolina, United States
+        </span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/BreachWatcher" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on X"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="./">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

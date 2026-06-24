@@ -1,5 +1,31 @@
 [
   {
+    "slug": "icarus",
+    "title": "Icarus — The Extortion Group Behind the Klue–Salesforce Supply Chain Breach",
+    "tags": [
+      { "label": "Supply Chain",   "class": "tag-red"    },
+      { "label": "Data Extortion", "class": "tag-orange" },
+      { "label": "OAuth Abuse",    "class": "tag-purple" }
+    ],
+    "date":        "2026-06-24",
+    "dateDisplay": "June 24, 2026",
+    "description": "A new extortion group called Icarus breached Klue's SaaS platform and harvested OAuth tokens to extract Salesforce CRM data from Huntress, Recorded Future, LastPass, BeyondTrust, and 15+ other organisations.",
+    "icon": "fas fa-feather-pointed"
+  },
+  {
+    "slug": "fortibleed",
+    "title": "FortiBleed — The 73,000+ Fortinet Firewall Credential Dump",
+    "tags": [
+      { "label": "Credential Stuffing", "class": "tag-red"    },
+      { "label": "Data Breach",         "class": "tag-orange" },
+      { "label": "Active Campaign",     "class": "tag-purple" }
+    ],
+    "date":        "2026-06-18",
+    "dateDisplay": "June 18, 2026",
+    "description": "A Russian-speaking threat group has compromised over 73,000 Fortinet FortiGate firewalls worldwide using previously leaked credentials. No new vulnerability required — rotate all Fortinet passwords now.",
+    "icon": "fas fa-fire-flame-curved"
+  },
+  {
     "slug": "ai-vulnerability-management",
     "title": "AI — Rewriting the Rules of Vulnerability Management",
     "tags": [
