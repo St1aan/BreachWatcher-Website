@@ -1,5 +1,18 @@
 [
   {
+    "slug": "clop-ptc-windchill",
+    "title": "Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign",
+    "tags": [
+      { "label": "Ransomware",       "class": "tag-red"    },
+      { "label": "Mass Exploitation", "class": "tag-orange" },
+      { "label": "Data Extortion",   "class": "tag-purple" }
+    ],
+    "date":        "2026-08-13",
+    "dateDisplay": "August 13, 2026",
+    "description": "Cl0p is mass-exploiting CVE-2026-12569 in PTC Windchill and FlexPLM, with 44+ organisations named on its leak site and over 20TB of engineering and product data claimed stolen. Patch immediately.",
+    "icon": "fas fa-industry"
+  },
+  {
     "slug": "icarus",
     "title": "Icarus — The Extortion Group Behind the Klue–Salesforce Supply Chain Breach",
     "tags": [

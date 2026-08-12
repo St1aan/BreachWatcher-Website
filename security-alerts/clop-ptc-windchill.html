@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" href="../images/logo.jpg">
+  <link rel="icon" type="image/jpeg" href="/images/logo.jpg">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="The Cl0p ransomware group is running a mass-exploitation campaign against PTC Windchill and FlexPLM via CVE-2026-12569, with 44+ organisations now named on its leak site and over 20TB of engineering data claimed stolen.">
+  <link rel="canonical" href="https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html">
+  <meta property="og:type" content="article">
+  <meta property="og:url" content="https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html">
+  <meta property="og:title" content="Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign | BreachWatcher">
+  <meta property="og:description" content="The Cl0p ransomware group is running a mass-exploitation campaign against PTC Windchill and FlexPLM via CVE-2026-12569, with 44+ organisations now named on its leak site and over 20TB of engineering data claimed stolen.">
+  <meta property="og:image" content="https://www.breachwatcher.io/images/Banner.webp">
+  <meta property="og:site_name" content="BreachWatcher">
+  <meta property="article:published_time" content="2026-08-13T00:00:00+00:00">
+  <meta property="article:modified_time" content="2026-08-13T00:00:00+00:00">
+  <meta property="article:author" content="BreachWatcher">
+  <meta name="twitter:site" content="@BreachWatcher">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign | BreachWatcher">
+  <meta name="twitter:description" content="The Cl0p ransomware group is running a mass-exploitation campaign against PTC Windchill and FlexPLM via CVE-2026-12569, with 44+ organisations now named on its leak site and over 20TB of engineering data claimed stolen.">
+  <meta name="twitter:image" content="https://www.breachwatcher.io/images/Banner.webp">
+  <title>Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign | BreachWatcher</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://cdnjs.cloudflare.com">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Montserrat:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+  <style>
+    :root {
+      --bg:           #0B0F0E;
+      --bg-card:      #1F2A2E;
+      --primary:      #39FF14;
+      --primary-glow: rgba(57,255,20,0.18);
+      --danger:       #ef4444;
+      --text:         #FFFFFF;
+      --text-muted:   #5F6A6A;
+      --border:       rgba(57,255,20,0.14);
+      --border-dim:   rgba(255,255,255,0.06);
+      --nav-h:        72px;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Montserrat', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; overflow-x: hidden; }
+
+    /* NAV */
+    nav { position: fixed; top: 0; left: 0; right: 0; z-index: 1000; height: var(--nav-h); display: flex; align-items: center; padding: 0 5%; background: rgba(11,15,14,.96); backdrop-filter: blur(16px); box-shadow: 0 1px 0 var(--border-dim); }
+    .nav-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; flex-shrink: 0; }
+    .nav-logo img { height: 48px; width: 48px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.25); }
+    .nav-logo-text { font-family: 'Montserrat', sans-serif; font-weight: 800; font-size: 1.15rem; color: var(--text); letter-spacing: 2px; text-transform: uppercase; }
+    .nav-logo-text span { color: var(--primary); }
+    .nav-tagline { display: block; font-size: .58rem; color: var(--text-muted); letter-spacing: 2.5px; text-transform: uppercase; line-height: 1; margin-top: 3px; }
+    .nav-links { display: flex; align-items: center; gap: 1.75rem; margin-left: auto; list-style: none; }
+    .nav-links a { color: var(--text-muted); text-decoration: none; font-size: .72rem; font-weight: 600; transition: color .2s; position: relative; letter-spacing: 2px; text-transform: uppercase; }
+    .nav-links a:hover { color: var(--text); }
+    .nav-links a::after { content: ''; position: absolute; bottom: -4px; left: 0; right: 0; height: 1px; background: var(--primary); transform: scaleX(0); transition: transform .2s; }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta { background: var(--primary) !important; color: #000 !important; padding: 8px 20px; border-radius: 3px; font-weight: 800 !important; letter-spacing: 2px !important; }
+    .nav-cta:hover { background: #55ff33 !important; box-shadow: 0 0 24px var(--primary-glow) !important; }
+    .nav-cta::after { display: none !important; }
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; background: none; border: none; padding: 4px; margin-left: auto; }
+    .hamburger span { display: block; width: 24px; height: 2px; background: var(--text); border-radius: 2px; transition: all .3s; }
+    .hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .hamburger.open span:nth-child(2) { opacity: 0; }
+    .hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+    .mobile-menu { display: none; position: fixed; top: var(--nav-h); left: 0; right: 0; background: rgba(11,15,14,.98); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border-dim); padding: 2rem 5%; flex-direction: column; gap: 1.5rem; z-index: 999; }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a { color: var(--text); text-decoration: none; font-size: .88rem; font-weight: 600; padding: .5rem 0; border-bottom: 1px solid var(--border-dim); letter-spacing: 2.5px; text-transform: uppercase; }
+    .mobile-menu a:last-child { border: none; }
+
+    /* ARTICLE */
+    .article-header {
+      padding: calc(var(--nav-h) + 60px) 5% 60px;
+      background: var(--bg);
+      border-bottom: 1px solid var(--border-dim);
+      position: relative; overflow: hidden;
+    }
+    .article-header::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 80% at 80% 50%, rgba(57,255,20,.03), transparent);
+      pointer-events: none;
+    }
+    .article-header-inner { position: relative; max-width: 860px; z-index: 1; }
+    .breadcrumb { display: flex; align-items: center; gap: 8px; font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; margin-bottom: 2rem; }
+    .breadcrumb a { color: var(--text-muted); text-decoration: none; transition: color .2s; }
+    .breadcrumb a:hover { color: var(--primary); }
+    .breadcrumb .sep { color: var(--border); }
+    .article-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 1.5rem; }
+    .article-tag { font-size: .63rem; font-weight: 700; padding: 3px 10px; border-radius: 2px; text-transform: uppercase; letter-spacing: 1.5px; }
+    .tag-red    { background: rgba(239,68,68,.12);  color: #f87171; }
+    .tag-orange { background: rgba(251,146,60,.12); color: #fb923c; }
+    .tag-blue   { background: rgba(57,255,20,.08);  color: var(--primary); }
+    .tag-purple { background: rgba(95,106,106,.15); color: #a0aab0; }
+    .article-title { font-family: 'DM Serif Display', serif; font-weight: 400; font-size: clamp(1.9rem, 5vw, 3rem); line-height: 1.15; letter-spacing: 3px; margin-bottom: 1.5rem; }
+    .article-meta { display: flex; align-items: center; gap: 1.5rem; flex-wrap: wrap; color: var(--text-muted); font-size: .72rem; letter-spacing: 1.5px; text-transform: uppercase; }
+    .article-meta i { color: var(--primary); }
+
+    .article-body { max-width: 760px; margin: 0 auto; padding: 60px 5% 80px; }
+    .article-body h2 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .75rem; text-transform: uppercase; letter-spacing: 3px; color: var(--primary); margin: 3rem 0 1.25rem; padding-bottom: .6rem; border-bottom: 1px solid var(--border); }
+    .article-body h2:first-child { margin-top: 0; }
+    .article-body p { color: var(--text-muted); font-size: .95rem; line-height: 1.9; letter-spacing: .5px; margin-bottom: 1.25rem; }
+    .article-body p strong { color: var(--text); font-weight: 600; }
+    .article-body ul { list-style: none; margin: 0 0 1.5rem; }
+    .article-body ul li { display: flex; gap: 12px; align-items: flex-start; padding: .7rem 0; color: var(--text-muted); font-size: .9rem; line-height: 1.75; border-bottom: 1px solid var(--border-dim); letter-spacing: .5px; }
+    .article-body ul li:last-child { border-bottom: none; }
+    @media (min-width: 1100px) {
+      .article-body { max-width: 960px; padding: 70px 4% 100px; }
+      .article-body p { font-size: 1.05rem; }
+      .article-body ul li { font-size: 1rem; }
+      .article-body dt { font-size: 1rem; }
+      .article-body dd { font-size: 1rem; }
+    }
+    @media (min-width: 1400px) {
+      .article-body { max-width: 1100px; }
+    }
+    .article-body ul li::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; margin-top: 2px; }
+    .article-body ul li strong { color: var(--text); font-weight: 600; }
+
+    .article-body dl { margin: 0 0 1.5rem; }
+    .article-body dt { color: var(--text); font-weight: 700; font-size: .9rem; letter-spacing: .5px; padding-top: .85rem; display: flex; align-items: center; gap: 10px; }
+    .article-body dt::before { content: '→'; color: var(--primary); font-size: .85rem; flex-shrink: 0; }
+    .article-body dd { color: var(--text-muted); font-size: .9rem; line-height: 1.75; letter-spacing: .5px; padding: .35rem 0 .85rem 1.35rem; border-bottom: 1px solid var(--border-dim); margin: 0; }
+    .article-body dd:last-child { border-bottom: none; }
+
+    .stat-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(190px, 1fr)); gap: 1rem; margin: 2rem 0; }
+    .stat-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 3px; padding: 1.25rem 1.5rem; }
+    .stat-card .stat-value { font-family: 'DM Serif Display', serif; font-size: 1.9rem; color: var(--primary); line-height: 1; margin-bottom: .4rem; }
+    .stat-card .stat-label { font-size: .68rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 2px; line-height: 1.4; }
+
+    .sources { margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-dim); }
+    .sources h3 { font-size: .68rem; font-weight: 700; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .sources ol { list-style: none; counter-reset: sources; display: flex; flex-direction: column; gap: .6rem; }
+    .sources ol li { counter-increment: sources; display: flex; gap: 10px; align-items: baseline; font-size: .8rem; }
+    .sources ol li::before { content: counter(sources); color: var(--primary); font-size: .65rem; font-weight: 800; flex-shrink: 0; padding-top: 1px; }
+    .sources ol li a { color: var(--text-muted); text-decoration: none; letter-spacing: .3px; line-height: 1.6; transition: color .2s; }
+    .sources ol li a:hover { color: var(--text); }
+    .sources ol li .source-pub { color: var(--text); font-weight: 600; }
+
+    .alert-box { background: var(--bg-card); border: 1px solid var(--border); border-left: 3px solid var(--primary); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box p { margin: 0; font-size: .9rem; }
+    .alert-box p + p { margin-top: .9rem; }
+
+    .alert-box-danger { background: rgba(239,68,68,.06); border: 1px solid rgba(239,68,68,.25); border-left: 3px solid var(--danger); border-radius: 3px; padding: 1.5rem 1.75rem; margin: 2rem 0; }
+    .alert-box-danger p { margin: 0; font-size: .9rem; color: var(--text-muted); }
+    .alert-box-danger p strong { color: #f87171; }
+
+    /* TABLES */
+    .ioc-table { width: 100%; border-collapse: collapse; margin: 0 0 1.5rem; font-size: .85rem; }
+    .ioc-table thead tr { border-bottom: 1px solid var(--border); }
+    .ioc-table th { text-align: left; padding: .6rem .75rem; font-size: .65rem; font-weight: 700; text-transform: uppercase; letter-spacing: 2px; color: var(--primary); }
+    .ioc-table td { padding: .65rem .75rem; color: var(--text-muted); border-bottom: 1px solid var(--border-dim); vertical-align: top; line-height: 1.6; }
+    .ioc-table td:first-child { color: var(--text); font-weight: 600; white-space: nowrap; width: 30%; }
+    .ioc-table tr:last-child td { border-bottom: none; }
+    .ioc-table code { font-family: 'Courier New', monospace; font-size: .8rem; color: #f87171; background: rgba(239,68,68,.08); padding: 1px 5px; border-radius: 2px; }
+    .ioc-table td.size { color: var(--text); font-weight: 600; white-space: nowrap; text-align: right; }
+    .ioc-table th.size { text-align: right; }
+    .table-scroll { overflow-x: auto; margin: 0 0 1.5rem; }
+    .table-scroll .ioc-table { margin-bottom: 0; min-width: 520px; }
+
+    .action-steps { list-style: none; margin: 0 0 1.5rem; counter-reset: steps; }
+    .action-steps li { counter-increment: steps; display: grid; grid-template-columns: 2.25rem 1fr; gap: 0 1rem; padding: 1.1rem 0; border-bottom: 1px solid var(--border-dim); align-items: start; }
+    .action-steps li:last-child { border-bottom: none; }
+    .action-steps li::before { content: counter(steps); color: var(--primary); font-size: .72rem; font-weight: 800; letter-spacing: 1px; padding-top: 3px; }
+    .action-step-title { color: var(--text); font-size: .88rem; font-weight: 700; letter-spacing: .5px; margin-bottom: .3rem; }
+    .action-step-desc { color: var(--text-muted); font-size: .88rem; line-height: 1.75; letter-spacing: .5px; }
+
+    /* FOOTER */
+    footer { background: #000; border-top: 1px solid var(--border-dim); padding: 4rem 5% 2rem; }
+    .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 3rem; margin-bottom: 3rem; }
+    .footer-brand p { color: var(--text-muted); font-size: .85rem; line-height: 1.85; margin-top: 1rem; max-width: 300px; letter-spacing: .5px; }
+    .footer-logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+    .footer-logo img { height: 44px; width: 44px; object-fit: cover; border-radius: 50%; border: 1px solid rgba(57,255,20,.2); }
+    .footer-col h4 { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: .68rem; text-transform: uppercase; letter-spacing: 3px; color: var(--text-muted); margin-bottom: 1.25rem; }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: .75rem; }
+    .footer-col a { color: var(--text-muted); text-decoration: none; font-size: .85rem; transition: color .2s; letter-spacing: .5px; }
+    .footer-col a:hover { color: var(--primary); }
+    .footer-contact { display: flex; flex-direction: column; gap: .6rem; margin-top: 1rem; }
+    .footer-contact a { display: flex; align-items: center; gap: 8px; }
+    .footer-contact i { width: 16px; color: var(--primary); font-size: .85rem; }
+    .footer-social { display: flex; gap: 14px; margin-top: 1rem; }
+    .footer-social a { color: var(--text-muted); font-size: 1.1rem; transition: color .2s; }
+    .footer-social a:hover { color: var(--primary); }
+    .footer-bottom { border-top: 1px solid var(--border-dim); padding-top: 2rem; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .footer-bottom p { color: var(--text-muted); font-size: .75rem; letter-spacing: 1.5px; text-transform: uppercase; }
+
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: flex; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .ioc-table td:first-child { white-space: normal; }
+    }
+    @media (max-width: 600px) {
+      .article-header { padding: calc(var(--nav-h) + 40px) 6% 40px; }
+      .article-body { padding: 40px 6% 60px; }
+      .footer-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .stat-grid { grid-template-columns: 1fr 1fr; }
+    }
+  </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "headline": "Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign | BreachWatcher",
+        "description": "The Cl0p ransomware group is running a mass-exploitation campaign against PTC Windchill and FlexPLM via CVE-2026-12569, with 44+ organisations now named on its leak site and over 20TB of engineering data claimed stolen.",
+        "url": "https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html",
+        "image": "https://www.breachwatcher.io/images/Banner.webp",
+        "datePublished": "2026-08-13T00:00:00+00:00",
+        "dateModified": "2026-08-13T00:00:00+00:00",
+        "author": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io"
+        },
+        "publisher": {
+          "@type": "Organization",
+          "name": "BreachWatcher",
+          "url": "https://www.breachwatcher.io",
+          "logo": {"@type": "ImageObject", "url": "https://www.breachwatcher.io/images/logo.jpg"}
+        },
+        "mainEntityOfPage": {"@type": "WebPage", "@id": "https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html"}
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {"@type":"ListItem","position":1,"name":"Home","item":"https://www.breachwatcher.io/"},
+          {"@type":"ListItem","position":2,"name":"Security Alerts","item":"https://www.breachwatcher.io/security-alerts/"},
+          {"@type":"ListItem","position":3,"name":"Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign","item":"https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html"}
+        ]
+      }
+    ]
+  }
+  </script>
+</head>
+<body>
+
+<nav>
+  <a href="../" class="nav-logo">
+    <img src="../images/logo.jpg" alt="BreachWatcher">
+    <div>
+      <div class="nav-logo-text">Breach<span>Watcher</span></div>
+      <span class="nav-tagline">we watch for you</span>
+    </div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="../">Home</a></li>
+    <li><a href="../#service">The Service</a></li>
+    <li><a href="../#subscribe">Subscribe</a></li>
+    <li><a href="../#tips">Cyber Tips</a></li>
+    <li><a href="../security-alerts/">Alerts</a></li>
+    <li><a href="../#subscribe" class="nav-cta">Get Protected</a></li>
+  </ul>
+  <button class="hamburger" id="hamburger" aria-label="Open menu">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<div class="mobile-menu" id="mobile-menu">
+  <a href="../">Home</a>
+  <a href="../#service">The Service</a>
+  <a href="../#subscribe">Subscribe</a>
+  <a href="../#tips">Cybersecurity Tips</a>
+  <a href="./">Security Alerts</a>
+  <a href="../#subscribe" style="color:var(--primary);font-weight:800">Get Protected →</a>
+</div>
+
+<header class="article-header">
+  <div class="article-header-inner">
+    <div class="breadcrumb">
+      <a href="../">Home</a>
+      <span class="sep">/</span>
+      <a href="./">Security Alerts</a>
+      <span class="sep">/</span>
+      <span>Cl0p &amp; PTC Windchill</span>
+    </div>
+    <div class="article-tags">
+      <span class="article-tag tag-red">Ransomware</span>
+      <span class="article-tag tag-orange">Mass Exploitation</span>
+      <span class="article-tag tag-purple">Data Extortion</span>
+    </div>
+    <h1 class="article-title">Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign</h1>
+    <div class="article-meta">
+      <span><i class="fas fa-calendar-days"></i> August 13, 2026</span>
+      <span><i class="fas fa-clock"></i> 7 min read</span>
+    </div>
+  </div>
+</header>
+
+<main class="article-body">
+
+  <div class="alert-box">
+    <p><strong>⚠ Active Campaign:</strong> Cl0p is mass-exploiting <strong>CVE-2026-12569</strong>, a critical unauthenticated remote code execution flaw in PTC Windchill and FlexPLM, and has begun naming victims on its dark web leak site. If your organisation runs Windchill or FlexPLM, patch now and treat any internet-facing instance that was unpatched before late June 2026 as potentially compromised.</p>
+    <p>The vulnerability is listed in CISA's Known Exploited Vulnerabilities catalog with a three-day remediation deadline for U.S. federal agencies. This incident is ongoing and victims are still being added.</p>
+  </div>
+
+  <h2>What Is Happening?</h2>
+  <p>Cl0p, one of the most prolific data-extortion operations of the last several years, is running another mass-exploitation campaign, and a fresh batch of victims has now appeared on its dark web leak site. This time the entry point is not a file transfer tool like MOVEit or GoAnywhere. It is <strong>PTC Windchill and FlexPLM</strong>, the product lifecycle management (PLM) software used by tens of thousands of manufacturing, aerospace, retail, and engineering organisations worldwide to manage everything from CAD files to production records.</p>
+  <p>The distinction matters because of what PLM systems hold. Customer databases and payment systems are the usual headline targets, but a PLM environment contains a company's engineering drawings, product blueprints, testing reports, supplier specifications, and manufacturing records. For a manufacturer, that is often the single most valuable data estate it owns, and historically one of the least scrutinised.</p>
+  <p>As is now standard for Cl0p, this is <strong>not an encryption-based ransomware attack</strong>. No files are locked. The operators exfiltrate data quietly, then extort publicly, threatening to publish stolen material unless a ransom is paid.</p>
+
+  <h2>The Vulnerability</h2>
+  <p>In late July 2026, security researchers began tracking active exploitation of <strong>CVE-2026-12569</strong>, a critical unsafe deserialization vulnerability affecting PTC Windchill and FlexPLM. The flaw allows unauthenticated remote code execution, giving attackers a path to deploy web shells and pull sensitive product and engineering data straight out of compromised PLM environments.</p>
+
+  <table class="ioc-table">
+    <thead>
+      <tr>
+        <th>Detail</th>
+        <th>Value</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>CVE</td>
+        <td><code>CVE-2026-12569</code></td>
+      </tr>
+      <tr>
+        <td>CVSS Score</td>
+        <td>9.3 (Critical)</td>
+      </tr>
+      <tr>
+        <td>Vulnerability Class</td>
+        <td>Unsafe deserialization leading to unauthenticated remote code execution</td>
+      </tr>
+      <tr>
+        <td>Affected Products</td>
+        <td>PTC Windchill, PTC FlexPLM</td>
+      </tr>
+      <tr>
+        <td>Patch Availability</td>
+        <td>PTC began shipping fixes in mid-June 2026</td>
+      </tr>
+      <tr>
+        <td>Exploitation Status</td>
+        <td>Actively exploited in the wild; listed in the CISA KEV catalog</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <p>PTC had quietly begun shipping patches in mid-June, but the scale of the threat only became clear once national cybersecurity authorities got involved. Germany's Federal Office for Information Security (BSI) reportedly went as far as phoning and emailing PTC customers in the middle of the night to urge immediate patching. The vulnerability was subsequently added to CISA's Known Exploited Vulnerabilities catalog with a three-day remediation deadline for U.S. federal agencies, an unusually short window reserved for flaws under confirmed mass exploitation.</p>
+
+  <div class="alert-box-danger">
+    <p><strong>Do not assume an earlier patch covered this.</strong> Organisations that applied a Windchill security update in March 2026 are <strong>not</strong> automatically protected against CVE-2026-12569. Verify your installed version explicitly against PTC's advisory for this specific CVE.</p>
+  </div>
+
+  <h2>Why This Pattern Feels Familiar</h2>
+  <p>This is the same playbook Cl0p has run for years. Find one high-value enterprise platform with wide deployment, exploit a vulnerability in it at scale, exfiltrate data quietly, then extort publicly and in stages. The pattern is consistent across their entire history:</p>
+  <dl>
+    <dt>Accellion FTA (2021)</dt>
+    <dd>Mass exploitation of a legacy file transfer appliance, affecting universities, government agencies, and enterprises globally.</dd>
+    <dt>SolarWinds Serv-U and GoAnywhere MFT</dt>
+    <dd>Managed file transfer platforms targeted for the same reason: they sit at organisational boundaries and hold data in transit from across the business.</dd>
+    <dt>MOVEit Transfer (2023)</dt>
+    <dd>The campaign that defined the model, ultimately touching thousands of downstream organisations through a single vulnerable product.</dd>
+    <dt>Cleo file transfer software</dt>
+    <dd>Another supply-chain-adjacent platform exploited en masse, with victims disclosed over an extended period.</dd>
+    <dt>Oracle E-Business Suite</dt>
+    <dd>A move up the stack into core enterprise applications, with victims including Harvard, The Washington Post, Logitech, and Estée Lauder.</dd>
+    <dt>PTC Windchill and FlexPLM (2026)</dt>
+    <dd>The current campaign, extending the model into product lifecycle management and the intellectual property it contains.</dd>
+  </dl>
+  <p>The through-line is that Cl0p does not need to compromise each victim individually. One vulnerability in one widely deployed platform yields dozens or hundreds of organisations at once. Their operating model is built around finding blind spots in the enterprise software estate, and PLM was a well-chosen one.</p>
+
+  <h2>The Victims Now on the Leak Site</h2>
+  <p>A new set of listings has appeared, naming organisations Cl0p claims to have compromised through this campaign. The entries span manufacturing, aerospace, medical devices, retail, energy, and financial services, consistent with the industries that rely most heavily on Windchill and FlexPLM for engineering and product data.</p>
+
+  <div class="stat-grid">
+    <div class="stat-card">
+      <div class="stat-value">44+</div>
+      <div class="stat-label">Organisations named on the leak site</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">20+ TB</div>
+      <div class="stat-label">Data claimed stolen across all victims</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">9.3</div>
+      <div class="stat-label">CVSS score for CVE-2026-12569</div>
+    </div>
+    <div class="stat-card">
+      <div class="stat-value">3 days</div>
+      <div class="stat-label">CISA remediation deadline for U.S. federal agencies</div>
+    </div>
+  </div>
+
+  <p>Below is a snapshot of some of the larger and more notable names, along with the volume and type of data Cl0p claims to have exfiltrated:</p>
+
+  <div class="table-scroll">
+    <table class="ioc-table">
+      <thead>
+        <tr>
+          <th>Organisation</th>
+          <th>Data Claimed</th>
+          <th class="size">Size</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Shell.com</td><td>Engineering drawings, facility photos, testing reports</td><td class="size">89 GB</td></tr>
+        <tr><td>GE.com</td><td>Software backups, system files, projects</td><td class="size">391 GB</td></tr>
+        <tr><td>Fiserv.com</td><td>Projects, CAD files, software</td><td class="size">874 GB</td></tr>
+        <tr><td>Philips.com</td><td>PDF drawings, diagrams, blueprints</td><td class="size">13.5 GB</td></tr>
+        <tr><td>Irco.com</td><td>CAD files, drawings, product specs, manuals</td><td class="size">5,564 GB</td></tr>
+        <tr><td>Cornelius.com</td><td>Database, project, PDF/TXT/DOC files</td><td class="size">3,684 GB</td></tr>
+        <tr><td>Starkey.com</td><td>Database, project files</td><td class="size">3,030 GB</td></tr>
+        <tr><td>Toasttab.com</td><td>Project, backup database, logs</td><td class="size">215 GB</td></tr>
+        <tr><td>Aldo Group / Aldoshoes.com</td><td>TSV files, software, projects, CAD files</td><td class="size">424 GB</td></tr>
+        <tr><td>Suunto.com</td><td>Database, project files</td><td class="size">1,470 GB</td></tr>
+        <tr><td>Mindray.com</td><td>Database, project files</td><td class="size">50 GB</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p>The full listing includes dozens more entries, spanning aerospace suppliers, medical device makers, industrial equipment manufacturers, and retailers across North America, Europe, and Asia, each with claimed data ranging from a few gigabytes to several terabytes.</p>
+
+  <div class="alert-box">
+    <p><strong>A note on these figures:</strong> As with every Cl0p disclosure, these are the group's own claims, published to pressure victims into paying. They do not necessarily reflect confirmed, independently verified breach scope until the affected companies or their regulators speak publicly. Treat leak-site claims as an indication that an organisation was targeted, not as a validated inventory of what was taken.</p>
+  </div>
+
+  <h2>Extortion Tactics</h2>
+  <p>Cl0p is not relying on the leak site alone. Operators have reportedly been sending mass extortion emails to <strong>hundreds of employees per targeted company</strong>, using previously compromised internal accounts rather than external addresses.</p>
+  <p>This is a deliberate and effective choice. Messages sent from a genuine internal mailbox pass every standard email authentication check, because the sending infrastructure is legitimate. SPF and DMARC validation succeeds. The message lands in the inbox rather than the spam folder, and it appears to come from a colleague. Staff who have been trained to spot external phishing indicators will not find any.</p>
+  <p>The volume is also tactical. Blasting hundreds of employees rather than contacting the security team directly is designed to create internal panic and pressure leadership into paying quickly, before the organisation has finished scoping what was actually taken.</p>
+
+  <h2>What You Should Do</h2>
+  <ol class="action-steps">
+    <li>
+      <div>
+        <div class="action-step-title">Patch PTC Windchill and FlexPLM immediately</div>
+        <div class="action-step-desc">Confirm you are running a version that explicitly addresses CVE-2026-12569. Do not assume an earlier Windchill patch, including any applied in March 2026, covered this vulnerability. Check your version against PTC's advisory for this specific CVE.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Assume compromise on any internet-facing instance</div>
+        <div class="action-step-desc">Any Windchill or FlexPLM instance exposed to the internet that was not patched before late June 2026 should be treated as potentially compromised until proven otherwise. Patching now closes the door, but it does not tell you whether someone already walked through it.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Hunt for web shells on the application server</div>
+        <div class="action-step-desc">Look for unfamiliar JSP files, recently modified files in web-accessible directories, and any executable content that does not match your deployment baseline. Web shell deployment is the documented post-exploitation step in this campaign.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Review logs for unusual outbound data transfers</div>
+        <div class="action-step-desc">Focus on the exploitation window from mid-June 2026 onward. Bulk exfiltration of CAD files, project archives, and database exports produces outbound volume that should stand out clearly against normal PLM traffic patterns.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Rotate credentials tied to the affected systems</div>
+        <div class="action-step-desc">Rotate service accounts, database credentials, integration keys, and administrator passwords associated with Windchill and FlexPLM, along with anything those systems could reach. Remote code execution means any secret stored on or accessible from that host must be considered exposed.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Brief staff on extortion emails from internal accounts</div>
+        <div class="action-step-desc">Warn employees that extortion messages in this campaign are being sent from compromised internal mailboxes and will look like legitimate internal communication. Tell staff to report rather than reply, and give them a specific channel to report to. Preserve any messages received for your incident response team.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Do not engage the threat actor directly</div>
+        <div class="action-step-desc">Route any extortion contact through your incident response team, legal counsel, and law enforcement. Individual employees replying to threats independently worsens outcomes and can create additional legal exposure.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Restrict PLM exposure at the network edge</div>
+        <div class="action-step-desc">PLM platforms rarely need to be reachable from the open internet. Where remote access is required, place it behind a VPN or identity-aware proxy and limit access to known IP ranges. This substantially reduces the blast radius of the next PLM vulnerability, and there will be one.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Monitor for your organisation and staff appearing in future disclosures</div>
+        <div class="action-step-desc">Cl0p adds victims in stages over weeks or months. Absence from the current listing is not clearance. Monitor for your organisation's name and your employees' email addresses appearing in leak-site updates and breach dumps.</div>
+      </div>
+    </li>
+    <li>
+      <div>
+        <div class="action-step-title">Contact PTC if you have not confirmed your exposure</div>
+        <div class="action-step-desc">If you are a Windchill or FlexPLM customer and have not received specific guidance, contact PTC support directly to request your incident details and confirm your remediation path. Do not wait for a general public notice.</div>
+      </div>
+    </li>
+  </ol>
+
+  <h2>The Bigger Picture</h2>
+  <p>This campaign is a reminder that breach exposure is not limited to the obvious targets. Customer databases, payment systems, and HR records get the attention and the budget. Product lifecycle and engineering platforms hold some of a company's most sensitive intellectual property, and they are increasingly in the crosshairs precisely because they are less scrutinised than customer-facing systems.</p>
+  <p>For individuals, the risk compounds in a way that is easy to miss. When a corporate breach exposes internal engineering files, it usually exposes the surrounding metadata too: employee names, work email addresses, supplier contacts, and partner details embedded in project records and document histories. Those addresses end up folded into the same dark web data leaks that feed credential stuffing and targeted phishing campaigns months or years later.</p>
+  <p>That is the part most people never see coming. Your employer gets breached, your work email ends up in a dump, and the first sign you get is a convincing phishing attempt or a login attempt on an unrelated account where you reused a password.</p>
+
+  <div class="alert-box">
+    <p><strong>This alert will be updated</strong> as additional victims are confirmed and technical details emerge. The campaign remains active and Cl0p is expected to continue adding victims to its leak site over the coming weeks.</p>
+  </div>
+
+  <div class="sources">
+    <h3>Sources</h3>
+    <ol>
+      <li><a href="https://www.ptc.com/en/support/security-advisories" target="_blank" rel="noopener noreferrer"><span class="source-pub">PTC</span> — Security Advisories and Product Vulnerability Disclosures</a></li>
+      <li><a href="https://www.cisa.gov/known-exploited-vulnerabilities-catalog" target="_blank" rel="noopener noreferrer"><span class="source-pub">CISA</span> — Known Exploited Vulnerabilities Catalog</a></li>
+      <li><a href="https://nvd.nist.gov/vuln/detail/CVE-2026-12569" target="_blank" rel="noopener noreferrer"><span class="source-pub">NVD</span> — CVE-2026-12569 Detail</a></li>
+      <li><a href="https://www.bsi.bund.de/EN/Home/home_node.html" target="_blank" rel="noopener noreferrer"><span class="source-pub">BSI</span> — German Federal Office for Information Security</a></li>
+      <li><a href="https://www.reliaquest.com/blog/" target="_blank" rel="noopener noreferrer"><span class="source-pub">ReliaQuest</span> — Threat research on Cl0p exploitation activity</a></li>
+      <li><a href="https://www.ic3.gov/" target="_blank" rel="noopener noreferrer"><span class="source-pub">FBI IC3</span> — Report ransomware and extortion incidents</a></li>
+    </ol>
+  </div>
+
+</main>
+
+<footer>
+  <div class="footer-grid">
+    <div class="footer-brand">
+      <a href="../" class="footer-logo">
+        <img src="../images/logo.jpg" alt="BreachWatcher">
+        <div>
+          <div class="nav-logo-text">Breach<span>Watcher</span></div>
+          <span class="nav-tagline">we watch for you</span>
+        </div>
+      </a>
+      <p>Security isn't just software. It's peace of mind. BreachWatcher monitors data breaches for your email addresses so you're always informed and protected.</p>
+      <div class="footer-contact">
+        <a href="mailto:thebreachwatcher@gmail.com" class="footer-col">
+          <i class="fas fa-envelope"></i> thebreachwatcher@gmail.com
+        </a>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> Gauteng, South Africa
+        </span>
+        <span style="display:flex;align-items:center;gap:8px;color:var(--text-muted);font-size:.85rem">
+          <i class="fas fa-location-dot" style="width:16px;color:var(--primary);font-size:.85rem"></i> North Carolina, United States
+        </span>
+      </div>
+      <div class="footer-social">
+        <a href="https://www.linkedin.com/company/breachwatcher/" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on LinkedIn"><i class="fab fa-linkedin"></i></a>
+        <a href="https://x.com/BreachWatcher" target="_blank" rel="noopener noreferrer" aria-label="BreachWatcher on X"><i class="fab fa-x-twitter"></i></a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Navigate</h4>
+      <ul>
+        <li><a href="../">Home</a></li>
+        <li><a href="../#service">The Service</a></li>
+        <li><a href="../#subscribe">Subscribe</a></li>
+        <li><a href="../#tips">Cybersecurity Tips</a></li>
+        <li><a href="./">Security Alerts</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li><a href="mailto:thebreachwatcher@gmail.com">Email us</a></li>
+        <li><a href="../#subscribe">Get a subscription</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2026 BreachWatcher. All rights reserved.</p>
+    <p>Protecting your digital identity, 24/7.</p>
+  </div>
+</footer>
+
+<script>
+  const hamburger = document.getElementById('hamburger');
+  const mobileMenu = document.getElementById('mobile-menu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('open');
+    mobileMenu.classList.toggle('open');
+  });
+</script>
+</body>
+</html>

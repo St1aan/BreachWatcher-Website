@@ -124,26 +124,20 @@
   <!-- Security Alerts -->
 <!-- SECURITY-ALERTS-START -->
   <url>
-    <loc>https://www.breachwatcher.io/security-alerts/</loc>
-    <lastmod>2026-06-25</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
+    <loc>https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html</loc>
+    <lastmod>2026-08-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.breachwatcher.io/security-alerts/icarus.html</loc>
-    <lastmod>2026-06-25</lastmod>
+    <lastmod>2026-06-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
     <loc>https://www.breachwatcher.io/security-alerts/fortibleed.html</loc>
-    <lastmod>2026-06-22</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
-  </url>
-  <url>
-    <loc>https://www.breachwatcher.io/security-alerts/shinyhunters-oracle-peoplesoft.html</loc>
-    <lastmod>2026-06-04</lastmod>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
