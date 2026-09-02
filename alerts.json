@@ -1,5 +1,18 @@
 [
   {
+    "slug": "rand-water",
+    "title": "Cyberattack Allegedly Cripples South Africa's Largest Water Utility",
+    "tags": [
+      { "label": "Cyberattack",             "class": "tag-red"    },
+      { "label": "Critical Infrastructure", "class": "tag-orange" },
+      { "label": "South Africa",            "class": "tag-purple" }
+    ],
+    "date":        "2026-09-02",
+    "dateDisplay": "September 2, 2026",
+    "description": "Rand Water, the utility supplying bulk water to more than 11 million people across Gauteng, has allegedly been hit by a cyberattack that crippled its payments system and GIS infrastructure database. An official statement is pending.",
+    "icon": "fas fa-droplet"
+  },
+  {
     "slug": "clop-ptc-windchill",
     "title": "Inside Cl0p's Latest Extortion Wave: The PTC Windchill Campaign",
     "tags": [

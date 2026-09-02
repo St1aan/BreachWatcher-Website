@@ -124,6 +124,12 @@
   <!-- Security Alerts -->
 <!-- SECURITY-ALERTS-START -->
   <url>
+    <loc>https://www.breachwatcher.io/security-alerts/rand-water.html</loc>
+    <lastmod>2026-09-02</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://www.breachwatcher.io/security-alerts/clop-ptc-windchill.html</loc>
     <lastmod>2026-08-13</lastmod>
     <changefreq>monthly</changefreq>
